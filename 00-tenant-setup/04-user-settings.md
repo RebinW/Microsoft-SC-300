@@ -28,7 +28,7 @@ Now, for this they are mainly three levels to choose from:
 I have chosen to enable restriction. Even though normal users cannot change anything I still do not see any reason why they would have visibility here.
 
 **LinkedIn account connections**  
-This one is by default set to yes. I have chosen to set the option to no from a security perspective, also I do not see the need for employees to sign-up using their work account they're probably going to switch to another company at some point.
+This one is by default set to yes. I have chosen to set the option to no from a security perspective. The option allows internal identities to link their work account with their LinkedIn account for productivity integrations. It has nothing to do with authentication or access control.
 
 **Show keep user signed in**  
 This option allows users to stay signed in untill they explicitly sign out. This also means that if the close a browser the session is still going to stay active and they wont have to re-authenticate. This gives a better user experience in my opinion while we still be able to control risk using:
