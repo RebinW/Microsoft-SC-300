@@ -37,5 +37,9 @@ For the initial tenant setup I have chosen to enable the security defaults optio
 - Blocking legacy authentication protocols
 - Requiring users to perform MFA when necessary
 - Protecting privileged activities like access to the Azure portal
+  
+When we get further into the labs and start implementing more advanced features, I will then replace the security defaults with conditional access policies alligned to risk, roles and applications aswell.
 
+**Security defaults enabled in Entra Admin Center:**  
 ![Security defaults](screenshots/security-defaults.png)
+
