@@ -27,9 +27,3 @@ Entra ID P2 capabilities:
 
 For my project I am mainly interested in understanding the difference between Entra ID Free, Entra ID P1 and Entra ID P2 licenses. I found this official Microsoft 365 plan comparison that gives an good overview of the differenct products and the capabilities included en each:  
 [Microsoft 365 Enterprise plan comparison](https://www.microsoft.com/content/dam/microsoft/final/en-us/microsoft-brand/documents/Modern-Work-Plan-Comparison-ENT-1-16-2024.pdf)
-
-## External collaboration baseline
-
-
-## Emergency/ Break-glass accounts
-
