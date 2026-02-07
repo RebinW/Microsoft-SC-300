@@ -17,5 +17,5 @@
 *Security defauls*
 - Enabled this because it enforces MFA registration on all users, this works as best practice during the initial tenant setup. Later I will replace the baseline security with my own conditional access policies.
 
-**Tenant properties in Entra admin center**  
+**Tenant properties in Entra admin center:**  
 ![Tenant properties in Entra admin center](screenshots/tenant-properties.png)
