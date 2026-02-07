@@ -34,8 +34,8 @@ This one is by default set to yes. I have chosen to set the option to no from a 
 This option allows users to stay signed in untill they explicitly sign out. This also means that if the close a browser the session is still going to stay active and they wont have to re-authenticate. This gives a better user experience in my opinion while we still be able to control risk using:
 - Multi Factor Authentication 
 - Conditional access 
-- Device compliance
+- Device compliance  
 I have therefore chosen to enable this feature.
 
 **Output**  
-![](screenshots/default-user-settings)
+![Default user settings](screenshots/default-user-settings)
