@@ -15,7 +15,7 @@
 *Access management for Azure resources*
 - I left this disabled to follow the principle of least privilege and avoid automatic access to all Azure subscriptions aswell.
 
-*Security defauls*
+*Security defaults*
 - Enabled this because it enforces MFA registration on all users, this works as best practice during the initial tenant setup. Later I will replace the baseline security with my own conditional access policies.
 
 **Tenant properties in Entra admin center:**  
