@@ -38,4 +38,4 @@ This option allows users to stay signed in untill they explicitly sign out. This
 I have therefore chosen to enable this feature.
 
 **Output**  
-![Default user settings](screenshots/default-user-settings)
+![Default user settings](screenshots/default-user-settings.png)
