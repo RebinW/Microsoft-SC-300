@@ -1,4 +1,5 @@
-## Tenant properties
+# Tenant properties  
+## Configuring tenant-wide properties
 
 *Technical contact*
 - Technical contact is assigned to someone responsible for Entra administration and coordination with Microsoft support. In a mature environment "depending on the policy" this would normally be a shared mailbox or IAM operations role
