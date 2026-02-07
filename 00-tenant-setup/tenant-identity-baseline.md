@@ -8,6 +8,9 @@ First global admin account: admin@klarstroem.onmicrosoft.com "Signup account bec
 
 ## Tenant properties
 
+*Technical contact*
+- Technical contact is assigned to someone responsible for Entra administration and coordination with Microsoft support. In a mature environment "depending on the policy" this would normally be a shared mailbox or IAM operations role
+
 *Global privacy contact*
 - Placeholder used to represent the person or the department responsible for privary
 - This person/ department is also who Microsoft will contact in case of a data breach.
