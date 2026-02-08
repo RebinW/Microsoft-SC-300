@@ -103,9 +103,9 @@ There are three options:
 This options also means that guest users can see membership of all non-hidden groups
 
 This would help collaboration in MS 365 such as:
-      - Teams mentions
-      - sharing
-      - finding people
+   - Teams mentions
+   - sharing
+   - finding people
      
 3. option: Following least privelege we're going with this option for now. If at a later stage we find it necessary for collaboration to go with the second option we can only change the setting. For now this means that guest users can only see:
      - Their own profile
