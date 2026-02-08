@@ -140,6 +140,4 @@ Option 3 = Security first: supports governance and supplier access management
 
 Collaboration restrictions defines which domains are allowed into the tenant. This does not only apply to guest invites eventhough it mentions invite in all three options but also applies to self-service sign up via user flows and OTP guest creation. Of course it does not apply to B2C in any way and only affects B2B collaborations.
 
-![Collaboration restrictions](screenshots/collaboration-restrictions.png)
-
 
