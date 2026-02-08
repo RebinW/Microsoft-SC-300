@@ -95,17 +95,21 @@ There are three options:
 
 1. option: Out of questions in our environment, I always think least privelege. This option would mean:
    - Guest users can view user lists. group memberships and directory info.
+     
 2.  option: Valid but I still see no reason that guest users should have the visibility and actions such as:
       - Look up some users and groups
       - Resolve names
-      - See limited metadata  
+      - See limited metadata
+This options also means that guest users can see membership of all non-hidden groups
+
 This would help collaboration in MS 365 such as:
-   - Teams mentions
-   - sharing
-   - finding people
+      - Teams mentions
+      - sharing
+      - finding people
+     
 3. option: Following least privelege we're going with this option for now. If at a later stage we find it necessary for collaboration to go with the second option we can only change the setting. For now this means that guest users can only see:
-  - Their own profile
-  - Their own group membership
+     - Their own profile
+     - Their own group membership
 
 **3. Guest invite settings**
 
