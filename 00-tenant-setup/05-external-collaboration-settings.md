@@ -53,7 +53,7 @@ When first working with this task I was still left with a couple of questions:
      - Allowed locations
      - sign in risk policy
     
-![Self-service sign up](self-service-sign-up.png)
+![Self-service sign up](screenshots/self-service-sign-up.png)
 
   My simple understanding of this feature is that self-service sign up is a controlled onboarding without manual identity creation by IT.
 
