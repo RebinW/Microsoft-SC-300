@@ -65,3 +65,24 @@ When first working with this task I was still left with a couple of questions:
   - A.5.19 Information security in supplier relationships
   - A.8.5 Secure authentication
 
+## Task 2 - Configure external collaboration settings
+
+**1. Enable one-time passcode**
+
+Email one-time passcode is an authentication method for external users who do not have an IdP or MS account. It allows the user to access recources without federation. A guest identity is still created in our tenant. The authentication will then each time happen through email when the user wants to sign in.
+
+Just as with other guest identities we can still apply
+- Conditional access policies on top of OTP
+- Specify trusted domains
+- Application access control
+- Approval workflows
+
+![OTP](screenshots/OTP.png)
+
+  ISO 27001 relevance:  
+  Supports secure onboarding and authentication for external users who do not have a federated identity. This function reduces unmanaged access while ensuring controlled collaboration.  
+  Primary Annex A linkage:
+  - A.5.15 Access control
+  - A.5.16 Identity management
+  - A.5.19 Information security in supplier relationships
+  - A.8.5 Secure authentication
