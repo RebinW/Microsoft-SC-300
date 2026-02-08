@@ -133,5 +133,7 @@ As seen on the picture, I chose to go with the third option. The official MS lab
    - Guest inviter
 4. This option is not relevant because we want to be able to invite guests.
 
+Option 2 = Productivity first
+Option 3 = Security first: supports governance and supplier access management
 
 **4. Collaboration restrictions**
