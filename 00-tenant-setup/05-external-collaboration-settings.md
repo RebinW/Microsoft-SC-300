@@ -2,7 +2,7 @@
 
 In this exercise I follow the official Microsoft SC300 lab: Lab 04: Configure external collaboration settings:  
 
-![Microsoft lab](https://microsoftlearning.github.io/SC-300-Identity-and-Access-Administrator/Instructions/Labs/Lab_04_ConfigureExternalCollaborationSettings.html)
+[Microsoft lab](https://microsoftlearning.github.io/SC-300-Identity-and-Access-Administrator/Instructions/Labs/Lab_04_ConfigureExternalCollaborationSettings.html)
 
 ## Exercise 1 - Allowing guest users to be invited into the organization.
 
@@ -52,6 +52,8 @@ When first working with this task I was still left with a couple of questions:
      - Compliant device
      - Allowed locations
      - sign in risk policy
+    
+![Self-service sign up](self-service-sign-up.png)
 
   My simple understanding of this feature is that self-service sign up is a controlled onboarding without manual identity creation by IT.
 
