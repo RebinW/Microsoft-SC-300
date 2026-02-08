@@ -90,8 +90,8 @@ Just as with other guest identities we can still apply
 **2. Guest user access**  
 This feature basically controls what guest users can see in our directory and not what they can access in apps. In other words we can restrict guest users directory visibility meaning weather they can see and search other users outside of the management group they're invited to.
 
-There are three opåtions:  
-![Guest user access](screenshots/guest-user-access)  
+There are three options:  
+![Guest user access](screenshots/guest-user-access.png)  
 
 1. option: Out of questions in our environment, I always think least privelege. This option would mean:
    - Guest users can view user lists. group memberships and directory info.
