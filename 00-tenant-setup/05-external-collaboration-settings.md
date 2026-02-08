@@ -86,3 +86,27 @@ Just as with other guest identities we can still apply
   - A.5.16 Identity management
   - A.5.19 Information security in supplier relationships
   - A.8.5 Secure authentication
+
+**2. Guest user access**  
+This feature basically controls what guest users can see in our directory and not what they can access in apps. In other words we can restrict guest users directory visibility meaning weather they can see and search other users outside of the management group they're invited to.
+
+There are three opåtions:  
+![Guest user access](screenshots/guest-user-access)  
+
+1. option: Out of questions in our environment, I always think least privelege. This option would mean:
+   - Guest users can view user lists. group memberships and directory info.
+2.  option: Valid but I still see no reason that guest users should have the visibility and actions such as:
+   - Look up some users and groups
+   - Resolve names
+   - See limited metadata
+This would help collaboration in MS 365 such as:
+- Teams mentions
+- sharing
+- finding people
+3. option: Following least privelege we're going with this option for now. If at a later stage we find it necessary for collaboration to go with the second option we can only change the setting. For now this means that guest users can only see:
+  - Their own profile
+  - Their own group membership
+
+**3. Guest invite settings**
+
+**4. Collaboration restrictions**
