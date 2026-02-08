@@ -138,6 +138,30 @@ Option 3 = Security first: supports governance and supplier access management
 
 **4. Collaboration restrictions**
 
-Collaboration restrictions defines which domains are allowed into the tenant. This does not only apply to guest invites eventhough it mentions invite in all three options but also applies to self-service sign up via user flows and OTP guest creation. Of course it does not apply to B2C in any way and only affects B2B collaborations.
+Collaboration restrictions defines which domains are allowed into the tenant. This does not only apply to guest invites eventhough it mentions *invitations* in all three options but also applies to self-service sign up via user flows and OTP guest creation. Of course it does not apply to B2C in any way and only affects B2B collaborations.
 
 ![Collaboration restrictions](screenshots/collaboration-restrictions.png)
+
+Option 1: Allowing invitations to any domain might be good for:
+- early start ups
+- test tenants
+
+Risks: Uncontrolled external identities and data leakage
+
+Option 2: Deny invitations to specific domains:
+- Blacklist model "deny bad domains"
+- You can never list all unwanted domains "maintenance heavy"
+- Deny list are limited to 25.000 characters
+
+Option 3: Only approved domains allowed:
+- Best option following least privilege
+- list suppliers, partners, parent company "everything else is blocked"
+- Also limited to 25.000 characters
+
+Important to note:
+- Only one policy per organization
+- Why cannot create both a allow and a block list
+- Number of added domains to either deny list or allow list is limited to 25.000 characters
+- Already onboarded external users who has a different domain than on either list are not affected
+- Allow/ block list and cross tenant access settings are checked at the time of invatation
+  
