@@ -111,6 +111,27 @@ This would help collaboration in MS 365 such as:
      - Their own profile
      - Their own group membership
 
-**3. Guest invite settings**
+**3. Guest invite settings**  
+
+Guest invite settings controls who inside the organization can onboard external users into the tenant. This is different from self-service sign up, which is application focused and most often limited to specific services. This means guest invites can give broader access than self-service sign on this includes:  
+- SharePoint
+- Azure resources
+- Teams
+- Groups
+
+Now, having to decide whitch of the four options to go with:
+
+![Guest invite settings](screenshots/guest-invite.png)
+
+As seen on the picture, I chose to go with the third option. The official MS lab suggests to go with the second option, but in my opinion it really depends on the perspective. Lets me explain the different options and give justification.
+
+1. Allows all users to invite guest: This means that both internal employees "member users" and external identities "guest users" can invite other external identities. Following least privelege this option is out of question.
+2. This option basically disallows guest users "external identites" to invite other guest, but still allows member users meaning all internal employees to invite guests. If productivity was our main priority then maybe we would go with this option.
+3. This option basically only allows certain admin roles to invite guest users. This one follows least privelege in my opinion and the main focus/ priority over the second option here is security first. The admins specified here are:
+   - Global admin
+   - User admin
+   - Guest inviter
+4. This option is not relevant because we want to be able to invite guests.
+
 
 **4. Collaboration restrictions**
