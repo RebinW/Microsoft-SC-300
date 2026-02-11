@@ -18,5 +18,5 @@ We will then type a new unique password and since we have enabled security defau
 
 Finally, we'll notice that we can't even access entra admin center and therefore wont even be able to navigate to *enterprise application* to create an new app. The reason is that we in a previous lab configued tenant-wide/ user settings and specified that we won't allow non-admin users to even be able to access Entra admin center: 
 
-![access-denied](screenshots/access-denied.png)
+![access-denied](screenshots/denied-access.png)
 
