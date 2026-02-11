@@ -9,6 +9,8 @@ Here where I'll configure what the default permissions will be for all our users
 **Users can register application**  
 This feature is by default enabled, but im going to disabled it following the concept of least privlege. Later I'll allow only specific roles or developer groups this feature.
 
+Thease apps are not the same as creating an enterprise application, this feature is mainly for developers building applications. App registration serves as a blueprint for the app that is being build, developers define how the app authenticates, what permissions it asks for and how tokens gets issued.
+
 **Restrict non-admin users from creating tenants**  
 This one is by default disabled. Once again following the concept of least privlege I am then going to enabled this. I do not see any reason why I would allow regular users to create seperate tenanats, this would lead to governance and data risk.
 
