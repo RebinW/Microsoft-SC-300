@@ -1,4 +1,4 @@
-## Create a new user and test their application admin rights
+## Exercise 1: Create a new user and test their application admin rights
 
 **Task 1: add a new user**
 
@@ -16,7 +16,11 @@ We will then type a new unique password and since we have enabled security defau
 
 ![new password](screenshots/new-password.png)
 
-Finally, we'll notice that we can't even access entra admin center and therefore wont even be able to navigate to *enterprise application* to create an new app. The reason is that we in a previous lab configued tenant-wide/ user settings and specified that we won't allow non-admin users to even be able to access Entra admin center: 
+Finally, we'll notice that we can't even access entra admin center and therefore wont even be able to navigate to *enterprise application* to create an new app. The reason is that we in a previous lab configued tenant-wide/ user settings and restricted access for all non admins to the Entra admin portal. 
 
 ![access-denied](screenshots/denied-access.png)
+
+## Exercise 2: Assign the application admin role and create an application
+
+**Task 1: Assign a role to a user**
 
