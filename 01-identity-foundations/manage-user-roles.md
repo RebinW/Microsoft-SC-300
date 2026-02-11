@@ -20,6 +20,10 @@ Finally, we'll notice that we can't even access entra admin center and therefore
 
 ![access-denied](screenshots/denied-access.png)
 
+I'll disable the "Restrict access to Microsoft Entra admin center" temporarely just to prove that a non-admin can't create applications without the role assigned:
+
+
+
 ## Exercise 2: Assign the application admin role and create an application
 
 **Task 1: Assign a role to a user**
