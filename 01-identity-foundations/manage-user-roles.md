@@ -28,3 +28,23 @@ I'll disable the "Restrict access to Microsoft Entra admin center" temporarely j
 
 **Task 1: Assign a role to a user**
 
+Lets assign the application administrator role to the user: Entra ID - Users - All users - Ariyan - assigned roles - add assignment: 
+
+![adding the app admin role](screenshots/add-role.png)
+
+Since we've got the P2 license of Entra ID, this means that admin accounts are protected by PIM and therefore we have to congifure these settings aswell.
+
+Under *assignment type* I chose eligible, this means:
+- No standing privileges, meaning user does not the admin role by default
+- User has to activate role on demand
+- MFA approval, justification enforced at activation
+- Role expires after activation threshold time ends
+
+If we on the other hand assign Active instead then:
+- Role still stays governed by PIM
+- Assignment can be time bound if specified
+- Activation step is skipped
+- User has standing admin privileges
+- Audit and alerts still apply
+
+![PIM requiements](screenshots/pim-enabled.png)
