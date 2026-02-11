@@ -14,5 +14,5 @@ Since it is our first time logging in to the account with the new user we'll the
 
 We will then type a new unique password and since we have enabled security defaults, MFA is then requiered for all users therefore we will be asked to setup MS authenticator.
 
-![new password](screenshots/create-password.png)
+![new password](screenshots/new-password.png)
 
