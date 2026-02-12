@@ -101,7 +101,13 @@ I then save the file still as a csv file and uploaded it in Entra ID - Users - A
 2. We have to instal Microsoft.Graph PowerShell module: **Install-Module Microsoft.Graph -Scope CurrentUser -Verbose**
 3. Confirm that the module is installed: **Get-InstalledModule Microsoft.Graph**
    ![checking if graph is correctly installed](screenshots/confirm-graph-installation.png)
-4. 
+4. Login to Microsoft Graph API: **Connect-MgGraph -Scopes "User.ReadWrite.All"**
+     - Edge browser opens and I got promted to login
+5. Verifying that i'm logged in correctly: **Get-MgUser**
+   ![check login](screenshots/check-login.png)
+6. Assigning a common temporary password for all new users:
+   ![force temporary password](screenshots/temporary-password.png)
+   
 
 ## Exercise 5 - Remove a user from Entra ID
 
