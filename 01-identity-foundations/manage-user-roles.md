@@ -107,6 +107,8 @@ I then save the file still as a csv file and uploaded it in Entra ID - Users - A
    ![check login](screenshots/check-login.png)
 6. Assigning a common temporary password for all new users:
    ![force temporary password](screenshots/temporary-password.png)
+7. Create the new user using PowerShell, I used following script:
+   ![new user successfully created using PowerShell](screenshots/new-user-created-powershell.png)
    
 
 ## Exercise 5 - Remove a user from Entra ID
