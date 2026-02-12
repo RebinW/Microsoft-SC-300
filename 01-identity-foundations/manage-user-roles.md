@@ -129,6 +129,12 @@ A deleted user gets moved to the deleted user tab, and will remain there for 30 
 
 ## Exercise 6 - Add a Windows 10 license to a user account
 
+**Task 1: Find your unlicensed user in Entra ID**
 
+Lets ensure that the user does not have any licenses assigned before we go ahead and assign one.
+- Entra ID - Users - All users - PeterH - Licenses:
+  ![no license](screenshots/no-license.png)
+
+**Task 2: Add a Windows License to the user**
 
 
