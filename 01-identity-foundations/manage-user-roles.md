@@ -97,6 +97,11 @@ I then save the file still as a csv file and uploaded it in Entra ID - Users - A
 
 **Task 2: Bulk addition of users using PowerShell**
 
+1. We'll need to ensure that we have PowerShell version 7.2 or later
+2. We have to instal Microsoft.Graph PowerShell module: **Install-Module Microsoft.Graph -Scope CurrentUser -Verbose**
+3. Confirm that the module is installed: **Get-InstalledModule Microsoft.Graph**
+   ![checking if graph is correctly installed](screenshots/confirm-graph-installation.png)
+4. 
 
 ## Exercise 5 - Remove a user from Entra ID
 
