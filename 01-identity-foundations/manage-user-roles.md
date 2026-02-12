@@ -137,4 +137,11 @@ Lets ensure that the user does not have any licenses assigned before we go ahead
 
 **Task 2: Add a Windows License to the user**
 
+Adding or removing any licenses has to be done in Microsoft 365 Admin center
+
+Path in MS 365:
+- Billing - Licenses - Microsoft Officee E5 - Assign Licenses - PeterH
+
+Now, if we navigate to the user Peter once again in Entra and look under licenses we'll notice it has been successfully assigned:  
+![license](screenshots/license-assigned.png)
 
