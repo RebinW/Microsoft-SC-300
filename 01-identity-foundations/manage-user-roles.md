@@ -70,6 +70,8 @@ Here I typed Application administrator in the search bar and removed the role fr
 
 ## Exercise 4 - Bulk import of users
 
+**Task 1: Bulk operations for creating users with a .csv file**
+
 Microsoft provides a template for bulk upload that i've downloaded: Entra ID - Users - All Users - Bulk operations - Bulk create. 
 
 I then downloaded the the .scv template: 
@@ -89,8 +91,12 @@ NOTE: when editing the .csv file in Notepad and only choose to include the manda
 
 ![editing the .csv file in notepad](screenshots/notepad-template.png)
 
+I then save the file still as a csv file and uploaded it in Entra ID - Users - All Users - Bulk Operations - Bulk create:
 
-**Task 1: Bulk operations for creating users with a .csv file**
+![users created succesfully](screenshots/bulk-users-created.png)
+
+**Task 2: Bulk addition of users using PowerShell**
+
 
 ## Exercise 5 - Remove a user from Entra ID
 
