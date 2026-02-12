@@ -57,4 +57,11 @@ After we successfully activated the role we then navigate to Entra ID - Enterpri
 
 ![successfull app creation](screenshots/enterprise-app.png)
 
+## Exercise 3 - Remove role assignment
+
+There are many ways to remove a role from a user, you can navigate directly to the user and remove it there or you can go to: Entra ID - Roles and admins - All roles. 
+
+Here I typed Application administrator in the search bar and removed the role from the user:
+
+![removing a role](screenshots/role-removed.png)
 
