@@ -1,6 +1,8 @@
 # Lab 01: Manage user roles
 **[Official Microsoft link](https://microsoftlearning.github.io/SC-300-Identity-and-Access-Administrator/Instructions/Labs/Lab_01_ManageUserRoles.html#experiment-with-managing-users)**
 
+
+
 ## Exercise 1: Create a new user and test their application admin rights
 
 **Task 1: add a new user**
