@@ -1,3 +1,6 @@
+# Lab 01: Manage user roles
+**[Official Microsoft link](https://microsoftlearning.github.io/SC-300-Identity-and-Access-Administrator/Instructions/Labs/Lab_01_ManageUserRoles.html#experiment-with-managing-users)**
+
 ## Exercise 1: Create a new user and test their application admin rights
 
 **Task 1: add a new user**
@@ -64,4 +67,36 @@ There are many ways to remove a role from a user, you can navigate directly to t
 Here I typed Application administrator in the search bar and removed the role from the user:
 
 ![removing a role](screenshots/role-removed.png)
+
+## Exercise 4 - Bulk import of users
+
+Microsoft provides a template for bulk upload that i've downloaded: Entra ID - Users - All Users - Bulk operations - Bulk create. 
+
+I then downloaded the the .scv template: 
+
+![csv template](screenshots/bulk-template.png)
+
+You can modify and populate the template directly into Excel, but another option is to open the file in Notepad. You do not have to fill out all the fields, the mandatory ones are:
+- Name (displayName)
+- User name (userPrincipalName)
+- Initial password
+- Block sign in (accountEnabled)
+- First name (givenName)
+- Last name surname
+- Usage location
+
+NOTE: when editing the .csv file in Notepad and only choose to include the mandatory fields, you still have to place commas between fields you do not include meaning that if you leave out a field you still have to place a comma for that field and leave it empthy:
+
+![editing the .csv file in notepad](screenshots/notepad-template.png)
+
+
+**Task 1: Bulk operations for creating users with a .csv file**
+
+## Exercise 5 - Remove a user from Entra ID
+
+
+## Exercise 6 - Add a Windows 10 license to a user account
+
+
+
 
