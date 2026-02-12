@@ -48,3 +48,13 @@ If we on the other hand assign Active instead then:
 - Audit and alerts still apply
 
 ![PIM requiements](screenshots/pim-enabled.png)
+
+**Task 2: Activate role and check application permissions**
+
+I've just logged in to the Entra admin center as the user Ariyan, to active an eligible role navigate to: ID Governance - PIM - My roles -Eligible assignments - Activate.
+
+After we successfully activated the role we then navigate to Entra ID - Enterprise apps - new application, we will then see that the user is able to create the enterprise application:
+
+![successfull app creation](screenshots/enterprise-app.png)
+
+
