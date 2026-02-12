@@ -109,9 +109,22 @@ I then save the file still as a csv file and uploaded it in Entra ID - Users - A
    ![force temporary password](screenshots/temporary-password.png)
 7. Create the new user using PowerShell, I used following script:
    ![new user successfully created using PowerShell](screenshots/new-user-created-powershell.png)
-   
+
+Now, we see that the new user "PeterH" has been successfully created. I tried to log-in with the new user, and since I set the *ForceChangePasswordNextSignIn* to true it forced me to create a new password after I typed the temporary password. 
 
 ## Exercise 5 - Remove a user from Entra ID
+
+**Task 1: Remove a User**
+1. To remove/ delete a user from the tenant, navigate to: Entra ID - Users - All users and select the user.
+2. After I have selected the newly created user I simply click delete:
+   ![deleting user](screenshots/delete-user.png)
+
+
+**Task 1: Restore deleted user**
+
+A deleted user gets moved to the deleted user tab, and will remain there for 30 days and then get permanently deleted. This means that we have the ability to restore the user before the 30 days have pass and if we haven't forced permanently deletion of the user inside the deleted users tab. 
+
+![restore user](screenshots/restore-user.png)
 
 
 ## Exercise 6 - Add a Windows 10 license to a user account
