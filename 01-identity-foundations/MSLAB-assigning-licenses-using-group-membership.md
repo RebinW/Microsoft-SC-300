@@ -76,10 +76,10 @@ MS learn wants us to write the query syntax manually to include all users in the
 - null = means there is no value added
 This translates to *find users where object ID is not empty*, and every user has an object ID it is automatically created, it cannot be missing therefore the result is that all users match the rule.
 
-Now, we could also just take advantage of the rule builder instead of writing the syntax manually:
-Property: user.objectID = Object Id  
-Operator: -ne = not equal  
-Value =  null = leaving the value field empty  
+Now, we could also just take advantage of the rule builder instead of writing the syntax manually:  
+- Property: user.objectID = Object Id  
+- Operator: -ne = not equal  
+- Value =  null = leaving the value field empty  
 
 ![Dynamic querry](screenshots/dynamic-querry.png)
 
