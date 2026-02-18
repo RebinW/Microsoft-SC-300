@@ -59,4 +59,33 @@ Membership type: Assigned
 Owners: I'm going to assign my own account
 Members: Chris Green and Ariyan Wasi
 
-**Exercise 3: **
+**Exercise 3: Creating a dynamic group with all users as members**
+
+**Task 1 - Create the dynamic group**
+
+Group details:  
+- Group type: Security
+- Group name: sc300-myDynamicGroup
+- MS Entra roles can be assigned to the group: NO
+- Membership type: Dynamic User
+- Owner: My own account "System admin, global admin"
+
+MS learn wants us to write the query syntax manually to include all users in the tenant "Query also includes B2B guests": user.objectID -ne null, This basically means to include all users:
+- user.objectId 
+- ne = not equal
+- null = means there is no value added
+This translates to *find users where object ID is not empty*, and every user has an object ID it is automatically created, it cannot be missing therefore the result is that all users match the rule.
+
+Now, we could also just take advantage of the rule builder instead of writing the syntax manually:
+Property: user.objectID = Object Id
+Operator: -ne = not equal
+Value =  null = leaving the value field empty
+
+![Dynamic querry](screenshots/dynamic-querry.png)
+
+
+
+**Task 2 - Verify the members have been added**
+
+**Task 3 - Experiment with alternate rules**
+
