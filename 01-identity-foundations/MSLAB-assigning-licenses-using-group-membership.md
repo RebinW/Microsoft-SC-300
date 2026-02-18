@@ -44,4 +44,10 @@ Afterwards, I went into Entra admin center and chose the newly created security 
 
 In task 3 I succesfully assigned the license to the group, so I will now simply test weather the user have been given the license. To test this I go straight into [Office](https://www.office.com.) and login as Chris to see if I have the Office applications available to me:
 
-![Office assigned correctly](chris-office.png)
+![Office assigned correctly](screenshots/chris-office.png)
+
+**Exercise 2: Create a Microsoft 365 group in Entra ID**
+
+**Task 1: Create the group**
+
+In the previous exercise we created a security group, and for this exercise we're going to create an MS 365 group instead.
