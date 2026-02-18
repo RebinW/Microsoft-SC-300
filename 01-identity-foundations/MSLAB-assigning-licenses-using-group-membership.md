@@ -51,3 +51,12 @@ In task 3 I succesfully assigned the license to the group, so I will now simply 
 **Task 1: Create the group**
 
 In the previous exercise we created a security group, and for this exercise we're going to create an MS 365 group instead.
+
+Group type: Microsoft 365
+Group name: Northwest sales
+Group email address: Northwestsales@klarstroem.onmicrosoft.com
+Membership type: Assigned
+Owners: I'm going to assign my own account
+Members: Chris Green and Ariyan Wasi
+
+**Exercise 3: **
