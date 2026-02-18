@@ -33,7 +33,7 @@ In Microsoft Entra admin center, I created the following group:
 
 I chose my own account as the owner of the group and selected the test user Chris Green to be a member of the group. 
 
-**Task 3: Add an Office license to sg-SC3000-O365**  
+**Task 3: Add an Office license to sg-SC300-O365**  
 For this task i'll assign the Office 365 license manually, to do this I have to navigate to the MS 365 admin center, path: Billing - Licenses - Office 365 E5 - assign licenses.
 
 I'll then choose to assign the license to the newly created security group *sg-SC300-O365* instead of assigning directly to the user.
