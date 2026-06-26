@@ -1,1 +1,9 @@
-
+App registrations  
+Enterprise applications  
+Service principals  
+Delegated permissions  
+Application permissions  
+Admin consent  
+Managed identities  
+SAML SSO  
+SCIM provisioning  
