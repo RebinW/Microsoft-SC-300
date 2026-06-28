@@ -22,10 +22,18 @@ Instead of creating a rondon account,I'll create a dedicated cloud-only admin ac
 - Tenant: KlarStroem
 - Role used: Global Administrator
 - License requirements
-  - For this lab so for none  
+  - For this lab so far none  
 
 ## Implementation
-#### Step 1: 
+#### Step 1: Getting started creating the user
+Lets start creating our new user. As I mentioned previously this user is going to serve as my go-to user for the entire project. 
+
+To start creating a new user in Entra ID, we simply navigate to:
+1. Microsoft Entra Admin Center
+2. In the navigation menu to the left we clik on **Entra ID** and then **Users**
+3. Click on the **New User** Option and then **Create new user**
+
+![Create new user](screenshots/createnewuser.png)
 
 ## Verification
 
