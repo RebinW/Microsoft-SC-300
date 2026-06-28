@@ -14,7 +14,7 @@ To summarize:
 - Users created directly in Entra ID become cloud-only users and are managed from the cloud.
 
 ## Objectives
-- Create cloud-only user accounts
+- Create cloud-only user account
 - Configure required user properties
 - Verify successful user creation
 - Understand the characteristics of cloud-only users
