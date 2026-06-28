@@ -46,7 +46,24 @@ In the *Basics* window wee need basically need to fill out:
 ![Provide basic information](screenshots/basicinformation.png)
 
 #### Setp 3. Fill out the Properties tied to the user
-In this window all the different properties are not mandatory, meaning we can actually create the user without providing any additional information. Still, it is important to mention that real organization would specify in their user creation policy what must be filled out. Since These user properties often is used by applications, conditional access, dynamic group creation and much more, it is then highly recommended that we fill out as much as possible because other features relies on exactly these attributes. Also another important thing to mentioned is that we cannot assign licenses to users if we havent specified **uSAGE LOCATION**, it is a requirement that this is filled out to later be able to assign any license to the user.
+In this window all the different properties are optional, meaning we can actually create the user without providing any additional properties to the user. Still, it is important to mention that real organizations would specify in their user creation policy what has be filled out. Since These user properties often are used by applications, conditional access polies, dynamic group creation and much more, it is then highly recommended that we fill out as much as possible because these features rely on exactly these attributes. Also another important thing to mentioned is that we cannot assign licenses to users if we havent specified **USAGE LOCATION**, it is a requirement that this is filled out if we want to assign the user a license.
+
+For this user i'm not going to fill out all the properties only the following:
+![User Properties](screenshots/userproperties.png)
+
+#### Step 4: Assigning the security administrator role
+In the *Assignments* window, we can directly add the user to a *administrative unit*, a group or directly assign a role to the user. 
+
+I'm going to cover Administrative units in a seperate lab and different group types in another aswell. For now I will simply assign the user the Security Admistrator role.
+
+I'm also going to document roles and role assignment in depth in a seperate lab later in the project.
+
+![Role assignment](screenshots/roleassignment.png)
+
+#### Step 4: Review user properties and create the user
+In this last step we're simply given an overview of user and the properties we chose to provide. Since I agree with the following shown in the picture below, i'm then going to press create.
+
+![User overview](screenshots/useroverview.png)
 
 ## Verification
 
