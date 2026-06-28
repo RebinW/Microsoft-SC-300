@@ -1,4 +1,4 @@
-# Create and manage Cloud-users
+# Create and manage cloud users
 
 ## Overview
 Explain:
