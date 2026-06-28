@@ -29,11 +29,24 @@ Instead of creating a rondon account,I'll create a dedicated cloud-only admin ac
 Lets start creating our new user. As I mentioned previously this user is going to serve as my go-to user for the entire project. 
 
 To start creating a new user in Entra ID, we simply navigate to:
-1. Microsoft Entra Admin Center
+1. Open Microsoft Entra Admin Center
 2. In the navigation menu to the left we clik on **Entra ID** and then **Users**
 3. Click on the **New User** Option and then **Create new user**
 
 ![Create new user](screenshots/createnewuser.png)
+
+#### Step 2: Provide the basic user information
+In the *Basics* window wee need basically need to fill out:
+1. User principal name: this is basically the login name. I chose to write rebin.wasi because my fictional company policy says UPN names should follow this structure: firstname.lastname@domain
+2. Mail nickname will automatically be filled out since we checked the *Derive from user principle name* option, meaning it will automatically create the *Mail nickname* from the information in User principle name.
+3. Display name: This is going to be the name that will be displayed
+4. Password: We can choose to uncheck the *Auto-generate password option* and instead fill out a password manually. Regardless of how we choose to create the password it has to be sent/ given to the user, who will then be forced to create a new one first time logging in.
+5. I choose to enable the *Account enabled* option to ensure the account will be active right after creation.
+
+![Provide basic information](screenshots/basicinformation.png)
+
+#### Setp 3. Fill out the Properties tied to the user
+In this window all the different properties are not mandatory, meaning we can actually create the user without providing any additional information. Still, it is important to mention that real organization would specify in their user creation policy what must be filled out. Since These user properties often is used by applications, conditional access, dynamic group creation and much more, it is then highly recommended that we fill out as much as possible because other features relies on exactly these attributes. Also another important thing to mentioned is that we cannot assign licenses to users if we havent specified **uSAGE LOCATION**, it is a requirement that this is filled out to later be able to assign any license to the user.
 
 ## Verification
 
