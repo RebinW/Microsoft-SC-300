@@ -68,9 +68,32 @@ In this last step we're simply given an overview of user and the properties we c
 ![User overview](screenshots/useroverview.png)
 
 ## Verification
+#### Test 1: Verify the user has been successfully created
+For us to verify that the user account has been created, we can go to the *Users overview* in Microsoft Entra admin center.
+- **User type:** says *member*, this means the user we created is an internal employee, the other option is guest users and these are used for external identities.
+- **On-premise sync:** this is the important one. As we see it says *no* where as on all other identities it says *yes*. This confirms that the account is a cloud-only user and that it has been created directly in Entra ID and not synchronized from Active Directory.
 
+![User created](screenshots/usercreated.png)
 
+#### Test 2: Test the user account can authenticate
+At this point I want to ensure that the account can authenticate to Entra ID and also that the account is enabled and already active.
+- I opened a *new InPrivate wiondow* in my browser and typed portal.office.com
+- From here I typed in the upn name of the newly created user account
+- It recognized my domain, and showed me my custom default login screen
+- then typed the password that was automatically created when we were creating the account "I copied the password and saved it"  
+![Type temp password](screenshots/temppassword.png)
 
+- After I type the temporary password, it then forced me to change password
+![Change password](screenshots/changepassword.png)
+
+- After I changed the password, the *Security defaults* kicked in. We configued and enabled this feature when setting up the tenant. This enforces MFA on all accounts, and therefore requires all user accounts to register/set up MFA when logging in for the first time. Later in this project I'm going to replace *security defaults* with *conditional access policies*.
+![MFA registration](screenshots/mfaregistration.png)
+
+- I then followed the instructions setting up MFA using the Microsoft Authenticor application. Once done it confirmed that the authentication method had been added.
+![MFA registered](screenshots/mfaregistered.png)
+
+- At this final stage we can see that it succesfully logged the newly created user in. This means we can now use the account and that the account is enabled.
+![User logged in](screenshots/userloggedin.png)
 
 ## Results  
 
