@@ -96,6 +96,9 @@ At this point I want to ensure that the account can authenticate to Entra ID and
 ![User logged in](screenshots/userloggedin.png)
 
 ## Results  
+We have succesfully created a cloud identity "cloud-only user account", and have verified that the account at this point works and that it is enabled. Additionally we could confirm that the system required us to change password and set up MFA because of the security defaults that was enabled in a previous lab.
+
+We have not tested that we can assign licenses and that the actual *Security Administrator* role has been applied, but I'd want to cover role assignments and licenses in two seperate labs.
 
 ## Lessons Learned  
 
