@@ -85,6 +85,7 @@ At this point I want to ensure that the account can authenticate to Entra ID and
 ![Type temp password](screenshots/temppassword.png)
 
 - After I type the temporary password, it then forced me to change password
+
 ![Change password](screenshots/changepassword.png)
 
 - After I changed the password, the *Security defaults* kicked in. We configued and enabled this feature when setting up the tenant. This enforces MFA on all accounts, and therefore requires all user accounts to register/set up MFA when logging in for the first time. Later in this project I'm going to replace *security defaults* with *conditional access policies*.
