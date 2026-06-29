@@ -80,19 +80,23 @@ At this point I want to ensure that the account can authenticate to Entra ID and
 - I opened a *new InPrivate wiondow* in my browser and typed portal.office.com
 - From here I typed in the upn name of the newly created user account
 - It recognized my domain, and showed me my custom default login screen
-- then typed the password that was automatically created when we were creating the account "I copied the password and saved it"  
+- then typed the password that was automatically created when we were creating the account "I copied the password and saved it"
+
 ![Type temp password](screenshots/temppassword.png)
 
 - After I type the temporary password, it then forced me to change password
 ![Change password](screenshots/changepassword.png)
 
 - After I changed the password, the *Security defaults* kicked in. We configued and enabled this feature when setting up the tenant. This enforces MFA on all accounts, and therefore requires all user accounts to register/set up MFA when logging in for the first time. Later in this project I'm going to replace *security defaults* with *conditional access policies*.
+
 ![MFA registration](screenshots/mfaregistration.png)
 
 - I then followed the instructions setting up MFA using the Microsoft Authenticor application. Once done it confirmed that the authentication method had been added.
+
 ![MFA registered](screenshots/mfaregistered.png)
 
 - At this final stage we can see that it succesfully logged the newly created user in. This means we can now use the account and that the account is enabled.
+
 ![User logged in](screenshots/userloggedin.png)
 
 ## Results  
