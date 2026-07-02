@@ -96,6 +96,16 @@ I do not have full access to the application, but I still can verify that the ap
 
 ![Workday assigned](screenshots/workdayassigned.png)
 
+#### Test 3: Verify Group ownership
+To see if the chosen user have been assigned as the owner of the group we can simply take a look at the *Owners* blade in the group overview:
+
+![Owner](screenshots/owner.png)
+
+#### Test 4: Verify user have been assigned to the group
+To verify membership of the user Anna, I simply navigated to the group overview and then chose the *Members* blade:
+
+![members](screenshots/members.png)
+
 ## Results  
 Successfully created an assigned security group, manually added users, and verified the group's configuration and membership.
 
