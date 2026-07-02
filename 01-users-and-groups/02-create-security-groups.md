@@ -21,10 +21,10 @@ Security Groups also supports:
 - Can contain other identities such as Service Principles and Devices
 
 ## Objectives
-- Create cloud-only user accounts
-- Configure required user properties
-- Verify successful user creation
-- Understand the characteristics of cloud-only users
+- Create an Assigned Security Group in Entra ID
+- Configure the groups's basic settings
+- Manually add users to the group
+- Verify that the group and its membership have been created successfully
 
 ## Environment
 - Identity Provider: Entra ID
