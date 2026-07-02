@@ -97,14 +97,8 @@ I do not have full access to the application, but I still can verify that the ap
 ![Workday assigned](screenshots/workdayassigned.png)
 
 ## Results  
+Successfully created an assigned security group, manually added users, and verified the group's configuration and membership.
 
 ## Lessons Learned  
 
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
 
