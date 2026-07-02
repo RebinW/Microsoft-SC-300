@@ -53,7 +53,7 @@ To start creating a group in Entra ID:
 
 I then simply pressed create and the Assigned Security Group had now been created:
 
-![Group created](screenshot/groupcreated.png)
+![Group created](screenshots/groupcreated.png)
 
 #### Step 2: Reviewing and additionally configuring the group
 Now that we have successfully created the group, we can navigate to the group and see additional information and further configure/ reconfigure the group.
@@ -89,7 +89,7 @@ We can simply start by verifyiing that the group has been created, and that it's
 - Membership Type = Assigned
 - Source = Cloud
 
-![confirmation](screenshot/correctconfig.png)
+![confirmation](screenshots/correctconfig.png)
 
 #### Test 2: Verifying Workday has been assigned to the group
 I do not have full access to the application, but I still can verify that the application has been successfully assigned to the group. I simply went navigated to the group and then chose the application option on the left:
