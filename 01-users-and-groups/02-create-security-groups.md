@@ -24,6 +24,7 @@ Security Groups also supports:
 - Create an Assigned Security Group in Entra ID
 - Configure the groups's basic settings
 - Manually add users to the group
+- Assign an application to the group
 - Verify that the group and its membership have been created successfully
 
 ## Environment
