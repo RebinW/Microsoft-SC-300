@@ -15,6 +15,11 @@ Security groups can have to membership types. The group can either use **Assigne
 
 In this lab, I'll create an **Assigned Security Group** and manually add users to it. In the next lab. I'll take a closer look at Dynamic security groups and how dynamic membership works.
 
+Security Groups also supports:
+- Group nesting
+- Group-based lisencing
+- Can contain other identities such as Service Principles and Devices
+
 ## Objectives
 - Create cloud-only user accounts
 - Configure required user properties
