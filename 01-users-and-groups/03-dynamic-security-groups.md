@@ -106,14 +106,11 @@ Few seconds after i updated the group page in Entra ID, and was pleased to see t
 ![Automatically removed](screenshots/userremoved.png)
 
 ## Results  
+We have confirmed that our rule works as expected. All users who matches the rule syntax automatically become members the newly created group SG-HR-Staff.
 
-## Lessons Learned  
+We also confirmed that the group continuesly evaluates the rule and once we changed an attribute on a member that doesn't match the rule syntax, the user then got automatically removed from the group.
 
+## Lessons Learned
+The biggest takeaway from this exercise was understanding how dynamic security groups automate membership management based on user attributes. Rather than manually adding or removing users, Microsoft Entra ID continuously evaluates the configured membership rule and updates the group automatically. It reduces administrative effort, helps maintain consistent access assignments, and minimizes the risk of errors.
 
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
-
+Another important lesson was learning how the design of the membership rule directly affects the groups behaviour. Choosing the right attributes, operators, and logical expressions is important design decision that should align with the organizations strategy. While this lab only covered a few common attributes and operators, Entra ID supports many other properties that enabkes to build more advanced dynamic membership rules.
