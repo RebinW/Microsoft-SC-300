@@ -55,15 +55,34 @@ We're now ready to add the dynamic query that will determine who becomes a membe
 
 ![Rule builder](screenshots/rulebuilder.png)
 
-#### Step 3: Start creating the rules
+#### Step 4: Start creating the rules
 The dynamic rule consists of three main components:
 - **Property:** The user or device attribute that the rule evaluates
   - Examples: Department, jobTitle, city, employeetype and many more and even custom ones.
 - **Operator:** Defines how the property is compared to the last component "The Value"
   - Examples: -eq (equals), -ne (not equals), -contains. startsWith, -and, -or
 - **Value:** The value that the property is compared against
-  - Examples: HR, Manager, Aarhus, Denmark and so on 
+  - Examples: HR, Manager, Aarhus, Denmark and so on
+ 
+A dynamic membership rule can have a single or several expressions. When multiple expressions are used, they are connected using logical operators such as -and and -or. These operators determines how the rule evaluates the combined conditions.
 
+- **-and:** Every expression must evaluate to True, meaning all conditions must be met before the user becomes a member of the group
+- **-or:** At least one expression must evaluate to True.
+
+I'd like to build by rule around the attributes I updated on the two specific users ass shown in the screenhots from Step 1. Therefore im going to use the following properties to build my rule around:
+- country: Ensures only users who work in Denmark becomes a member.
+- city: Ensures only users from Aarhus will become a member, this is usefull if we have several offices in different cities in the same country
+- department: Since I want to ensure all users from Human Resources in Aarhus Denmark are going to become a member im therefore going to specify Human Resources
+- jobTitle: This isn't actually relevant for this lab because I just want all users who works within HR to become a member regardless of the job title.
+
+As seen on the screenshot below, all expressions have the -eq (equals) operators assigned, this means that the value needs to match the property and at the same time all the expressions must be True because we combined them with the *And* option.
+
+![Final rule syntax](screenshots/finalrule.png)
+
+#### Step 5: 
+I'm finally ready to create the group, I went ahead and saved the query and then from the group page just pressed **Create**
+
+At this point the group has been created and if everything is as expected the we should see our two users automatically become members of the SG-HR-Staff group.
 
 ## Verification
 
