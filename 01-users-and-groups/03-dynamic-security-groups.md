@@ -85,6 +85,25 @@ I'm finally ready to create the group, I went ahead and saved the query and then
 At this point the group has been created and if everything is as expected the we should see our two users automatically become members of the SG-HR-Staff group.
 
 ## Verification
+#### Test 1: Verify automatic group membership
+Lets verify that the users that satisfy the membership rule are automatically added to the dynamic group:
+1. Entra ID -> Groups blade
+2. All Groups
+3. Chose SG-HR-Staff
+4. under *Manage* I clicked on Members
+
+I right away could see that both Maria and Simon had automatically been added to the group. This means that we have configured the rule correctly and this verifies that our rule works as expected:
+
+![Users added](screenshots/usersadded.png)
+
+#### Test 2: Verify automatic membership removal
+It is also important to verify that if we would change an attribute on a user that does not match the rule, that the user then would automatically be removed from the group. This is important because lets say a user changes department from HR to Service Desk, the user should then now have access to HR resources.
+
+I therefore went into Active Directory and changed the department attribute on Maria from Human Resources to Service desk and forced a synchronization.
+
+Few seconds after i updated the group page in Entra ID, and was pleased to see that Maria had been automatically removed from the group:
+
+![Automatically removed](screenshots/userremoved.png)
 
 ## Results  
 
