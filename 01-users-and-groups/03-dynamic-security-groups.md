@@ -31,6 +31,7 @@ The goal here isn't to cover all the possible attributes that can be used in the
 
 ## Implementation
 #### Step 1: 
+In the last lab I created a assigned security group named SG-HR-
 
 ## Verification
 
