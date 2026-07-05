@@ -5,6 +5,10 @@ In a previous lab we created a dynamic security group named SG-HR-Staff. I'm goi
 
 This is an important feature in my opinion because just like with dynamic groups this also automates an important process, in this scenario assigning licenses to users. Not only does it automate the process, it also reduces mistakes, and therefore this approach is considered more secure. It is also important to mention that group-based licensing requires the tenant to have a P1 license as a minimum.
 
+Group-based licensing supports both
+- Security Groups
+- Microsoft 365 Groups
+
 ## Objectives
 - Reuse the SG-HR-Staff security group for group-based licensing
 - Apply the E5 license to the security group
