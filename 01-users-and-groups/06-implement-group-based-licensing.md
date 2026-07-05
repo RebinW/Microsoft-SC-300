@@ -17,7 +17,7 @@ This is an important feature in my opinion because just like with dynamic groups
 - Tenant: KlarStroem
 - Role used: Global Administrator
 - License requirements
-  - For this lab so for none  
+  - **As a minimum the P1 or higher license is required for the use of group-based licensing**
 
 ## Implementation
 #### Step 1: 
