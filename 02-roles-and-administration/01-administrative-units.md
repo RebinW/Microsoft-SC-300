@@ -84,7 +84,20 @@ We already verified that users had automatically become members of the AU. Now, 
 - Manage authentication methods for users
 - Manage guest users
 
+These are some of the default permission a user administrator holds, but it is important to mention that user-administrators scoped to an AU doesn't hold all the same permission a tenant-wide user administrator holds, one example would be to create new users.
+
+Now, I will test permission by loggin in as the user administrator Sofie Jensen, and try to see if I would be able to reset user passwords. First i'm going to try to see if it would allow me to reset a password for a member of the AU. I chose Maria Larsen, she's currently a member of AU-Aarhus and ass the screenshot confirms, I'm able to reset her password:
+
+![Resetting password](screenshots/resetmariaspassword.png)
+
+Next, I tried to reset the password for a random user that sits outside of the Aarhus office and there by isn't a member of the AU-Aarhus. As we can see on the screenshot below, I'm unable to reset the users password:
+
+![Unable to reset password](screenshots/unabletoreset.png)
+
 ## Results  
+We successfully created the Administrative Unit AU-Aarhus, and delegated the user administration role to a user. We changed the membership type from assigned to dynamic user, and verified that the query works. 
+
+Next, we also tested that the user administrator permissions didn't apply outside the scope AU, forexample we tested resetting the password for a user outside the AU and couldn't do that while we could reset the password for any user that is a member of the AU.
 
 ## Lessons Learned
 
