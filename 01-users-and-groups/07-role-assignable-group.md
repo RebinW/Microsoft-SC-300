@@ -41,5 +41,5 @@ For this lab i'm simply going to create a role-assignable group to group all Kla
 ## Results  
 
 ## Lessons Learned  
- Used Resources:
- [Use Microsoft Entra groups to manage role assignments](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept)
+Learning material:
+- [Use Microsoft Entra groups to manage role assignments](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept)
