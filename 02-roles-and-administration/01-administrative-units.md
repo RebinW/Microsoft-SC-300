@@ -1,4 +1,4 @@
-# Create and manage cloud users
+# Create an Administrative Unit and scope administrative privileges
 
 ## Overview
 An administrative Unit (AU) is a resource in Entra ID that serves as a container for other resources, which can be users, groups, or devices. The purpose of grouping these resources is to delegate administrative management within a defined scope.
