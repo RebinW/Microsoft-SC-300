@@ -34,8 +34,40 @@ For this lab i'm simply going to create a role-assignable group to group all Kla
   - **As a minimum the P1 or higher license is required for the use of group-based licensing**
 
 ## Implementation
-#### Step 1: 
+Before I start creating the group, I just quickly created a user named Frederik Sørensen to later become a member of the IT User Administrator group.
 
+#### Step 1: Start the creation of the role-assignable group
+Just like creating any other group, we start out in the navigation menu to the left in Entra ID Admin center:
+1. Entra ID -> Groups
+2. Click on *New Group*
+
+From here we configure the basic information as seen on the screenshot below. The most important thing is to set the *Microsoft Entra roles can be assigned to the group* to yes.
+
+![Toggle option to yes](screenshots/roleassignable.png)
+
+#### Step 2: Assign an owner, members and the user-administrator role to the group
+Choosing an owner for a group is different depending of the type of group that is being created. Forexample the owner for a Microsoft 365 group could be and is typically the person responsible for the team or department. For a security group the owner would typically be an application owner or an IT administrator. For a role-assigned group it is a bit different since the groups grants privileged access. This means the owner would typically be someone responsible for identity administration such as:
+- Identity Administratior
+- Privileged Role Administrator
+- Global Administrator
+- IAM Team Lead
+
+For this lab, i'm just going to choose myself as the owner of the group simply because I haven't created any other role at this point that would be suitable for a role-assignable group.
+
+Now, i'm going to choose the user mentioned in the beginnig of this lab "Frederik Sørensen", to become a member of this group:
+
+![Choosing Frederik](screenshots/frederik.png)
+
+Next, i'm going to choose the role to be assigned to the group. As you can see on the screenshot below, I have chose the User-Administrator role, and right after clicked *selected*:
+
+![Choose role](screenshots/chooserole.png)
+
+#### Step 4: Verify basic congiguration
+As shown on the screenshot, I have filled out all the basic information required for the group and also chose an owner, members, and the role to be applied to the group:
+
+![Verify group](screenshots/verifygroup.png)
+
+After I had verified the configuration, I simply clicked on *Create*
 ## Verification
 
 ## Results  
