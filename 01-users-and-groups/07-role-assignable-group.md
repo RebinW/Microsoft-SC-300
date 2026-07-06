@@ -96,9 +96,9 @@ To finish it off, I'd like to ensure that when a user is removed from the group,
 ![Remove Oliver](screenshots/removeuser.png)
 ![Role removed](screenshots/roleremoved.png)
 
-
-
 ## Results  
+We successfully created a role-assignable group named *IT User Administrators*, and we assigned the user-administrator role to the group. We then verified that members of the group would automatically inherit the role assigned to the group, and in addition to that we also verified that removing a user from the group also meant that the user would have the role automatically unassigned.
+
 
 ## Lessons Learned  
 Learning material:
