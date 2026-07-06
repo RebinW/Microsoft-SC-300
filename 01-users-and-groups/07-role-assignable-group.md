@@ -68,7 +68,35 @@ As shown on the screenshot, I have filled out all the basic information required
 ![Verify group](screenshots/verifygroup.png)
 
 After I had verified the configuration, I simply clicked on *Create*
+
 ## Verification
+Now we need to verify that the group has been created, and that the member user holds the user-administrator role.
+
+#### Test 1: Verify that the group has been created
+If we navigate to the groups page in Entra ID, we can now see that the role-assignable group IT User Administrator has been created successfully:
+
+![Group created](screenshots/groupcreated1.png)
+
+#### Test 2: Verify that the user-administrator role is assigned to members
+Lets navigate to the member of the newly created group, and verify that the user-adnministrator role has been assigned to the user Frederik:
+
+![User-admin role assigned successfully](screenshots/roleassigned.png)
+
+#### Test 3: Add another member to the group
+Lets add another user to the IT User Administrator group to ensure that the user will get the role automatically assigned. To do this I once again navigate to the *IT User Administrators* group page -> Members -> Add members:
+
+![Oliver added](screenshots/oliveradded.png)
+
+Then I simply click on the user Oliver -> Assigned roles:
+
+![role assigned](screenshots/roleassigned1.png)
+
+To finish it off, I'd like to ensure that when a user is removed from the group, that the user then automatically gets the role unassigned. I therefore manually removed Oliver from the group and then went into Oliver's user page under Assigned roles to verify that Oliver no longer holds the User Administrator role:
+
+![Remove Oliver](screenshots/removeuser.png)
+![Role removed](screenshots/roleremoved.png)
+
+
 
 ## Results  
 
