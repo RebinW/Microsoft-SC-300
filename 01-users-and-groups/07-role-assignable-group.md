@@ -5,6 +5,16 @@ Role-assignable groups are special security groups in Entra ID that are designed
 
 Role-assignable groups must use assigned membership. Dynamic membership is not supported because administrative roles should always be granted manually to prevent mistakes from happening.
 
+Role-assignable groups:
+- Requires at least a P1 license
+- Supports all Microsoft Entra roles
+- Supports custom roles
+- Supports both Security groups and Microsoft 365 groups
+- One or several roles can be assigned to a single group
+- One a group is configured the option for creating a role-assignable groups can't be changed, so a already non role-assignable group can't be changed to role-assignable group
+- Role-assignable groups do not support dynamic membership
+- Group-nesting is not supported
+
 For this lab i'm simply going to create a role-assignable group to group all KlarStroems user administators. I will therefore assign the role directly to the group instead of the users, and if configured correctly the members of the group should automatically get the role assigned, and if removed from the group, then the role should also automatically be unassigned.
 
 ## Objectives
@@ -21,7 +31,7 @@ For this lab i'm simply going to create a role-assignable group to group all Kla
 - Tenant: KlarStroem
 - Role used: Global Administrator
 - License requirements
-  - For this lab so for none  
+  - **As a minimum the P1 or higher license is required for the use of group-based licensing**
 
 ## Implementation
 #### Step 1: 
@@ -31,3 +41,5 @@ For this lab i'm simply going to create a role-assignable group to group all Kla
 ## Results  
 
 ## Lessons Learned  
+ Used Resources:
+ [Use Microsoft Entra groups to manage role assignments](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/groups-concept)
