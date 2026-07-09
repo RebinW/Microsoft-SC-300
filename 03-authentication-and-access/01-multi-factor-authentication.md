@@ -21,11 +21,8 @@ The solution to this problem is Multi Factor Authentication (MFA). Instead of re
 
 Now, when authentication ourselves, we simply provide 2 or more factors from above in the authentication process. Once again this means that we do not rely on a single factor, so if an attacker forexample cracks our password he wouldn't be able to gain access because the system still requires the other factor.
 
+In this lab, i'm going to cover the basics of MFA in Entra ID and how to implement it. Please notice that I stille have security defauls enabled for my tenant, this means that our tenant automatically has MFA enabled for all users and therefore requires users to register for MFA using the Microsoft Authenticator App when they are logging in for the first time. I'll cover some of the most important and widely used authentication methods in the next lab and how to enable them, but for this lab I'm specifically going to take a closer look how to set up MFA for our tenant with specific requirements.
 
-Explain:
-- What i'm implementing
-- Why it's important
-- Where it's used in enterprise environments
 
 ## Objectives
 - Create cloud-only user accounts
