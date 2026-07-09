@@ -1,7 +1,7 @@
 # Understanding the different authentication methods in Entra ID
 
 ## Overview
-I was a bit in doubt weather to create this lab since it's mostly going to consist of theory rather than a actual implementation. Still, I think it is extremely important to understand each of the different authentication methods provided by Entra ID. How are we supposed later to implement conditional access or secure privileged roles if we do not understand these options?
+I was a bit in doubt weather to create this lab since it's mostly going to consist of theory rather than a actual implementation. Still, I think it is extremely important to understand each of the different authentication methods provided by Entra ID. How are we supposed later to implement conditional access or secure privileged roles if we do not understand the different characteristics and the level of security behind them?
 
 Authentication is the process of verifying a user's identity before the access is granted. Entra ID supports multiple authentication methods with different security levels. Understanding these methods is important because features such as conditional access, Privileged Identity Management, and Authentication strenghs rely on them when making access decisions.
 
