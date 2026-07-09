@@ -75,9 +75,11 @@ Now that we are in the registration campaign wiondow, we're finally ready to con
 2. Enabled: This means that our organization manages the registration campaign. Now we can decide the authentication method ourselves, how many days the user can snooze/ postpone the registration campaign, whether the number of snoozes is limited, and still choose whether to include all users or a specific set of users.
 3. Disabled: This basically means there is no registration campaign enforced.
 
-For this lab I chose the *Microsoft managed* state, and therefore the user should be enforced to setup MFA using the Microsoft authenticator application. Also notice that I'm still able to specify the users that will be affected, I chose to include all users in the tenant. 
-
 ![Configure registration](screenshots/configureregistration.png)
+
+For this lab I chose the *Enabled* state, and specified that the authentication method should still be the authenticator application, still I chose to keep the rest of the options to the default ones to ensure that the user would be able to postpone the MFA registration.
+
+![final configuration](screenshots/configureregistration2.png)
 
 ## Verification
 
