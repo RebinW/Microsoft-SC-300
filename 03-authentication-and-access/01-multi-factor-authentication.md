@@ -25,9 +25,9 @@ In this lab, I'll configure a Registration Campaign for Microsoft Authenticator 
 
 ## Implementation
 #### Step 1: Disable security defaults
-As mentioned in the overview my tenant has the security defaults enabled this means that by default when a new user tries to log in for the first time, that user will be required to set up MFA. Since this lab focuses on setting up the **Registration campaign**, and applying the policy to the users, I would then have to disable security defaults for me to show how this work and prove the difference.
+As mentioned in the overview my tenant has the security defaults enabled this means that by default when a new user tries to log in for the first time, that user will be required to set up MFA using the Microsoft Authenticator Application. Since this lab focuses on setting up a Registration campaign that targets the same authentication method as Security Defaults, it would only then make sense to disable Security defaults first and then enforce MFA through another way such as Conditional Access.
 
-Lets first go ahaed and disable the security defaults and then quickly verify that a newly created user and log in without registering for MFA. To disable security defaults: 
+Lets first go ahaed and disable the security defaults:
 1. In Entra ID Admin Center -> Navigation Menu to the left -> Entra ID
 2. Click on the *Overview* option
 3. Then click on *Properties*
@@ -47,7 +47,25 @@ After I had created the test user, I then opned a in private browser and tried t
 
 ![Require password update](screenshots/passwordupdate.png)
 
-#### Step 3: Configure the registration campaigh and enabled to for all users
+#### Step 3: Enable multi-factor authentication
+As I mentioned in the overview, a prerequisite for registration campaigns to work is that we have MFA already enabled for the users in scope for the campaign. This also means that the enabled MFA method should use another authentication method that the one we're going to make an campaign for, if the method is stronger or the same as the one we're making a campaign for then the campaign really doesn't make much sense.
+
+There is the option to enable MFA through the legacy method in Entra Admin Center the specific location is highlighted in the screenshot belowe:
+
+![Legacy MFA](screenshots/legacymfa.png)
+
+This method is considered the legacy way of enabling and enforcing MFA on users, and also it targets MFA per user.
+
+If we enable MFA for a user through this method, the user can then chose to register any authentication meethod that we have allowed in the tenant if the user is a part of the scope. The user can then simply go to portal.mysigninss.com and configure any of the methods we have allowed: 
+
+![Allowed methods](screenshots/allowedmethods.png)
+
+Instead of using the legacy method of enableing MFA, I'm simply going to create a simple Conditional Access policy. The policy is just going to target our test user, and i'm basically going to require the user to register for MFA when accessing Microsoft 365 resources. The options the user can chose from is once again going to be the same as those we have allowed in our tenant, as seen on the picture above.
+
+Simple CA Policu:
+![Simple ca policy](screenshots/simplecapolicy.png)
+
+#### Step 4: Configure the registration campaigh and enable it for all users
 Now, I'm finally ready to actually implement the registration campaign, and to do this we have to native to:
 1. Entra ID Admin Center
 2. Authentication methods
@@ -57,12 +75,16 @@ Now, I'm finally ready to actually implement the registration campaign, and to d
 
 Now that we are in the registration campaign wiondow, we're finally ready to configure it and apply it to our tenant. The *State* option highlighted in the screenshot below has three possible states:
 1. Microsoft Managed: This means that Microsoft manages the registration campaign. In other word Microsoft decides the authentication method and the snooze behaviour.
-2. Enabled: This means that our organization manages the registration campaign. Now we can decide the authentication method ourselves, how many days the user can snooze/ postpone the registration campaign, whether the number of snoozes is limited, and still choose whether to include all users or a specific set of users.
+2. Enabled: This means that our organization manages the registration campaign. Now we can decide the authentication method ourselves, how many days the user can snooze/postpone the registration campaign, whether the number of snoozes is limited.
 3. Disabled: This basically means there is no registration campaign enforced.
 
 ![Configure registration](screenshots/configureregistration.png)
 
-For this lab I chose the *Enabled* state, and specified that the authentication method should still be the authenticator application, still I chose to keep the rest of the options to the default ones to ensure that the user would be able to postpone the MFA registration.
+For this lab, I chose the enabled option. The reason I didn't go with the *Microsoft Managed option* is simply because I wanted to be able to configure all of the options. In the Microsoft Managed option the *days allowed to snooze* option is set to 1 day, this means if the user postpones the set-up then one day will pass before the user gets nudged/encouraged again.
+- **Authentication method:** The two method Entra supports at this time is Microsoft Authenticator and Passkeys
+- **Days allowed to snooze:** determines how many days will pass before a user gets nudged/encouraged again if the user already postponed the set-up I chose to set it to **0** because I want to be able to test the campaign right away.
+- **Limited number of snoozes:** We can only chose between *Enabled* or *Disabled*, Enabled, means that we limit the number of times a user can postpone the set-up, the exact number is 3 times by default. Disbled on the other hand, means that the user can postpone the set-up for ever, this also means that the user will never be enforced to set-up the targeted authentication method but will always be encouraged. I chose to enable it this means our test user should be reminded 3 times before the user is going to be enforced to set up Microsoft Authenticator.
+- **Include:** here i'm just going to include all users, simply because it is still just going to affect our test user since he is the only one I have actually enforced MFA on through the Conditional Access policy.
 
 ![final configuration](screenshots/configureregistration2.png)
 
