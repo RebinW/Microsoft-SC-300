@@ -1,4 +1,4 @@
-# Understanding the different authentication methods in Entra ID
+# Authentication methods in Entra ID
 
 ## Overview
 I was a bit in doubt weather to create this lab since it's mostly going to consist of theory rather than a actual implementation. Still, I think it is extremely important to understand each of the different authentication methods provided by Entra ID. How are we supposed later to implement conditional access or secure privileged roles if we do not understand the different characteristics and the level of security behind them?
