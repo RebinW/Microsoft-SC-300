@@ -36,7 +36,7 @@ Lets first go ahaed and disable the security defaults:
 5. Set security defaults to *Disable* and provide justification
 6. Press *Save*
 
-![Disable Security defaults](screenshots/securitydefaultsdisabled.png)
+![Disable Security defaults](screenshots/disablesecuritydefaults.png)
 
 #### Step 2: Create new cloud user and test log in
 I'm quickly just going to create a new user to be sure this user hasn't already registered for MFA previously, then I'm going to try to log in with tha user and see if MFA registration will be required.
