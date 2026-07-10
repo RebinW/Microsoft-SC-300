@@ -1,4 +1,4 @@
-# Configure MFA Registration Campaign
+# Implement Registration Campaign
 
 ## Overview
 When I first started working with Registration Campaigns, I thought it was a feature used to enforce multi-factor authentication for users. After testing it on my own lab, I found that this isn't the case. Registration campaigns don't enable or enforce MFA by themselves. Instead, they build on an existing MFA deployment.
