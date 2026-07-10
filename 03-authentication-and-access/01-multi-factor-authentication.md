@@ -1,28 +1,13 @@
-# Configure MFA Registration
+# Configure MFA Registration Campaign
 
 ## Overview
-In the past we used to rely on simply 1 factor when authentication ourselves to a system/application. It started out with passwords, later passwords could esily be cracked using attacks such as password sprays, brute force attacks and many more. We then through policies required users to create more complex password with a minimum amount of characters, upper and lower characters, numbers included and special characters, still attackers got more sophisticated tools to work with.
+When I first started working with Registration Campaigns, I thought it was a feature used to enforce multi-factor authentication for users. After testing it on my own lab, I found that this isn't the case. Registration campaigns don't enable or enforce MFA by themselves. Instead, they build on an existing MFA deployment.
 
-The solution to this problem is Multi Factor Authentication (MFA). Instead of relying on 1 factor, users now must provide a minimum of 2 factors (2FA) or more when authenticating to a system. These factors are typically devided into 3 categories:
-1. Something you know:
-- Password
-- PIN
-- Secret
-2. Something you have:
-- Mobile device
-- Smart card
-- certificate
-- USB Stick
-3. Something that you are:
-- Typically biometric data such as:
-  - Fingerprint
-  - Facial regonition
-  - Voice regonition
+A Registration campaign is used to gradually move users towards a specific authentication method over time. At the time of writing my lab, Microsoft Entra supports campaigns for Microsoft Authenticator and Passkeys (FIDO2). Administrators can choose which users are included, how many times they are allowed to postpone the registration, and how long they are allowed to snooze the promt before they are reminded again.
 
-Now, when authentication ourselves, we simply provide 2 or more factors from above in the authentication process. Once again this means that we do not rely on a single factor, so if an attacker forexample cracks our password he wouldn't be able to gain access because the system still requires the other factor.
+For a Registration campaign to work, the targeted users must already be using Microsoft Entra MFA. The campaign appears after a successful MFA sign-in and encourages users to register the targeted authentication method. This makes it useful when an organization wants to move users from a weaker or older authentication method, such as SMS or another authenticator application, to Microsoft Authenticator or Passkeys, without forcing the change immediately.
 
-In this lab, i'm going to cover the basics of MFA in Entra ID and how to implement it. Please notice that I stille have security defauls enabled for my tenant, this means that our tenant automatically has MFA enabled for all users and therefore requires users to register for MFA using the Microsoft Authenticator App when they are logging in for the first time. I'll cover some of the most important and widely used authentication methods in the next lab and how to enable them, but for this lab I'm specifically going to take a closer look how to set up MFA for our tenant with specific requirements.
-
+In this lab, I'll configure a Registration Campaign for Microsoft Authenticator and verify how the campaign behaves for users with a different authentication method. This shows the difference between enforcing MFA through Conditional Access and gradually moving users towards stronger authentication methods through a registration campaign.
 
 ## Objectives
 - Create cloud-only user accounts
@@ -87,11 +72,7 @@ For this lab I chose the *Enabled* state, and specified that the authentication 
 
 ## Lessons Learned  
 
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
+- The biggest lesson from this lab was understanding that Registration Campaigns are not used to enforce MFA. I thought that it was their purpose, but after testing different scenarios I found out that MFA already has to be enabled for the users in scope. The campaign is simply used to encourage and later enforce to move to a specific authenticaton method over time
+- One thing I noticed while testing was that Security Defaults and Registration Campaigns don't really make sense together if the campaign targets Microsoft Authenticator. Security Defaults already requires users to register Microsoft Authenticator the first time they sign in, so there's nothing left for the campaign to promote. The campaign only becomes visible, once MFA is enforced in another way such as through Conditional Access or the legacy way through the Multi-factor authentication blade in Entra Admin center where MFA is enforced per user.
+- Even though I don't think that Registration campaigns are something every organization will use today, I can difinitely see the potential. Since the campaign can target a specific set of users instead of the whole tenant, it provides a controlled way of introducing stronger authentication methods over time. For example, an organization could start encouraging administrators or other high-risk users to move from Microsoft Authenticator to Passkeys before rolling it out to everyone else. That makes it alot easier to introduce new authentication methods without enforcing all users to change at once. Also, I believe that Microsoft will include more authentication methods in the feature over time, so that the feature becomes more valuable as new authentication tools and methods will enter the world of IAM.
 
