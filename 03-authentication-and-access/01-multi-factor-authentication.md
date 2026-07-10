@@ -125,13 +125,16 @@ Finally, I skipped/postpone the set-up of Microsoft Authenticator egough times t
 
 As we can see on the picture above, it does not give me the option to postpone/skip anymore this confirms we have skipped the maximum amount of times (3 times). Also, when I clicked next it enforces me to set-up Microsoft Authenticator by not letting me choose any other authentication method.
 
-
-
 ## Results  
+We disabled security defaults and verified that the new cloud-user was able to log in without the requirement of MFA. Right after we created a simple Conditional Access policy and targeted the test user to see if he would be required to set-up MFA. Then we verified that the test user had to set up MFA, and we chose to set up MFA using a different authentication method than the more configured for our campaign. 
+
+When we finished the configuration of our Registration campaign, we then tried to log in as test user again, and could immediately verify that the registration campaign kicked in by seeing the *Skip 3 times* option. In the end we had skipped enough times to verified that we were forced to set-up Microsoft Authenticator before we would be able to log in.
 
 ## Lessons Learned  
 
 - The biggest lesson from this lab was understanding that Registration Campaigns are not used to enforce MFA. I thought that it was their purpose, but after testing different scenarios I found out that MFA already has to be enabled for the users in scope. The campaign is simply used to encourage and later enforce to move to a specific authenticaton method over time
+  
 - One thing I noticed while testing was that Security Defaults and Registration Campaigns don't really make sense together if the campaign targets Microsoft Authenticator. Security Defaults already requires users to register Microsoft Authenticator the first time they sign in, so there's nothing left for the campaign to promote. The campaign only becomes visible, once MFA is enforced in another way such as through Conditional Access or the legacy way through the Multi-factor authentication blade in Entra Admin center where MFA is enforced per user.
+  
 - Even though I don't think that Registration campaigns are something every organization will use today, I can difinitely see the potential. Since the campaign can target a specific set of users instead of the whole tenant, it provides a controlled way of introducing stronger authentication methods over time. For example, an organization could start encouraging administrators or other high-risk users to move from Microsoft Authenticator to Passkeys before rolling it out to everyone else. That makes it alot easier to introduce new authentication methods without enforcing all users to change at once. Also, I believe that Microsoft will include more authentication methods in the feature over time, so that the feature becomes more valuable as new authentication tools and methods will enter the world of IAM.
 
