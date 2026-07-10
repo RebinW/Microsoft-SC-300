@@ -119,8 +119,8 @@ Now, if the *Days allowed to snooze* is configued correctly, then we wouldn't ha
 #### Test 3: Test the enforcement of setting up Microsoft Authenticator
 Finally, I skipped/postpone the set-up of Microsoft Authenticator egough times to prove that now Test User is enforced to set-up Microsoft Authenticator or else he can't log in:
 
-![Test 3](screenshot/test3.png)  
-![Test 4](screenshot/test4.png)
+![Test 3](screenshots/test3.png)  
+![Test 4](screenshots/test4.png)
 
 As we can see on the picture above, it does not give me the option to postpone/skip anymore this confirms we have skipped the maximum amount of times (3 times). Also, when I clicked next it enforces me to set-up Microsoft Authenticator by not letting me choose any other authentication method.
 
