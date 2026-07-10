@@ -98,7 +98,7 @@ I opened an InPrivate browser, and since MFA was enforced on Microsoft 365 servi
 
 After I typed in the credentials of our test user, I then got promted to set up MFA:
 
-[Set up MFA for test user](screenshots/setupmfa.png)
+![Set up MFA for test user](screenshots/setupmfa.png)
 
 One I clicked on next, I could then chose to set up MFA with the autentication methods that my tenant allows for the specific user. I chose to set-up MFA with another authenticator application (google authenticator), because I wanted to later be encouraged to set up Microsoft Authenticater with the Registration Campaign.
 
