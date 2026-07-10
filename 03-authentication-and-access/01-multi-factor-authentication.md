@@ -46,7 +46,7 @@ User created
 
 After I had created the test user, I then opned a in private browser and tried to log in with the newly created user to ensure that MFA registration wasn't required. I tried to do exactly that, and the only requirement it had was to create a new password since it was my first time logging in, and right after that I was successfully logged in.
 
-![Require password update](screenshots/passwordupdate.png)
+![Password update](screenshots/passwordupdate.png)
 
 #### Step 3: Enable multi-factor authentication
 As I mentioned in the overview, a prerequisite for registration campaigns to work is that we have MFA already enabled for the users in scope for the campaign. This also means that the enabled MFA method should use another authentication method that the one we're going to make an campaign for, if the method is stronger or the same as the one we're making a campaign for then the campaign really doesn't make much sense.
@@ -97,6 +97,7 @@ Now, I would like to simply test that the conditional Access policy requires the
 I opened an InPrivate browser, and since MFA was enforced on Microsoft 365 services I then went to: portal.office.com.
 
 After I typed in the credentials of our test user, I then got promted to set up MFA:
+
 [Set up MFA for test user](screenshots/setupmfa.png)
 
 One I clicked on next, I could then chose to set up MFA with the autentication methods that my tenant allows for the specific user. I chose to set-up MFA with another authenticator application (google authenticator), because I wanted to later be encouraged to set up Microsoft Authenticater with the Registration Campaign.
