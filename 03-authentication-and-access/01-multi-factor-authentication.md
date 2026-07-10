@@ -10,10 +10,11 @@ For a Registration campaign to work, the targeted users must already be using Mi
 In this lab, I'll configure a Registration Campaign for Microsoft Authenticator and verify how the campaign behaves for users with a different authentication method. This shows the difference between enforcing MFA through Conditional Access and gradually moving users towards stronger authentication methods through a registration campaign.
 
 ## Objectives
-- Create cloud-only user accounts
-- Configure required user properties
-- Verify successful user creation
-- Understand the characteristics of cloud-only users
+- Disable security defaults
+- Create a new test user
+- Enforce MFA on the test user using Conditional Access policy
+- Configure the registration campaign
+- Test and verify the Registration campaign
 
 ## Environment
 - Identity Provider: Entra ID
@@ -89,6 +90,41 @@ For this lab, I chose the enabled option. The reason I didn't go with the *Micro
 ![final configuration](screenshots/configureregistration2.png)
 
 ## Verification
+#### Test 1: Verify that the Conditional Access policy works
+We have already tested the user could sign in without setting up MFA. We did that when we disabled Security Defaults, and right after created the test user.
+
+Now, I would like to simply test that the conditional Access policy requires the user to setup MFA.
+I opened an InPrivate browser, and since MFA was enforced on Microsoft 365 services I then went to: portal.office.com.
+
+After I typed in the credentials of our test user, I then got promted to set up MFA:
+[Set up MFA for test user](screenshots/setupmfa.png)
+
+One I clicked on next, I could then chose to set up MFA with the autentication methods that my tenant allows for the specific user. I chose to set-up MFA with another authenticator application (google authenticator), because I wanted to later be encouraged to set up Microsoft Authenticater with the Registration Campaign.
+
+NOTE: Google Authenticator uses the Software OATH Token authentication method, but I'm going to cover the different authentication methods in the next lab.
+
+![Choose MFA Method](screenshots/choosemfamethod.png)
+
+#### Test 2: Verify that the campaign targets the user
+Now that we have set up MFA for Test User using another authentication method from the one our campaign targets (Microsoft Authenticator), next time Test user logs in he should be promted/encouraged to set-up Microsoft Authenticator.
+
+To test this I once again opened a InPrivate browser, and navigated to: portal.office.com. Right after I had signed in, I was then encouraged to set up Microsoft Authenticator. More importantly, as seen on the screenshot below it shows me I can skip the set-up 3 times, this also confirms that the *Limited number of snoozes* is working.
+
+![Test 1](screenshots/test1.png)
+
+Now, if the *Days allowed to snooze* is configued correctly, then we wouldn't have to wait for a whole day to be encouraged again because I sat the value to 0. So I of course opened a new InPrivate browser, and tried to log in again, and as expected it now shows me that I can skip again:
+
+![Test 2](screenshots/test2.png)
+
+#### Test 3: Test the enforcement of setting up Microsoft Authenticator
+Finally, I skipped/postpone the set-up of Microsoft Authenticator egough times to prove that now Test User is enforced to set-up Microsoft Authenticator or else he can't log in:
+
+![Test 3](screenshot/test3.png)  
+![Test 4](screenshot/test4.png)
+
+As we can see on the picture above, it does not give me the option to postpone/skip anymore this confirms we have skipped the maximum amount of times (3 times). Also, when I clicked next it enforces me to set-up Microsoft Authenticator by not letting me choose any other authentication method.
+
+
 
 ## Results  
 
