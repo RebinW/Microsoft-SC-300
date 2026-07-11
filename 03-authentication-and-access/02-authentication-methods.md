@@ -28,7 +28,7 @@ Understanding authentication methods is important before working with Conditiona
 ## Implementation
 Before I configure the authentication method policies, I think it's important to first understand some of the authentication methods available in Entra ID. Each method has different characteristics, provides a different level of security, and is used for different scenarios. Understanding these differences makes it much easier to decide which methods should be enabled and later required through Conditional Access policies.
 
-#### Microsoft Authenticator
+### Microsoft Authenticator
 This is Microsoft's recommended authentication method for Entra ID. It is available as a mobile application and supports multiple ways of verifying the user's identity, this makes it suitable for both MFA and passwordless authentication.
 
 The application supports different authentication experiences, including:
