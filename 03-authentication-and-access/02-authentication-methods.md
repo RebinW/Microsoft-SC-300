@@ -161,11 +161,11 @@ I followed the instructions for setting up Microsoft Authenticator. It asked me 
 
 ![New method](screenshots/newmethodadded.png)
 
-
-
-
-
 ## Results  
+- Verified that only the authentication methods enabled through authentication method policies were available for the user to register
+- Verified that users can register supported authentication methods through the Microsoft Entra My Sign-In portal
+- Verified that administrator-controlled methods, such as TAP aren't registered by the user 
+
 
 ## Lessons Learned  
 
