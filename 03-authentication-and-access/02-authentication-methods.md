@@ -25,7 +25,7 @@ Understanding authentication methods is important before working with Conditiona
 - License requirements
   - For this lab so for none  
 
-## Implementation
+## Theory on Authentication Methods
 Before I configure the authentication method policies, I think it's important to first understand some of the authentication methods available in Entra ID. Each method has different characteristics, provides a different level of security, and is used for different scenarios. Understanding these differences makes it much easier to decide which methods should be enabled and later required through Conditional Access policies.
 
 ### Microsoft Authenticator authentication method
@@ -70,6 +70,8 @@ During registration, a shared secret is created between ENtra ID and the authent
 
 **Typical use case:** Used as an MFA method for users who prefer one-tiime passcodes over other methods
 
+
+## Implementation
 #### Step 22: User Registration
 Once an authentication metho is enabled and the user is within scope for the policy/method, the user can then register it by going to My Sign-Ins. From here, the user can add, remove, or update their authentication method depending on what the administrator has allowed and what the user is in scope for.
 
