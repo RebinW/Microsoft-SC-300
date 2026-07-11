@@ -90,15 +90,80 @@ CBA uses digital certificates issued by a trusted Certificate Authority (CA). Th
 
 
 ## Implementation
-#### Step 22: User Registration
-Once an authentication metho is enabled and the user is within scope for the policy/method, the user can then register it by going to My Sign-Ins. From here, the user can add, remove, or update their authentication method depending on what the administrator has allowed and what the user is in scope for.
+Now that I've covered some of the authentication methods in Entra ID, I then think we're finally ready to find test how they are enabled and configured in Entra ID.
 
+#### Step 1: Navigate to Authentication methods
+To locate the different authentication method policies in Entra ID, Go to:
+1. Entra ID Admin Center
+2. In the navigation menu to the left click on Authentication methods
+3. Once in the Authentication methods window, click on Policies
 
+![Authentication methods location](screenshots/authenticationmethodslocation.png)
 
+#### Step 2: Review the available methods
+As we can see on the screenshot below, we'll see the some of the authentication methods I have explained earlier. This gives an perfect overview of the different authentication methods available in Entra, the target/user in scope for the method and weather the method is enabled or disabled.
 
-#### Step 1: 
+![Authenticationmethod](screenshots/authenticationmethods.png)
+
+#### Step 3: Configure a method and enable the method for all users
+For good reasons I had already enable and configured Microsoft Authenticator. Still, I'd like to show how we can enable an method an configure it, so lets take a closer look at Microsoft Authenticator.
+
+From the policies window I simply click on the authentication method *Microsoft Authenticator* and it will then take me to Microsoft Authenticator Setting. In the settings menu, there are 2 tabs the *Enable and Target* and *Configure* tab. 
+
+In the *Enable and Targets* tab you'll see that I have included all users to be able to register for the method. Also I have chosen any under authentication mode, this means that the user should be able to choose either passwordless or push notifications
+
+![Enable and target](screenshots/enableandtarget.png)
+
+The *Configure* tab, as the name suggets this is where we can configure the authentication method to our liking. These settings are quite straight forward so I will not cover then in depth, I just wanted to show where we can configure the method:
+
+![](screenshots/configurema.png)
+
 
 ## Verification
+#### Test 1: Verify authentication options
+Users register and manage their authentication methods through the My sign-ins portal at mysignins.microsoft.com. The authentication methods available to the user depend on the policies configured in the tenant and whether the user is in scope for those policies.
+
+I therefore created a new user named test.user2@klarstroem.onmicrosoft.com and made sure the user at this point only authenticates using a password. I then Opened an InPrivate window and went to mysingins.microsoft.com and from there logged in using only the password. Since it was my first time signing in with Test User 2, It only required me to create a new password:
+
+![Update password](screenshots/testuser2.png)
+
+Once I was logged in as test user 2, I needed to navigate to the page that lets me register for other authentication methods.
+1. Open the navigation menu to the left
+2. Click on My Account
+3. Click on Security Info
+
+![Security Info](screenshots/securityinfo.png)
+
+The Security Info page confirms that my current sign-in method is only using Password. On the page we see the *Add sign-in method* option, I therefore click on the option, and it right away displayed two additional authentication methods I could choose from. 
+
+![Add authentication method](screenshots/addmethod.png)
+
+In my tenant configuration, I've enabled the following authentication policies:
+- Microsoft Authenticator
+- SMS
+- Temporary Access Pass
+- Software OATH
+- Email OTP
+
+As we can see from the screenshot above, the user has been presented two the following two options:
+- Microsoft Authenticator
+- Phone (SMS authentication method enebaled)
+
+Why doesn't the user see:
+- Temporary Access Pass: Users don't register a TAP themselves. It's issued by an administrator
+- Email OTP: Used for B2B guest scenarios, not for member users managing their own sign-in methods.
+
+Now the only one left that we currently don't see is the Software OATH. We have to remember that Software OATH is also an experince that Microsoft Authenticator support, and since Microsoft recommonds their own solution the only one advertised here is their own. If we click on Microsoft Authenticator, then we can actually see the option *Set up a different authentication app*, this is were we would be able to use another option such as google authenticator.
+
+![other option](screenshots/otheroption.png)
+
+I followed the instructions for setting up Microsoft Authenticator. It asked me to download the application, scan the QR code, and finally sent me a two digit numer to type in to complete the registration. Right after the registration was completed and I could see that the method had been added to the users sign-in method.
+
+![New method](screenshots/newmethodadded.png)
+
+
+
+
 
 ## Results  
 
