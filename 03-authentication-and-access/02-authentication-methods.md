@@ -70,6 +70,24 @@ During registration, a shared secret is created between ENtra ID and the authent
 
 **Typical use case:** Used as an MFA method for users who prefer one-tiime passcodes over other methods
 
+### Email OTP authentication method
+Email One-Time Passcode is an authentication method that sends a one-time verification code to the user's email address. The user enter the code during sign-in to verify the identity.
+
+Unlike most other methods, Email OPT is primarily used by ENTRA B2B guest users. It allows external users to access shared resources without requiring a Microsoft account. It can also be used in certain account recovery scenarios.
+
+**Typical use case:** Used by B2B guest users to authenticate to resources shared through Microsoft Entra ID.
+
+### Certificate Based Authentication (CBA)
+Certificate based authentication uses digital certificates instead of passwords to verify the user's identity. Each certificate contains a public and private key pair, allowing users to authenticate using public ket cryptography.
+
+CBA is used in environments with high security requirements, such as goverment, healthcare, or organizations that already have a Public Key Infrastructure (PKI)
+
+CBA uses digital certificates issued by a trusted Certificate Authority (CA). The certificate can be stored on a smart card, USB token, or directly on a managed device. During authentication, the associated private key is used to prove the user's identity without exposing the key itself. This authentication method is very similar to how passkeys work:
+- Passkeys: Does this device possess the correct private key
+- Certificate: Does this device possess the correct private key, and was that key certified by a trusted Certificate Authority
+
+**Typical use case:** Used in organizations that require certificate-based sign-in through smart cards or other PKI solutions.
+
 
 ## Implementation
 #### Step 22: User Registration
