@@ -21,7 +21,8 @@ Since i'm running a hybrid environment, I then want to ensure that SSPR in Entra
 - Tenant: KlarStroem
 - Role used: Global Administrator
 - License requirements
-  -   
+  - Since i'm running a hybrid environment and the users the feature is going to be applied to, a minimum of Enta ID P1 license is required when wanting to make the feature available for synchronized users.
+  - Additionally for this lab another prerequsite is to have password writeback enabled.  
 
 ## Implementation
 #### Step 1: Verify the group and users to be affected
