@@ -166,6 +166,7 @@ I followed the instructions for setting up Microsoft Authenticator. It asked me 
 - Verified that users can register supported authentication methods through the Microsoft Entra My Sign-In portal
 - Verified that administrator-controlled methods, such as TAP aren't registered by the user 
 
-
 ## Lessons Learned  
-
+- The reason for enabling several authentication method is:
+  1. Convinience
+  2. Resiliency: If for any reason an authentication method the user is already using is not available, the user can then choose/add another method to authenticate with.
