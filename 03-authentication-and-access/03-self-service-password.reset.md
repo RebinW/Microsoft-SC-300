@@ -117,7 +117,26 @@ Additionally, Microsoft sent me an email letting me know the password had been c
 
 ![](screenshots/emailnotification.png)
 
+#### Test 2: Ensure the updated password also works on-prem
+After I had updated the password successfully after trying a couple of times (more on this under lessons learned), I then turned on my domain-joined client PC and tried to log into Mark's account using the updated password, and it successfully logged me into the domain. 
+
+#### Test 3: Verify that Line can reset her password using the MS Authenticator apllication
+I ran the exact same test on Line just to confirm that she would be presented with the option to reset her password using the Microsoft authenticator application.
+
+I followed the same steps, and after I click on *Forgot my password*, I was then presented with the following options to reset the password
+
+![Line reset using MS authenticator](screenshots/linereset.png)
+
+The scrrenshot confirms that Line can reset her password using the Microsoft authenticator application.
+
+
 ## Results  
 
 ## Lessons Learned  
+Right after I had updated the password, I then turned on my domain-joined client PC and tried to log into Mark's account using the updated password, and it successfully logged me into the domain. 
 
+I wasn't in doubt about this, because I noticed that when updating the password the system was talking directly to my domain controller. I found out abot this because it didn't want to update my password to begin with because of several reasons:
+1. I had changed Marks password prior to testing the *Forgot my password* feature. I found out that the password policy applied on my domain controller preventet from changing again because the *minimum password age* was set to 1. This ment that if the user had s changed password recently, he then have to wait 24 hours before this could be changed again
+2. I changed the policy and configured the *minimum password age* to be 0, I then expected to be able to change the password, but I of course forgot to run  the gpupdate /force command and realized this after some time.
+
+This was actually a very good lesson because it showed me that the password is synchronized and updated in real time.
