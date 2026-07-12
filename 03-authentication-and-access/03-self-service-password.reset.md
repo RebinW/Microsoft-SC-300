@@ -95,6 +95,27 @@ I followed the exact same steps for the other user (Line Hansen), but instead of
 This means that next time Line tries to log in and she can't remember her password, she should be able to reset her own password using the Microsoft Authenticator application.
 
 ## Verification
+#### Test 1: Test Email OTP SSPR
+Lets try to log in as Mark Nielsen and pretent we can't remember our password.
+1. Open an InPrivate Window in the browser
+2. Go to https://mysignins.microsoft.com/
+3. Type the users email address (mark.nielsen@klarstroem.onmicrosoft.com)
+4. Click on *Forgot my password*
+5. Fill out email and the challange presented -> click next
+
+![Challange](screenshots/challange.png)
+
+After I click next, I was directed to the *Get back into your acoount* page. As you can see on the screenshot below the only option for me to reset my password is to send a OTP code to my email and verify it is me.
+
+![Verify Email](screenshots/verifyemail.png)
+
+After I had verified the email using the OTP code, I was presented witht the option to type in the new password. I then type in a new password and clicked on save, then it confirmed the password had been updated.
+
+![Email verified](screenshots/verificationcompleted.png)
+
+Additionally, Microsoft sent me an email letting me know the password had been changed:
+
+![](screenshots/emailnotification.png)
 
 ## Results  
 
