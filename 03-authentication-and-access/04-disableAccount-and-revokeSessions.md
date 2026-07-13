@@ -59,7 +59,7 @@ Revoking all sessions is made quite simple in Entra ID. From Marks user overview
 
 After I clicked on yes, it then confirmed it had revoked all active sessions for Mark Nielsen:
 
-![Sessions revoked for Mark](screenshots/sessionsrevoked.png)
+![Sessions revoked for Mark](screenshots/sessionrevoked.png)
 
 We also have the option here to revoke sessions for a user instead of using the GUI. If we wish to use PowerShell for this, the following command should work perfectly:
 - **Revoke-AzureADUserAllRefreshToken -ObjectId mark.nielsen@klarstroem.onmicrosoft.com**
@@ -73,11 +73,11 @@ Disableing an user account in Entra ID does not disable the account in on-premis
 5. Right click on Mark
 6. Click Disable Account
 
-![Disable Marks account in AD](screenshots/disabledaccountad.png)
+![Disable Marks account in AD](screenshots/disableaccountad.png)
 
 Right after I had clicked on disable, it then confirmed that the account was successfully disabled:
 
-![Account disabled](screenshots/accountdisabledad.png)
+![Account disabled](screenshots/adaccountdisabled.png)
 
 On-premise to disable an user account the folowing PowerShell command can be used:
 - **Disable-ADAccount -Identity mark.nielsen**
