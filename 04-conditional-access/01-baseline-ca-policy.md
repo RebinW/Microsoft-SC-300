@@ -85,7 +85,7 @@ I'm still going to exclude my emergency accounts to not be affected by the polic
 
 **Conditions:** No additional conditions are configured because this policy is intended to provide a baseline level of protection for all users. The same requirements apply regardless of the device, platform, or sign-in risks.
 
-![Conditions tab](screenshots/consitions.png)
+![Conditions tab](screenshots/conditions.png)
 
 #### Step 4: Configure the Access controls
 **Grant:** I chose to check the *Require multifactor authentication* option, this ensures that all users must use MFA when signing in. Users can authenticate using any MFA method that is enabled for their account without requiring a specific authentication method (Require authentication strength)
