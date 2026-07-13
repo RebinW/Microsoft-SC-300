@@ -9,13 +9,27 @@ Conditional Access policies can analyze various signals, such as user, device, a
 
 ![Conditional access overview](screenshots/caoverview.png)
 
+Assignments/If statements
+- Users and Groups: Which users and groups will be included in or excluded from the policy? Does this policy include all users, specific group of users, directory roles, or external users?
+- Cloud apps or actions: What application(s) will the policy apply to? What user actions will be subject to this policy?
+- Conditions: Which device platforms will be included in or excluded from the policy? What are the organization’s trusted locations?
+  
+Access controls/Then statement
+Grant: Do you want to grant access to resources by implementing requirements such as MFA, devices marked as compliant, or Microsoft Entra hybrid joined devices?
+Session controls: Do you want to control access to cloud apps by implementing requirements such as app enforced permissions or Conditional Access App Control?
+
+![If/then statements](screenshots/ifthen.png)
+
 In future labs we're going to build more complex CA policies where we focus on specific signals such as specific user accounts/user roles, devices, location and resources. We're then going to specify more strict access controls such as requiring specific authentication strengh. 
 
+Configuring CA policies can of course be challanging, but in my opinion the complexity really comes from designing these policies to ensure that they cover and mitigate risks in the organization. This means a company should design and implement the right policies to ensure they are no gabs for an attacker to take advantage of.
+
 ## Objectives
-- Create cloud-only user accounts
-- Configure required user properties
-- Verify successful user creation
-- Understand the characteristics of cloud-only users
+- Turn of Security defaults for the tenant
+- Configure the baseline CA policy to require MFA on all users
+- Ensure to exclude breakglass accounts from the policy
+- Verify users must complete MFA action before they can sign in
+- Verify that breakglass accounts can sign in without the use of MFA
 
 ## Environment
 - Identity Provider: Entra ID
