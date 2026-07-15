@@ -31,11 +31,4 @@ In this lab, a CA policy is created to block legacy authentication for all users
 
 ## Lessons Learned  
 
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
-
+- During testing, I observed that enabling legacy protocols such as SMTP AUTH does not necessarily mean Basic Authentication is available. Exchange Online and Microsoft Entra provide additional security controls beyond the mailbox protocol settings.
