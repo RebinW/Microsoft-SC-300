@@ -67,6 +67,11 @@ After reviewing the policy configuration, I then enabled the policy and saved it
 ![Create the policy](screenshots/policydone.png)
 
 ## Verification
+Prior to implementing the CA policy, I attempted to authenticate using SMTP AUTH by enabling the protocol in Exchange online and using a PowerShell script to sign in with a test account. The Entra sign-in logs confirmed that the request was recognized as an authenticated SMTP client and that username and password were successfully validated. The sign-in still wasn't completed because of MFA was required. This shows that, in my lab environment, additional Microsoft Entra and Exchange online security controls were applied before I was able to directly verify the CA policy.
+
+![logs](screenshots/logs.png)
+
+![logs](screenshots/logs2.png)
 
 ## Results  
 - The policy is enabled
