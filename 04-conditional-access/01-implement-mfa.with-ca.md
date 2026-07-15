@@ -1,4 +1,4 @@
-# Replacing security defaults with a baseline CA policy
+# Replacing security defaults with a baseline Conditional Acess policy
 
 ## Overview
 Security defaults are by default enabled on all new tenants, and provides a solid preconfigured security baseline such as requiring MFA registration for all users in the tenant, blocking legacy authentication, and protecting administrator accounts.
