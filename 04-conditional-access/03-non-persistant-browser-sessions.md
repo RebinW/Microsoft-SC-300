@@ -61,7 +61,7 @@ It then took me straight to the *New Conditional Access policy* window, and from
 
 We could also have created a dynamic security group that would have all privileged admin roles populated autmatically and then apply the policy to that group. Since this lab focuses on session controls and CA policies, I then chose to simply avoid that and apply it to those three roles as an example.
 
-![Users and groups](choosingroles.png)
+![Users and groups](screenshots/choosingroles.png)
 
 **Target resources:** All cloud resources are selected because the goal is to control the browser session rather than access to specific application. Also, the Persistent browser session control requires the policy to target all resources, ensuring the session behavior is applied consistently across Microsoft 365
 
@@ -75,7 +75,7 @@ We could also have created a dynamic security group that would have all privileg
 
 **Conditions:** No additional conditions are configured. The required scope is already defined through the users, target resources, and network locations. Since the goal is to control browser sessions behavior based on where admins are connecting from, no additional are necessary.
 
-#### Configure the Access controls
+#### Step 4: Configure the Access controls
 **Grant controls:** No grant controls are configured because the purpose of the policy is not to block or restrict sign-in in any way. Instead the policy uses a session control to manage the browser session after a successful sign-in
 
 **Session controls:** Under session controls, the *Persistent browser session control* is the one we want to apply and configure. This setting determines whether a browser session should remain active after the user closes and reopens the browser. Two options are available *Always persistent* and *Never persistent*
@@ -84,7 +84,7 @@ If always persistent is selected, administrators connecting from outside the tru
 
 Therefore, I selected *Never persistent*. This ensures that administrators connecting from outside the trusted network are required to authenticate again after they close their browser, while administyrators connecting from the trusted network continue to use the tenan't default browser session behavior.
 
-![Never persistent](screenshots/sessionscontrols.png)
+![Never persistent](screenshots/sessionscontrol.png)
 
 So the finished logic of the CA policy is:
 
