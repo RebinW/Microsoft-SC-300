@@ -84,7 +84,7 @@ If always persistent is selected, administrators connecting from outside the tru
 
 Therefore, I selected *Never persistent*. This ensures that administrators connecting from outside the trusted network are required to authenticate again after they close their browser, while administyrators connecting from the trusted network continue to use the tenan't default browser session behavior.
 
-![Never persistent](screenshots/sessionscontrol.png)
+![Never persistent](screenshots/sessioncontrol.png)
 
 So the finished logic of the CA policy is:
 
