@@ -20,6 +20,13 @@ In this lab, I will configure a Conditional Access policy that requires administ
   - Entra ID P1 as a minimum for creating CA policies
 
 ## Implementation
+Before implementing the CA policy, it is important to understand the default browser session behaviour in Entra ID. In my tenant, the **Show option to stay signed in** setting is enabled under *User settings*. this allows users to choose whether they want to remain signed in after successful authentication. 
+
+Since this is a tenant-wide setting, the same applies to all users. The intend of this lab is to override the default behaviour for administrators when they access Microsoft 365 from outside the trusted network. When administrators connect from the trusted network, the default browser session behaviour should apply to them as well.
+
+![Default behaviour](screenshots/defaultbehaviour.png)
+
+
 #### Step 1: Creating a named location representing a trusted network
 Since I want to apply the CA policy to enforce non-persistant browser session only when admins aren't on a trusted network, I then first need to configure and let Entra know what networks are considered trusted. 
 
@@ -66,7 +73,20 @@ We could also have created a dynamic security group that would have all privileg
 
 ![Exclude corporate network](screenshots/excludecorporate.png)
 
-So the finished logic of our CA policy is:
+**Conditions:** No additional conditions are configured. The required scope is already defined through the users, target resources, and network locations. Since the goal is to control browser sessions behavior based on where admins are connecting from, no additional are necessary.
+
+#### Configure the Access controls
+**Grant controls:** No grant controls are configured because the purpose of the policy is not to block or restrict sign-in in any way. Instead the policy uses a session control to manage the browser session after a successful sign-in
+
+**Session controls:** Under session controls, the *Persistent browser session control* is the one we want to apply and configure. This setting determines whether a browser session should remain active after the user closes and reopens the browser. Two options are available *Always persistent* and *Never persistent*
+
+If always persistent is selected, administrators connecting from outside the trusted network would always remain signed in after closing and reopening the browser. This is the opposite of want I want the policy to do, and wouldn't manke any sense since the default behavior on the trusted network is exactly that.
+
+Therefore, I selected *Never persistent*. This ensures that administrators connecting from outside the trusted network are required to authenticate again after they close their browser, while administyrators connecting from the trusted network continue to use the tenan't default browser session behavior.
+
+![Never persistent](screenshots/sessionscontrols.png)
+
+So the finished logic of the CA policy is:
 
 **IF**
 - User = Global admin, User admin or Privileged role admin **AND**
