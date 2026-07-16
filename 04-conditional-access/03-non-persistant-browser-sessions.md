@@ -71,7 +71,8 @@ So the finished logic of our CA policy is:
 **IF**
 - User = Global admin, User admin or Privileged role admin **AND**
 - Resources = All cloud apps **AND**
-- Location *not equals* Corporate network  
+- Location *not equals* Corporate network
+
 **Then**
 - Never persistent browser session
 
