@@ -86,7 +86,7 @@ Therefore, I selected *Never persistent*. This ensures that administrators conne
 
 ![Never persistent](screenshots/sessioncontrol.png)
 
-So the finished logic of the CA policy is:
+**So the finished logic of the CA policy is:**
 
 **IF**
 - User = Global admin, User admin or Privileged role admin **AND**
