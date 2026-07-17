@@ -10,6 +10,7 @@ In this lab, I will configure a Conditional Access policy that requires administ
 - Configure a CA policy that enforces non-persitant browser sessions for administrators
 - Apply the policy only when administrators access Microsoft 365 from outside the trusted network
 - Understand how CA session controls provides more granular control than tenant-wide "Keep me signed in" setting
+- Test and verify the CA policy using the What-if tool in Entra ID
 
 ## Environment
 - Identity Provider: Entra ID
@@ -97,15 +98,20 @@ Therefore, I selected *Never persistent*. This ensures that administrators conne
 - Never persistent browser session
 
 ## Verification
+#### Test 1: Test the CA policy
+To test the CA policy I just created, I then have to log-in as a user that has one of the three roles assigned to them. In addition to that I have to log in from a untrusted network "From another IP than my own home network", to see if it triggers the CA policy.
+
+Instead of me having to use a VPN, log in from a mobile device, change location, I can simply use the **What-if tool** In Entra ID. The What-if tool is also located in the Conditional Access window because it is used when testing whether a CA policiy would apply under the condition we specify in the tool.
+
+In the first test in the What-if tool I specified the conditions to match the ones in our CA policy and at the end under IP address I typed in my own IP, and click on what-if. As you'll see on the screenshot below, the only only that would have applied under those conditions is the *Require MFA for all users* policy:
+
+![What-if first test](screenshots/whatif1)
+
+In the next test I simply keep all conditions the same but changed the IP address to a another address than my own. And since the location is no longer a trusted network, then the *Require Non-Persistent Browser Sessions for Administrators* gets triggered and applied.
+
+![What-if second test](screenshots/whatif2)
 
 ## Results  
+The CA policy was successfully implemented to enforce non-persistent browser sessions for administrators connecting from outside the trusted network. Administrators connecting from the trusted location continue to use the tenant's default browser session behaviour, while administrators connecting from other locations are required to authenticate again after closing and reopening their browser.
 
 ## Lessons Learned  
-
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
