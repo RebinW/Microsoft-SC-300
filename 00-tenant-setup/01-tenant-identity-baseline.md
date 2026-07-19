@@ -1,7 +1,6 @@
 ## Tenant overview
 
-- Tenant Name: KlarStroem  
-- Tenant ID: 51fc7846-429d-4406-84e7-cfd3c0c3b3ec  
+- Tenant Name: KlarStroem 
 - Region: Denmark  
 - Default domain: klarstroem.onmicrosoft.com  
 - Primary domain: since I do not own the domain "klarstroem" means I am not able to verify it. If I could the - primary domain would have been klarstroem.com  
@@ -9,7 +8,6 @@
 
 
 ## Licensing
-
 License type purchased:
 - Microsoft 365 E5 trial license
   - Includes 25 licenses to assign to users
