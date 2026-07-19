@@ -74,7 +74,7 @@ The SCP itself doesn't authenticate the device or store any credentials. It just
 
 ![SCP Configuration](screenshots/scpconfig.png)
 
-![SCP Configuration](screenshots/scpconfiged.png)
+![SCP Configuration](screenshots/scpconfigured.png)
 
 Lastly, I clicked on next and the configuration in the wizard was complete:
 
