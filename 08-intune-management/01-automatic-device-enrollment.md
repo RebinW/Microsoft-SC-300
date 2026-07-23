@@ -91,13 +91,7 @@ The last test was to verify that the device also appered in Intune as well. I op
 ![Device inIntune](screenshots/deviceinintune2.png)
 
 ## Results  
+In this lab, I successfully configured automatic device enrollment for Hybrid Microsoft Entra joined devices. This required configuring automatic MDM enrollment in Intune and enabling automatic MDM enrollment through Group Policy in the on-premise domain controller. After signing in with a licensed user, I verified that the client device automatically enrolled into Microsoft Intune and could be managed from the Intune admin center
 
 ## Lessons Learned  
-
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
+The biggest takeaway from this lab was understanding that automatic enrollment requires configuration on both the cloud and the on-premises side. Configuring automatic enrollment in Microsoft Intune determines which users are allowed to enroll devices, while the Group Policy instructs Windows to start the enrollment process. Once the device is enrolled, it can be centrally managed through Intune, making it possible to deploy security settings, Windows Hello for Business, compliance policies, and other device management features in future labs.
