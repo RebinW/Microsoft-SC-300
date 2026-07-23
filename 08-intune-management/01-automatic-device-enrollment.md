@@ -23,7 +23,47 @@ In this lab, I'll configure automatic device enrollment for Hybrid Microsoft Ent
   - Users in scope for automatic Intune enrollment must have a P2 license
 
 ## Implementation
-#### Step 1: 
+#### Step 1: Configure MDM enrollment in Intune
+The first step in the process is to configure *Automatic Enrollment* in Microsoft Intune. In Microsoft Intune admin center navigate to:
+1. Devices in the navigation menu to the left
+2. Device onboarding -> Enrollment
+3. In the Windows tab -> Automatic Enrollment
+
+![Find the configuration page](screenshots/automaticenrollment.png)
+
+#### Step 2: Configure Automatic Enrollment
+The first step is to configure the *MDM user scope*. This setting chooses which users are allowed to automatically enroll devices into Intune. In this lab, I selected **All**, meaning that every licensed user in the tenant is allowed to automatically enroll their devices.
+
+Automatic enrollment only happens if several requirements are met. The device must already be registered with Microsoft Entra ID, in this case as a Hybrid Microsoft Entra joined device, the user must be included in the MDM user scope, the user must have a Microsoft Intune license, and automatic enrollment must be configured through Group Policy on the Domain controller. Once these requirements are met, Windows automatically enrolls the device into Intune after the user signs in.
+
+![Configuring automatic enrollment](screenshots/configureautomaticenrollment.png)
+
+The remaining settings in this configuration specify the URLs used by Windows during the enrollment process. The default values are automatically set by Microsoft Intune and do not need to be configured or modified. The **MDM Terms of use URL** allows Windows to locate the Microsoft Intune enrollment service, while the **MDM Compliance URL** is used when checking the device's compliance status after enrollment.
+
+The last section, the **Windows Information Protection (WIP) user scope** determines which users are allowed to use WIP. WIP is another feature used to help protect data on Windows devices and isn't required for automatic enrollment. Since my lab focuses on enrolling devices into Intune, I left this setting as **None**
+
+#### Step 3: 
+After configuring the automatic enrollment in Intune, the next step is to create a Group Policy that enables automatic MDM enrollment on domain-joined devices. Although the client device is already Hybrid joined, Windows won't automatically start the enrollment process based on Intune configuration alone. The Group Policy tells Windows to begun automatic enrollment after a user signs in with their Entra account. Once Windows starts the enrollment process, it contacts Entra ID, discovers the Intune enrollment service, and enrolls the device into Intune.
+
+So the next step is to create the actual Group policy that enables automatic enrollment for my Windows devices. Since this is a computer policy, it must be linked to the OU containing the domain-joined devices that should automatically enroll into Intune. In my environment, my client computer is located in the *Workstations* OU. Therefore, I created and linked the Group policy directly to this OU.
+
+To do this, I opened Group Policy Management on the domain controller, right-clicked on the Workstations OU, and selected *Create a GPO in this domain, and link it here* I named the policy *Automatic Intune Enrollment* before opening it for configuration.
+
+![Start GP creation](screenshots/creategp.png)
+
+After creating and linking the Group Policy, the next step is to configure it to enable automatic MDM enrollment. To do this, I right-clicked on the Group policy and selected **Edit**.
+
+The policy i located under:
+- *Computer configuration -> Policies -> Administrative Templates -> Windows components -> MDM*
+
+Here I opened the Group Policy named **Enable automatic MDM enrollment using default AD credentials**
+
+By default, the policy is set to *Not configured*. I of course changed it to *Enabled* and selected *User credentials* as the credential type before clicking **Apply** and then **OK**
+
+I selected *User credentials* because the enrollment process is initiated when a licensed Entra user signs in to the Hybrid joined device. Windows uses the signed-in user's identity to authenticate with Entra ID and complete the enrollment process into Intune.
+
+![Configuring the actual gp](screenshots/gpconfiguration.png)
+
 
 ## Verification
 
