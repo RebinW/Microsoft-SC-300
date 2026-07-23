@@ -1,4 +1,4 @@
-# Create and manage cloud users
+# B2B Collaboration
 
 ## Overview
 
