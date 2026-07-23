@@ -78,7 +78,7 @@ To invite the external user, I navigated to:
 
 This starts the invitation process and allows us to invite users outside our own organization to collaborate with.
 
-![Invite guest](screenshots/inviteguest.png)
+![Invite guest](screenshots/inviteexternalguest.png)
 
 For this lab, I chose to invite a single user. Microsoft Entra also allows inviting multiple users at the same time. This can be done by selecting the *Bulk invite users* option, where Entra provides a CSV template that can be downloaded and populated with the required user information. Once completed, the file can then be uploaded to create multiple guest invitations in a single operation.
 
