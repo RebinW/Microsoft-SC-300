@@ -148,8 +148,13 @@ From here, we can verify several things:
 These properties confirm that the invitation was redeemed successfully and that Entra has created a guest object that can now be managed like any other identity when it comes to authorization.
 
 ## Results  
+Successfully invited an external user into the Entra tenant using B2B Collaboration.
+
+The invitation was redeemed successfully, then Entra created a guest object in the tenant. The external user was able to authenticate using an existing Microsoft account, complete the required MFA registration enforced by CA, and access the *My Applications* portal. Finally, the guest object was verified in Microsoft Entra, confirming that the invitation process completed successfully.
 
 ## Lessons Learned  
 
+This lab gave me a better understanding of how Microsoft Entra separates authentication from authorization for external users. Even though guest users continue to authenticate using their own identity provider, Microsoft Entra creates a guest object in the tenant, allowing the organization to manage permissions and access in the same way as any other identity.
 
+Another important takeaway was seeing how existing Conditional Access policies automatically apply to guest users when targeting all users. In my case, the guest user was required to register for MFA before access was granted, demonstrating that external identities are evaluated against the tenant's Conditional Access policies unless explicitly excluded.
 
