@@ -107,7 +107,7 @@ I'm not going to provide any additional information to the user in the *Properti
 
 I'm simply going to click on review and create, and then on Invite:
 
-![Send invitation](screenshots/sendinvitation.png)
+![Send invitation](screenshots/sendinvite.png)
 
 At this point, the guest user doesn't yet exist in the tenant. Entra first sends the invitation, and the guest object is created once the invitation has been redeemed by the external user.
 
@@ -126,7 +126,7 @@ After accepting the permissions, I was redirected to another page requesting add
 
 After the registration was complete, I successfully signed in and was redirected to the **My applications** portal, which is the default redirect location configured during the invitation process.
 
-![My applications page](screnshots/myapps.png)
+![My applications page](screenshots/myapps.png)
 
 ## Verification
 During step 4, we already verified that the external user was able to redeem the invitation, complete MFA, and successfully sign in to the tenant. We also veerified that the user was redirected to the *My Applications* portal after the sign-in process was complete.
@@ -140,6 +140,10 @@ From here, we can verify several things:
 - **Identity:** Unlike internal users, which authenticate using the organization's Entra tenant, the guest user authenticates using a **Microsoft Account**. This confirms that the authentication still takes place with the user's own identity provider.
 - **Creation type:** The *Invitation* value confirms that the account was created through the Microsoft B2B invitation process
 - **User principal name:** The guest user's UPN is different from the UPN of ordinary member accounts. Instead of using the organization's domain, Microsoft Entra generates a unique UPN that represents the external identity while still linking it to the original email address.
+
+![Guest object created](screenshots/guestobject)
+
+![Guest object created](screenshots/guestobject1)
 
 These properties confirm that the invitation was redeemed successfully and that Entra has created a guest object that can now be managed like any other identity when it comes to authorization.
 
