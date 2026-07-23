@@ -80,6 +80,9 @@ To verify that the enrollment was successfull, I ran the same command again: **d
 
 This time, under *Tenant details*, the **MDM URL, MDM TOU URL**, and the **MDM Compliance URL** fields were all populated. This confirms that Windows had successfully discovered the Intune enrollment service and completed the enrollment process.
 
+
+![dsregsmd](screenshots/enrolled.png)
+
 #### Test 3: Verify enrollment in Intune
 The last test was to verify that the device also appered in Intune as well. I opened the Intune admin center and navigated to *Devices -> All devices* Here I could verify that the client device had successfully enrolled into Intune. The device was listed as **Compliant**, and Intune also displayed additional information such as the primary user, enrollment user, ownership, and many other details.
 
