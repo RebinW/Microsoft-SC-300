@@ -141,9 +141,9 @@ From here, we can verify several things:
 - **Creation type:** The *Invitation* value confirms that the account was created through the Microsoft B2B invitation process
 - **User principal name:** The guest user's UPN is different from the UPN of ordinary member accounts. Instead of using the organization's domain, Microsoft Entra generates a unique UPN that represents the external identity while still linking it to the original email address.
 
-![Guest object created](screenshots/guestobject)
+![Guest object created](screenshots/guestobject.png)
 
-![Guest object created](screenshots/guestobject1)
+![Guest object created](screenshots/guestobject1.png)
 
 These properties confirm that the invitation was redeemed successfully and that Entra has created a guest object that can now be managed like any other identity when it comes to authorization.
 
