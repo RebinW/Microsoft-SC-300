@@ -66,6 +66,26 @@ I selected *User credentials* because the enrollment process is initiated when a
 
 
 ## Verification
+#### Test 1: Verify the device hadn't discovered the enrollment service
+Before restarting the client device, I first verified that the device had not yet discovered the Microsoft Intune enrollment service. To do this, I opned PowerShell and ran the command: **dsregcmd /status**
+
+Under the *Tenant details* section, I noticed that the **MDM URL, MDM TOU URL**, and the **MDM Compliance URL** fields were all empty. This confirmed that the device had not yet recieved the Intune enrollment information and therefore hadn't started the enrollment process.
+
+![dsregsmd](screenshots/notenrolled.png)
+
+#### Test 2: Verify enrollment on the client PC
+After I had configured the automatic enrollment settings in Intune and the Group Policy on the domain controller, I then restarted the client PC and signed in using my licensed user, **Mark Nielsen**. Since Mark is included in the MDM user scope and has a valid license, Windows automatically started the enrollment process after sign-in. I waited a few minutes to allow the enrollment to complete.
+
+To verify that the enrollment was successfull, I ran the same command again: **dsregsmd /status**
+
+This time, under *Tenant details*, the **MDM URL, MDM TOU URL**, and the **MDM Compliance URL** fields were all populated. This confirms that Windows had successfully discovered the Intune enrollment service and completed the enrollment process.
+
+#### Test 3: Verify enrollment in Intune
+The last test was to verify that the device also appered in Intune as well. I opened the Intune admin center and navigated to *Devices -> All devices* Here I could verify that the client device had successfully enrolled into Intune. The device was listed as **Compliant**, and Intune also displayed additional information such as the primary user, enrollment user, ownership, and many other details.
+
+![Device inIntune](screenshots/deviceinintune.png)
+
+![Device inIntune](screenshots/deviceinintune2.png)
 
 ## Results  
 
