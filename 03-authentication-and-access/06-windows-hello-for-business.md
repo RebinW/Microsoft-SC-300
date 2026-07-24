@@ -22,7 +22,7 @@ Explain:
   - For this lab so for none  
 
 ## Implementation
-#### Step 1: Configure Windows Hello for Business in Intune
+**Configure Windows Hello for Business in Intune**  
 The first step in the process is to enable Windows Hello for Business on the devices managed by Intune. There are two ways of enabling WHfB in Intune:
 1. Method: Enables tenant-wide enrollment policy. It applies to every enrolled Windows device in the tenant and is mainly for provisioning Windows Hello during enrollment.
 
@@ -32,13 +32,15 @@ The first step in the process is to enable Windows Hello for Business on the dev
 
 ![Windows Hello for Business](screenshots/whfb1.png)
 
+#### Step 1: Fill out the *Basics*
 I choose to go with the second option, and therefore click on *Create* it then took me to the configuration wiindow, and the firste step was to name the policy and give it a short description and click on *next*
 
 ![Name the whfb policy](screenshots/namepolicy)
 
+#### Step 2: Configure the *Configuration settings*
 Under the *Create Policy* window, I'm going to configure the WHfB policy that will later be assigned to the pilot group. This is where I define how I want WHfB to be configured on managed devices.
 
-One thing worth pointing out is that Intune lets be configure WHfB either at the device level or at a user level. A device-scoped policy follows the device and applies to anyone who signs in to that device. A user-scope policy, on the other hand, follows the user regardless of which managed device they use.
+One thing worth pointing out is that Intune lets us configure WHfB either at the device level or at a user level. A device-scoped policy follows the device and applies to anyone who signs in to that device. A user-scope policy, on the other hand, follows the user regardless of which managed device they use.
 
 Since the purpose of this lab is to configure Windows Hello on managed devices, I chose to configure only the device-scope settings. I therefore left all user-scope settings to **Not configured**, allowing the device policy to control the WHfB configuration.
 
@@ -56,6 +58,23 @@ I'd also like to explain some of the configured options that seem less obivious 
 
 Lastly, I chose to block uppercase letters, lowercase letters, and special characters. This limits the Windows Hello credential to a numeric PIN. Since the PIN only unlocks the private key stored on the device and is tied to that specific device, I'm comfortable using a numeric PIN instead of a more complex password.
 
+#### Step 3: Determine the 'Scope tags*
+The scope tags page is used to delegate administration within Intune. Scope tags determine which Intune administrators are allowed to view and manage the policy we're creating.
+
+As an example, lets say an organization with IT departments in Denmark, Germany, and United Kingdom. Separate scope tags could be created for each country, ensuring that administrators in Denmark only manage danish devices and policies, while admins in Germany only manage the German environment.
+
+Since my lab only has a single Intune administrator, there is no need to create additional scope tags. I therefore left the default scope tag.
+
+![Scope tags](screenshots/scopetags.png)
+
+#### Step 4: Determine the *Assignments*
+The final step is to assign the policy. Since I chose to configure the device-scoped settings, I created a security group containing the pilot device rather than the pilot user. This ensures that the policy follows the managed device and applies to anyone who signs in to that device. Had I instead configured the user-scoped settings, I would have assigned the policy to a user group so that the configuration followed the user across multiple managed devices.
+
+![Assignments](screenshots/assignments.png)
+
+I then reviewd the settings before finally creating the policy. After I had clicked *Create* I the policy was now successfully created:
+
+![Policy created](screenshots/policycreated.png)
 ## Verification
 
 ## Results  
