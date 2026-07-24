@@ -111,7 +111,7 @@ At this point, I expected the PIN to work for future sign-ins. However, after si
 After investigating the issue, I determined that the hybrid environment was missing the Cloud Kerberos Trust configuration required for Windows Hello for Business to authenticate against the on-premises Active Directory.
 
 The complete troubleshooting process and configuration of Cloud Kerberos Trust are documented in the following lab:
-- [Configure Cloud Kerberos Trust for Windows Hello for Business]()
+- [Configure Cloud Kerberos Trust for Windows Hello for Business](https://github.com/RebinW/Microsoft-SC-300/blob/main/07-hybrid-identity/03-cloud-kerberos-trust.md)
 
 
 ## Verification
