@@ -75,6 +75,45 @@ The final step is to assign the policy. Since I chose to configure the device-sc
 I then reviewd the settings before finally creating the policy. After I had clicked *Create* I the policy was now successfully created:
 
 ![Policy created](screenshots/policycreated.png)
+
+#### Step 5: Set-up Windows Hello for Business on the client
+After configuring and assigning the Windows Hello for Business policy, I returned to the client device and restarted it to allow the policy to take effect.
+
+When I signed in as Mark using his password, Windows immediately detected that the organization required Windows Hello for Business and started the provisioning process. Since the user had already authenticated to the on-premises Active Directory using the password, Windows only needed to verify the user's identity before allowing Windows Hello for Business to be configured.
+
+![Set up WHfB](screenshots/setupwhfb.png)
+
+![Set up WHfB](screenshots/setupwhfb1.png)
+
+![Set up WHfB](screenshots/setupwhfb2.png)
+
+To demonstrate another authentication method, I assumed that Mark no longer had access to the Microsoft Authenticator application. Before restarting the client device, I therefore issued a Temporary Access Pass (TAP) for Mark from the Microsoft Entra admin center.
+
+![tap issued](screenshots/tap.png)
+
+After signing in again with the password, Windows prompted Mark to authenticate using the Temporary Access Pass instead of Microsoft Authenticator.
+
+![tap issued](screenshots/tap1.png)
+
+Once the Temporary Access Pass had been verified successfully, Windows asked Mark to create a PIN for Windows Hello for Business.
+
+![Create PIN for Mark](screenshots/createpin.png)
+
+After the PIN had been created, Windows completed the provisioning process and informed the user that the PIN could now be used for future sign-ins. Windows also showed the PIN login option after restarting the client:
+
+![PIN option](screenshots/pinoption.png)
+
+#### Step 6: Verify the Windows Hello for Business deployment
+At this point, I expected the PIN to work for future sign-ins. However, after signing out and attempting to sign in using the newly created PIN, the authentication failed even though the Windows Hello for Business provisioning had completed successfully.
+
+![PIN failed](screenshots/pinfail.png)
+
+After investigating the issue, I determined that the hybrid environment was missing the Cloud Kerberos Trust configuration required for Windows Hello for Business to authenticate against the on-premises Active Directory.
+
+The complete troubleshooting process and configuration of Cloud Kerberos Trust are documented in the following lab:
+- [Configure Cloud Kerberos Trust for Windows Hello for Business]()
+
+
 ## Verification
 
 ## Results  
