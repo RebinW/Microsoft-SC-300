@@ -9,7 +9,7 @@ Since my environment is based on a hybrid identity setup, I also discovered that
 
 The following diagram shows the Windows Hello for Business authentication flow used throughout this lab.
 
-![Authentication flow](scrrenshots/whfbauthenticationflow.png)
+![Authentication flow](screenshots/whfbauthenticationflow.png)
 
 ## Objectives
 - Configure a Windows Hello for Business deployment policy in Microsoft Intune.
@@ -155,20 +155,20 @@ CloudTgt represents authentication towards Microsoft Entra ID, while OnPremTgt r
 
 This was the first indication that the issue was not related to Windows Hello provisioning itself, but the authentication flow between Microsoft Entra ID and Active Directory.
 
-![Troubleshooting](screenshot/tshoot1.png)
+![Troubleshooting](screenshots/tshoot1.png)
 
 #### 2. Troubleshoot:
 I then reviewed the Windows Hello for Business Operational event log. The log confirmed that the PIN authentication failed, but it did not provide enough information.
 
 Although the event confirmed that the problem happened during the sign-in process, it did not explain why the authentication failed.
 
-![Troubleshooting](screenshot/tshoot2.png)
+![Troubleshooting](screenshots/tshoot2.png)
 
 To get additional information, I reviewed the XML details for Event ID 7001.
 
 The event contained authentication error codes, but they were not specific enough to identify the missing configuration. I therefore continued troubleshooting by verifying whether Windows Hello itself had been provisioned correctly.
 
-![Troubleshooting](screenshot/tshoot3.png)
+![Troubleshooting](screenshots/tshoot3.png)
 
 #### 3. Troubleshoot:
 
@@ -180,7 +180,7 @@ The command returned the Windows Hello key stored in the Microsoft Passport Key 
 
 This confirmed that Windows Hello provisioning had completed successfully and that the issue was not related to TPM support in the VM or key generation.
 
-![Troubleshooting](screenshot/tshoot4.png)
+![Troubleshooting](screenshots/tshoot4.png)
 
 #### 4. Troubleshoot:
 I ran *dsregcmd /status* again to verify the Windows Hello configuration.
@@ -193,7 +193,7 @@ These values confirmed that Windows Hello was fully configured and that the cryp
 
 Since both the key and TPM configuration were working as expected, I concluded that the issue had to occur later in the authentication process.
 
-![Troubleshooting](screenshot/tshoot5.png)
+![Troubleshooting](screenshots/tshoot5.png)
 
 #### 5. Troubleshoot:
 After confirming that Windows Hello had been provisioned successfully, I shifted my attention to the authentication flow.
@@ -206,7 +206,7 @@ I therefore inspected Active Directory and found that the Microsoft Entra Kerber
 
 This led me to conclude that Cloud Kerberos Trust had not yet been configured.
 
-![Troubleshooting](screenshot/tshoot6.png)
+![Troubleshooting](screenshots/tshoot6.png)
 
 The complete implementation and verification of Cloud Kerberos Trust is documented in the following lab:
 - [Configure Cloud Kerberos Trust for Windows Hello for Business](https://github.com/RebinW/Microsoft-SC-300/blob/main/07-hybrid-identity/03-cloud-kerberos-trust.md)
