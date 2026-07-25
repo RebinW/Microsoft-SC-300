@@ -118,4 +118,70 @@ The complete troubleshooting process and configuration of Cloud Kerberos Trust a
 
 ## Results  
 
-## Lessons Learned  
+## Lessons Learned/ Troubleshoot
+#### 1. Troubleshooting:
+I started by verifying whether Windows Hello for Business had been provisioned successfully on the client. The dsregcmd /status command showed that NgcSet was set to YES, meaning that Windows Hello had been configured and that a key pair had been created for the user.
+
+I also looked at the SSO State section. While CloudTgt was present, OnPremTgt was still set to NO.
+
+At first this seemed confusing, but it actually makes sense.
+
+CloudTgt represents authentication towards Microsoft Entra ID, while OnPremTgt represents a Kerberos Ticket Granting Ticket issued by the on-premises Active Directory. Since Windows Hello uses asymmetric keys instead of the user's password, Active Directory could not issue a Kerberos ticket until Cloud Kerberos Trust had been configured.
+
+This was the first indication that the issue was not related to Windows Hello provisioning itself, but the authentication flow between Microsoft Entra ID and Active Directory.
+
+![Troubleshooting](screenshot/tshoot1.png)
+
+#### 2. Troubleshoot:
+I then reviewed the Windows Hello for Business Operational event log. The log confirmed that the PIN authentication failed, but it did not provide enough information.
+
+Although the event confirmed that the problem happened during the sign-in process, it did not explain why the authentication failed.
+
+![Troubleshooting](screenshot/tshoot2.png)
+
+To get additional information, I reviewed the XML details for Event ID 7001.
+
+The event contained authentication error codes, but they were not specific enough to identify the missing configuration. I therefore continued troubleshooting by verifying whether Windows Hello itself had been provisioned correctly.
+
+![Troubleshooting](screenshot/tshoot3.png)
+
+#### 3. Troubleshoot:
+
+At this point I wanted to determine whether Windows Hello had actually created the cryptographic key pair.
+
+I used: certutil -csp "Microsoft Password Key Storage Provider" -key
+
+The command returned the Windows Hello key stored in the Microsoft Passport Key Storage Provider.
+
+This confirmed that Windows Hello provisioning had completed successfully and that the issue was not related to TPM support in the VM or key generation.
+
+![Troubleshooting](screenshot/tshoot4.png)
+
+#### 4. Troubleshoot:
+I ran *dsregcmd /status* again to verify the Windows Hello configuration.
+
+The output showed:
+- NgcSet = YES
+- KeySignTest = PASSED
+
+These values confirmed that Windows Hello was fully configured and that the cryptographic key was functioning correctly.
+
+Since both the key and TPM configuration were working as expected, I concluded that the issue had to occur later in the authentication process.
+
+![Troubleshooting](screenshot/tshoot5.png)
+
+#### 5. Troubleshoot:
+After confirming that Windows Hello had been provisioned successfully, I shifted my attention to the authentication flow.
+
+Windows Hello authenticates the user by using the private key stored on the device. However, the client computer was still hybrid joined and therefore depended on Active Directory for Kerberos authentication.
+
+At this point I realized that Active Directory had no mechanism for trusting the Windows Hello authentication performed by Microsoft Entra ID.
+
+I therefore inspected Active Directory and found that the Microsoft Entra Kerberos server object had not been created.
+
+This led me to conclude that Cloud Kerberos Trust had not yet been configured.
+
+![Troubleshooting](screenshot/tshoot6.png)
+
+The complete implementation and verification of Cloud Kerberos Trust is documented in the following lab:
+- [Configure Cloud Kerberos Trust for Windows Hello for Business](https://github.com/RebinW/Microsoft-SC-300/blob/main/07-hybrid-identity/03-cloud-kerberos-trust.md)
