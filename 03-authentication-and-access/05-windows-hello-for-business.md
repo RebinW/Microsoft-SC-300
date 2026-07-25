@@ -1,17 +1,23 @@
 # Enable Windows Hello for Business and use TAP to register WHfB for the user
 
 ## Overview
+Windows Hello for Business is Microsoft's passwordless authentication solution that allows users to sign in using a PIN or biometric authentication instead of a traditional password. Instead of relying on a password that is sent to a service during authentication, Windows Hello for Business uses asymmetric key cryptography. During provisioning, the device generates a public and private key pair. The private key is securely stored in the device's Trusted Platform Module (TPM) and never leaves the device, while the public key is registered in Microsoft Entra ID and used to verify the user's identity.
 
-Explain:
-- What i'm implementing
-- Why it's important
-- Where it's used in enterprise environments
+In this lab, I'll configure and deploy Windows Hello for Business using Microsoft Intune. Rather than deploying the policy to every managed device, I first create a pilot device group containing a single Windows 11 client. This allows me to verify that the deployment works as expected before rolling it out more broadly.
+
+Since my environment is based on a hybrid identity setup, I also discovered that Windows Hello for Business depends on Cloud Kerberos Trust before users can authenticate to on-premises Active Directory using their PIN. Configuring Cloud Kerberos Trust is covered in a separate lab. This lab focuses on deploying and provisioning Windows Hello for Business using Microsoft Intune.
+
+The following diagram shows the Windows Hello for Business authentication flow used throughout this lab.
+
+![Authentication flow](scrrenshots/whfbauthenticationflow.png)
 
 ## Objectives
-- Create cloud-only user accounts
-- Configure required user properties
-- Verify successful user creation
-- Understand the characteristics of cloud-only users
+- Configure a Windows Hello for Business deployment policy in Microsoft Intune.
+- Configure the required Windows Hello for Business policy settings.
+- Create a pilot device group and assigned the policy to the group.
+- Provision Windows Hello for Business on a hybrid Microsoft Entra joined Windows 11 client.
+- Verify that users can successfully authenticate using a Windows Hello for Business PIN.
+- Verify the deployment using the Windows Hello for Business operational logs in Event Viewer.
 
 ## Environment
 - Identity Provider: Entra ID
@@ -115,8 +121,27 @@ The complete troubleshooting process and configuration of Cloud Kerberos Trust a
 
 
 ## Verification
+#### Test 1: Verify that the authentication method used was WHfB
+After completing the Cloud Kerberos Trust configuration, I restarted the client device and signed in using the Windows Hello for Business PIN instead of the user's password.
+
+To verify the authentication, I reviewed the Windows Hello for Business Operational log in Event Viewer. Event ID 5001 confirmed that the user successfully signed in using Windows Hello for Business.
+
+The event also showed:
+
+Credential Type: Software Key
+Deployment Type: Cloud Trust
+
+This confirmed that the Windows Hello credential was successfully used to authenticate the user and that the device was using the Cloud Trust deployment model.
+
+![Event ID verifying WHfB was used for logon](screenshots/whfbverified.png)
+
 
 ## Results  
+The Windows Hello for Business deployment was completed successfully. The policy was deployed through Microsoft Intune and assigned to a pilot device group containing a single hybrid Microsoft Entra joined Windows 11 client.
+
+After the policy had been applied, I successfully provisioned Windows Hello for Business for the test user and configured a PIN protected by the device's TPM. After completing the additional Cloud Kerberos Trust configuration described in the next lab, I was able to sign in using the PIN instead of the user's password.
+
+I also verified the deployment by reviewing the Windows Hello for Business Operational log in Event Viewer, which confirmed that the authentication was performed using the Cloud Trust deployment model.
 
 ## Lessons Learned/ Troubleshoot
 #### 1. Troubleshooting:
