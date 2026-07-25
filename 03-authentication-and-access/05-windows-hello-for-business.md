@@ -41,7 +41,7 @@ The first step in the process is to enable Windows Hello for Business on the dev
 #### Step 1: Fill out the *Basics*
 I choose to go with the second option, and therefore click on *Create* it then took me to the configuration wiindow, and the firste step was to name the policy and give it a short description and click on *next*
 
-![Name the whfb policy](screenshots/namepolicy)
+![Name the whfb policy](screenshots/namepolicy.png)
 
 #### Step 2: Configure the *Configuration settings*
 Under the *Create Policy* window, I'm going to configure the WHfB policy that will later be assigned to the pilot group. This is where I define how I want WHfB to be configured on managed devices.
