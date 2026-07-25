@@ -16,8 +16,8 @@ In this lab, I configure Microsoft Entra Kerberos in the hybrid environment and 
 - Configure the Microsoft Entra Kerberos Server by using the AzureADHybridAuthenticationManagement PowerShell module
 - Verify that the Microsoft Entra Kerberos Server object has been created successfully in Active Directory
 - Confirm that the client device has received the Cloud Kerberos Trust policy and is able to obtain Kerberos tickets for on-premises authentication
+- Validate that Windows Hello for Business PIN sign-in works successfully after Cloud Kerberos Trust has been configured
 
-• Validate that Windows Hello for Business PIN sign-in works successfully after Cloud Kerberos Trust has been configured.
 ## Environment
 - Identity Provider: Entra ID
 - Licenses: Microsoft 365 E5
