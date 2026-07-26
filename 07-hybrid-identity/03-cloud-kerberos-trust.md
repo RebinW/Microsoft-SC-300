@@ -66,8 +66,56 @@ The AzureADKerberos object appearing in the Domain Controllers OU does not mean 
 
 ![Configure Microsoft Entra Kerberos](screenshots/ckt6.png)
 
+#### Step 2: Configure Cloud Kerberos Trust in Intune
+After configuring Microsoft Entra Kerberos on the synchronization server, the next step was to configure the Windows client devices. This was done by creating a configuration profile in Microsoft Intune.
+
+The purpose of this policy is to instruct Windows devices to use Cloud Kerberos Trust when authenticating to on-premises Active Directory with Windows Hello for Business. Without this policy, the client continues using the default authentication method and Windows Hello for Business cannot obtain an on-premises Kerberos Ticket Granting Ticket.
+
+I navigated to: *Devices -> Windows -> Configuration* and created a new configuration profile using the following settings:
+- Platform: Windows 10 and later
+- Profile type: Settings catalog
+
+The Settings Catalog provides access to individual Windows configuration settings, including those required for Windows Hello for Business and Cloud Kerberos Trust.
+
+![Configure Intune policy](screenshots/ckt7.png)
+
+Inside the Settings Catalog, I searched for Windows Hello and selected the setting: 
+- Use Cloud Trust For On Prem Auth
+
+This setting enables Cloud Kerberos Trust on the Windows client. When enabled, Windows Hello for Business requests an on-premises Kerberos TGT through Microsoft Entra ID instead of relying on certificate trust or key trust.
+
+One thing worth mentioning is that the setting is added in a disabled state by default. Simply selecting the setting is not enough. It must also be changed to Enabled before the policy is assigned (Found out this the hard way).
+
+![Configure Intune policy](screenshots/ckt8.png)
+
+After enabling the setting, I assigned the policy to my Windows Hello Pilot Devices security group.
+
+Using a pilot group allowed me to test the deployment on a single client device before considering a broader deployment across the environment.
+
+![Configure Intune policy](screenshots/ckt9.png)
+
+Before creating the profile, I reviewed the configuration to verify that:
+- Use Cloud Trust For On Prem Auth was set to Enabled.
+- The policy was assigned to the Windows Hello Pilot Devices group.
+
+After verifying the configuration, I created the policy.
+
+![Configure Intune policy](screenshots/ckt10.png)
 
 ## Verification
+#### Test 1: Verify policy has been applied to the pilot group/Client 
+Before the new policy was applied, I checked the client registry. The output showed: *UseCloudTrustForOnPremAuth = **0x0***, this confirmed that Cloud Kerberos Trust had not yet been enabled on the client device.
+
+![Configure Intune policy](screenshots/ckt11.png)
+
+After the Intune policy synchronized to the device, I ran the same registry command again. The value had changed to: UseCloudTrustForOnPremAuth = **0x1**
+
+This confirmed that the Intune policy had been successfully applied and that the client was now configured to use Cloud Kerberos Trust for Windows Hello for Business authentication against the on-premises Active Directory environment.
+
+![Configure Intune policy](screenshots/ckt12.png)
+
+The registry confirms that the client has received and applied the Cloud Kerberos Trust configuration. The final validation is to verify that Windows Hello for Business is able to authenticate to the on-premises Active Directory using Cloud Kerberos Trust. That verification is documented in the [Windows Hello for Business lab](), where the user successfully signs in with a PIN after Cloud Kerberos Trust has been configured.
+
 
 ## Results  
 
