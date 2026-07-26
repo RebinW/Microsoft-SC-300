@@ -116,15 +116,10 @@ This confirmed that the Intune policy had been successfully applied and that the
 
 The registry confirms that the client has received and applied the Cloud Kerberos Trust configuration. The final validation is to verify that Windows Hello for Business is able to authenticate to the on-premises Active Directory using Cloud Kerberos Trust. That verification is documented in the [Windows Hello for Business lab](https://github.com/RebinW/Microsoft-SC-300/blob/main/03-authentication-and-access/05-windows-hello-for-business.md), where the user successfully signs in with a PIN after Cloud Kerberos Trust has been configured.
 
+## Results
+Completing this lab established the trust required between Microsoft Entra ID and the on-premises Active Directory environment to support Cloud Kerberos Trust. I also configured the client devices through Microsoft Intune to use this trust for Windows Hello for Business authentication.
 
-## Results  
+The configuration was successfully applied to the pilot device and verified through the Windows registry. The end-to-end authentication test was completed in the Windows Hello for Business lab, where the user successfully authenticated to the on-premises Active Directory environment using a Windows Hello PIN instead of a password.
 
 ## Lessons Learned  
-
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
+This lab showed that Cloud Kerberos Trust consists of two separate components. First, a trust relationship must be established between Microsoft Entra ID and Active Directory. Second, Windows client devices must be configured to use that trust during Windows Hello for Business authentication.
