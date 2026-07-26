@@ -114,7 +114,7 @@ This confirmed that the Intune policy had been successfully applied and that the
 
 ![Configure Intune policy](screenshots/ckt12.png)
 
-The registry confirms that the client has received and applied the Cloud Kerberos Trust configuration. The final validation is to verify that Windows Hello for Business is able to authenticate to the on-premises Active Directory using Cloud Kerberos Trust. That verification is documented in the [Windows Hello for Business lab](), where the user successfully signs in with a PIN after Cloud Kerberos Trust has been configured.
+The registry confirms that the client has received and applied the Cloud Kerberos Trust configuration. The final validation is to verify that Windows Hello for Business is able to authenticate to the on-premises Active Directory using Cloud Kerberos Trust. That verification is documented in the [Windows Hello for Business lab](https://github.com/RebinW/Microsoft-SC-300/blob/main/03-authentication-and-access/05-windows-hello-for-business.md), where the user successfully signs in with a PIN after Cloud Kerberos Trust has been configured.
 
 
 ## Results  
