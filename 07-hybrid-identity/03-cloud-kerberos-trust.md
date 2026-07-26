@@ -106,13 +106,13 @@ After verifying the configuration, I created the policy.
 #### Test 1: Verify policy has been applied to the pilot group/Client 
 Before the new policy was applied, I checked the client registry. The output showed: *UseCloudTrustForOnPremAuth = **0x0***, this confirmed that Cloud Kerberos Trust had not yet been enabled on the client device.
 
-![Configure Intune policy](screenshots/ckt11.png)
+![Configure Intune policy](screenshots/ckt12.png)
 
 After the Intune policy synchronized to the device, I ran the same registry command again. The value had changed to: UseCloudTrustForOnPremAuth = **0x1**
 
 This confirmed that the Intune policy had been successfully applied and that the client was now configured to use Cloud Kerberos Trust for Windows Hello for Business authentication against the on-premises Active Directory environment.
 
-![Configure Intune policy](screenshots/ckt12.png)
+![Configure Intune policy](screenshots/ckt13.png)
 
 The registry confirms that the client has received and applied the Cloud Kerberos Trust configuration. The final validation is to verify that Windows Hello for Business is able to authenticate to the on-premises Active Directory using Cloud Kerberos Trust. That verification is documented in the [Windows Hello for Business lab](https://github.com/RebinW/Microsoft-SC-300/blob/main/03-authentication-and-access/05-windows-hello-for-business.md), where the user successfully signs in with a PIN after Cloud Kerberos Trust has been configured.
 
