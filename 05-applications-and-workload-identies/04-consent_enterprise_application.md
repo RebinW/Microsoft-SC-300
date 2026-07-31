@@ -241,13 +241,13 @@ This confirms that Mark was no longer permitted to grant delegated permissions t
 Since user consent was blocked, Microsoft Entra ID required an administrator to approve the application before it could receive access to organizational data.
 
 ## Results  
+The verification confirms that the tenant's user consent configuration directly controls whether ordinary users are allowed to grant delegated permissions to third-party applications.
+
+When user consent was permitted, Mark successfully granted consent and Microsoft Entra ID created the Enterprise Application automatically.
+
+After user consent was disabled, the same authentication attempt required administrator approval and the consent process could not continue.
+
+This also demonstrates that blocking application registration is not sufficient to prevent users from using third-party applications. The setting that determines whether users can authorize third-party applications is the user consent policy, not the application registration policy.
 
 ## Lessons Learned  
 
-
-Sign-in logs  
-Audit logs  
-Provisioning logs  
-PIM audit history  
-Diagnostic settings  
-Workbooks 
