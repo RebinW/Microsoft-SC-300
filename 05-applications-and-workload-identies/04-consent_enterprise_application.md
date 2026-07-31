@@ -62,19 +62,183 @@ Three different options are available:
 
 2. **Allow user consent for apps from verified publishers, for selected permissions:** This option gives the organization more direct control. Users are only allowed to consent to applications published by verified publishers, and only when the requested delegated permissions are included in the configured permission policy.
 
-3. **Do not allow user consent:** Users are not allowed to grant consent to any third-party application. If an application requires consent, an administrator must approve the request before the application can access organizational data.
+3. **Do not allow user consent:** Users are not allowed to grant consent to any third-party application. If an application requires consent, an administrator must approve the request before the application can access organizational data
 
-Observation
+![User settings for consent](screenshots/consentandpermissions.png)
 
-At first glance, these settings appear to control whether users are allowed to use third-party applications. In reality, they control something more specific.
+Observation: At first glance, these settings appear to control whether users are allowed to use third-party applications. In reality, they control something more specific.
 
 They determine whether users are allowed to grant delegated OAuth permissions to third-party applications on behalf of themselves.
 
 This is an important distinction because it is easy to confuse user consent with application registration. Preventing users from registering applications does not prevent them from signing in to existing third-party applications using their organizational accounts.
 
-#### Step 1: 
+#### Step 1: Sign in to Dropbox using an organizational account
+Before beginning the test, I verified that no Dropbox enterprise application existed in the tenant.
+
+I then browsed to Dropbox.com and selected Sign up, followed by Continue with Microsoft.
+
+For the sign-in, I used the test user Mark, which is an ordinary user without any administrative roles assigned.
+
+After entering Mark's credentials, Microsoft Entra ID required multi-factor authentication. This was expected because a Conditional Access policy in the tenant requires MFA for all users.
+
+Once MFA was completed successfully, Microsoft Entra ID displayed the Permission requested window. Dropbox requested delegated permissions, including:
+
+- Sign you in and read your profile (openid, profile)
+- View your email address (email)
+- Maintain access to data you have given it access to (offline_access)
+
+Since the tenant was using the default user consent configuration, Mark was allowed to grant consent by selecting Accept.
+
+![Signing into dropbox](screenshots/signindropbox.png)
+
+After consent was granted, Dropbox continued its account creation process and displayed the Get started with Dropbox page.
+
+When selecting Agree and sign up, Dropbox returned the following messages:
+
+- Additional verification is required to complete this request.
+- There was a problem completing this request.
+
+![error1](screenshots/error1.png)
+![error2](screenshots/error2.png)
+
+At this stage, it is clear that the Dropbox account was not created successfully. However, it is not yet possible to determine whether the failure occurred within Microsoft Entra ID or on the Dropbox side.
+
+#### Step 2: Verify the changes inside the tenant
+Although Dropbox reported an error during the final account creation process, the next step is to verify whether Microsoft Entra ID successfully completed the authentication and OAuth consent flow.
+
+The first observation is that a new Enterprise Application named Dropbox Authentication has automatically been created inside the tenant.
+
+This confirms that Microsoft Entra ID created a service principal representing the Dropbox application after Mark successfully authenticated and granted consent.
+
+Opening the Enterprise Application shows the same management options as any other enterprise application, including Users and groups, Permissions, Sign-in logs, Provisioning and Single sign-on.
+
+![DropBox created](screenshots/dropboxcreated.png)
+
+**Users and Groups:**  
+Under Users and groups, Mark has automatically been added as a user of the application.
+
+This is expected because Mark was the first user to authenticate to Dropbox and grant consent to the requested delegated permissions.
+
+At this point, no administrator has assigned Mark to the application manually. The assignment was created automatically as part of the consent process.
+
+![Users and groups](screenshots/usersandgroupsmark.png)
+
+**Permissions:**  
+The Permissions blade provides additional information about the permissions granted during the sign-in process.
+
+Under User consent, the same delegated permissions that were displayed on the consent screen are now listed.
+
+These include:
+- email
+- openid
+- profile
+
+Each permission shows:
+
+Permission type: Delegated
+Consent type: User consent
+Granted by: Mark
+Total users granted: 1
+
+This confirms that the permissions were granted by Mark during the consent process and not by an administrator.
+
+![](screenshots/permissions2.png)
+
+Notice that no administrator consent has been granted.
+
+![](screenshots/permissions3.png)
+
+The Enterprise Application therefore shows the option Grant admin consent for <Tenant Name>. If an administrator grants consent, future users would not be prompted to approve these delegated permissions themselves, assuming the requested permissions are covered by the administrator's consent.
+
+#### Step 3: Review the sign-in logs and audit logs
+Although Dropbox reported an error after the consent process, the next step is to determine whether Microsoft Entra ID successfully completed the authentication and OAuth consent flow.
+
+**Sign-in logs**
+
+The Enterprise Application sign-in logs show two authentication events for Dropbox Authentication.
+
+The first sign-in completed successfully. This corresponds to the authentication performed by Microsoft Entra ID after Mark entered his credentials, completed MFA and granted consent to the requested delegated permissions.
+
+A second sign-in appears with the status Interrupted.
+
+Although Microsoft Entra ID records that the sign-in was interrupted, the available log information does not identify the exact cause of the interruption. Since the service principal was created, the delegated permissions were granted and the audit logs show that the consent process completed successfully, the interruption appears to occur after Microsoft Entra ID has finished its part of the authentication flow.
+
+Therefore, the available evidence suggests that the failure occurred during Dropbox's account creation process rather than within Microsoft Entra ID itself.
+
+![Signinlog1](screenshots/signinlog1.png)
+
+**Audit logs**
+
+The audit logs provide a detailed overview of the changes made to the tenant during the consent process.
+
+The following activities were recorded:
+
+Consent to application
+Add app role assignment
+Add delegated permission
+Add service principal
+
+
+Together, these events confirm that Microsoft Entra ID successfully completed the OAuth consent flow.
+
+First, Mark granted consent to the permissions requested by Dropbox.
+
+Microsoft Entra ID then recorded the delegated permission grant, created the necessary assignment between the user and the Enterprise Application, and finally created a service principal representing Dropbox within the tenant.
+
+These audit events match the changes observed in the Enterprise Application during the previous step.
+
+![Auditlog](screenshots/autditlog1.png)
+
+**Observation**
+
+Although Dropbox was unable to complete the account creation process, Microsoft Entra ID successfully completed every part of the authentication and consent process.
+
+The evidence supporting this conclusion includes:
+- The user successfully authenticated.
+- Conditional Access required MFA before access was granted.
+- The requested delegated permissions were granted through user consent.
+- A new Enterprise Application was created automatically.
+- A service principal representing Dropbox was created.
+- Mark was associated with the application.
+- All related events were recorded in the audit logs.
+
+The interruption therefore appears to occur after Microsoft Entra ID has handed control back to Dropbox.
 
 ## Verification
+The implementation demonstrated that an ordinary user was able to grant delegated permissions to a third-party application when the tenant was using the default user consent configuration. As a result, Microsoft Entra ID automatically created an Enterprise Application representing Dropbox inside the tenant.
+
+To verify that this behavior was controlled by the tenant's user consent settings, I repeated the test after modifying the configuration.
+
+#### Test 1: Disable user consent
+To verify the behavior, I first deleted the Dropbox Enterprise Application that had been created during the previous implementation.
+
+![Remove DropBox](screenshots/deletedropbox.png)
+
+I then navigated to:
+
+Enterprise applications → Consent and permissions → User consent settings
+
+Instead of using the default configuration, I selected:
+
+"Do not allow user consent"
+
+This setting requires administrator approval before users are allowed to grant delegated permissions to third-party applications.
+
+![Change Consent](screenshots/changeconsentpermissions.png)
+
+After saving the configuration, I repeated the same test by browsing to Dropbox and selecting Continue with Microsoft.
+
+After authenticating as Mark and completing MFA, Microsoft Entra ID no longer displayed the permission consent window.
+
+Instead, the following message was displayed:
+
+"Need admin approval"
+
+![Need admin](screenshots/needadminapproval.png)
+
+This confirms that Mark was no longer permitted to grant delegated permissions to Dropbox.
+
+Since user consent was blocked, Microsoft Entra ID required an administrator to approve the application before it could receive access to organizational data.
 
 ## Results  
 
