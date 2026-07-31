@@ -52,6 +52,26 @@ During the lab, I will:
   - For this lab so for none  
 
 ## Implementation
+Before testing how Microsoft Entra ID handles third-party applications, I will first review the current user consent configuration for the tenant. These settings determine whether ordinary users are allowed to grant consent to applications requesting delegated permissions on their behalf.
+
+Navigate to:
+- Enterprise applications -> Consent and permissions -> User consent settings
+
+Three different options are available:
+1. **Let Microsoft manage your consent settings (Recommended):** This is the default configuration for my tenant. With this option, Microsoft automatically applies its recommended user consent policies. Users are allowed to consent only to applications and permissions that Microsoft considers appropriate according to its current guidelines. These recommendations are updated by Microsoft over time.
+
+2. **Allow user consent for apps from verified publishers, for selected permissions:** This option gives the organization more direct control. Users are only allowed to consent to applications published by verified publishers, and only when the requested delegated permissions are included in the configured permission policy.
+
+3. **Do not allow user consent:** Users are not allowed to grant consent to any third-party application. If an application requires consent, an administrator must approve the request before the application can access organizational data.
+
+Observation
+
+At first glance, these settings appear to control whether users are allowed to use third-party applications. In reality, they control something more specific.
+
+They determine whether users are allowed to grant delegated OAuth permissions to third-party applications on behalf of themselves.
+
+This is an important distinction because it is easy to confuse user consent with application registration. Preventing users from registering applications does not prevent them from signing in to existing third-party applications using their organizational accounts.
+
 #### Step 1: 
 
 ## Verification
