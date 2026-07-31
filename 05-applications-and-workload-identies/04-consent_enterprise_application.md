@@ -142,11 +142,11 @@ Total users granted: 1
 
 This confirms that the permissions were granted by Mark during the consent process and not by an administrator.
 
-![permissions](screenshots/permissions2.png)
+![permissions](screenshots/permission2.png)
 
 Notice that no administrator consent has been granted.
 
-![permission](screenshots/permissions3.png)
+![permission](screenshots/permission3.png)
 
 The Enterprise Application therefore shows the option Grant admin consent for <Tenant Name>. If an administrator grants consent, future users would not be prompted to approve these delegated permissions themselves, assuming the requested permissions are covered by the administrator's consent.
 
