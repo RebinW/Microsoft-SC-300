@@ -23,10 +23,25 @@ This lab focuses on the scenario where users access third-party applications thr
 I will also explore the available user consent settings, including blocking user consent, limiting consent to applications from verified publishers and allowing Microsoft to manage user consent settings. Finally, I will review how an administrator can investigate the application through enterprise applications, sign-in logs, audit logs and permission grants.
 
 ## Objectives
-- Create cloud-only user accounts
-- Configure required user properties
-- Verify successful user creation
-- Understand the characteristics of cloud-only users
+The objective of this lab is to understand how Microsoft Entra ID handles user consent when employees sign in to third-party applications with their organizational identities.
+
+During the lab, I will:
+- Review the tenant’s current user consent configuration under Enterprise applications > Consent and permissions > User consent settings.
+- Compare the available consent options:
+  - Let Microsoft manage your consent settings.
+  - Allow user consent for apps from verified publishers, for selected permissions.
+  - Do not allow user consent.
+- Understand the difference between allowing users to register applications and allowing users to consent to existing third-party applications.
+- Test what happens when an ordinary user signs in to a third-party application using an organizational account.
+- Review the permissions requested by the third-party application before granting consent.
+- Confirm whether Microsoft Entra automatically creates a service principal, shown as an enterprise application, after the user grants consent.
+- Inspect which user granted consent and which delegated permissions were granted.
+- Review the related sign-in logs and audit logs to follow the authentication and consent process.
+- Understand what happens when the requested permissions fall outside the permissions that the user is allowed to consent to.
+- Explore how an organization can restrict user consent and use the admin consent workflow for applications requiring approval.
+- Understand how unmanaged third-party applications can accumulate inside a large tenant when many users sign in to cloud applications with their work accounts.
+- Relate application consent to shadow IT and Microsoft Defender for Cloud Apps, while recognizing that shadow IT also includes applications used through personal accounts without any Entra service principal or consent grant.
+
 
 ## Environment
 - Identity Provider: Entra ID
