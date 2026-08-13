@@ -14,7 +14,16 @@ Entitlement Management becomes useful when access requires additional governance
 In this lab, I will use this scenario to create governed payroll access for selected HR employees. I will create an HR catalog, onboard the required resources, create a Payroll Access access package, define its policies, and test the complete process from requesting and approving the access to verifying the resulting assignment and resource access.
 
 ## Objectives
-- 
+- Create an HR catalog that acts as the logical container for the resources and access packages used throughout the lab.
+-Add the required resources to the HR catalog without creating new copies of the underlying resources.
+Create a Payroll Access access package that provides selected HR employees with access to payroll-related resources.
+- Configure the required resource roles within the access package to define the level of access users receive.
+- Create and configure an access package policy that defines who can request Payroll Access and under which conditions.
+- Configure an approval workflow, including the required approver and justification requirements.
+Configure the lifecycle of access package assignments, including expiration and access reviews.
+- Request and approve Payroll Access for a test user.
+- Verify that an access package assignment is created and that the user receives the expected access to the underlying resources.
+- Verify how access is removed when the access package assignment ends or is removed.
 
 ## Environment
 - Identity Provider: Entra ID
