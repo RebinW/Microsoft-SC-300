@@ -31,7 +31,8 @@ Configure the lifecycle of access package assignments, including expiration and 
 - Tenant: KlarStroem
 - Role used: Global Administrator
 - License requirements
-  - Using Identity governance capabilities in Entra ID requires the Entra ID P2 license 
+  - Using Identity governance capabilities in Entra ID requires the Entra ID P2 license
+  - Additional capabilities within Identity Governance such as JML and adding roles to Access Pakages requires the Governance Suite add-on.
 
 ## Implementation
 #### Step 1: 
