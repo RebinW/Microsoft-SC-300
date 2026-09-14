@@ -1,33 +1,105 @@
-# Project overview
-This repository documents my work with Microsoft Entra ID while preparing for the SC300 certification. The goal is to move beyond theory and actually implement identity and access management controls in my own tenant, while documenting each step and decision.
+# Microsoft Entra ID Enterprise Identity Lab
 
-I use the official Microsoft Learn material and labs as the technical foundation. Instead of treating the labs as isolated exercises, I document the configurations, explain why they matter, and use them to build practical experience.
+## About this project
 
-**Relationship to my ISO 27001 project**
+This project documents the Microsoft Entra ID environment I have built to develop
+practical experience with cloud and hybrid Identity and Access Management.
 
-This project also supports a seperate ISO 27001 implementation project I am actively working on.
+What originally started as hands-on preparation for the SC-300 certification gradually
+developed into a much broader identity project. Rather than treating each Entra feature
+as an isolated lab, I wanted to understand how the different parts of an enterprise
+identity environment connect and depend on each other.
 
-In the ISO project, I identify risks related to identity and access management. The work in this repository shows how these risks can be addressed in practice through real configurations in Microsoft Entra ID.
+Throughout the project, I have therefore focused not only on how individual features
+are configured, but also why they are used, what they depend on, and how they affect
+security, governance, user experience, and the wider identity environment.
 
-Screenshots and documentation from these labs will later be used as operational evidence when documenting Annex A control implementation and monitoring activities.
+The environment is continuously expanded as I work through new areas of IAM.
 
-**Scope**
+## Environment
 
-The focus here is identity and access management. The work includes:
-- role and permission management
-- privileged access protection
-- conditional access configuration
-- identity governance features
-- external identities and supplier access
-- authentication and monitoring
+The environment combines Microsoft Entra ID with an on-premises Active Directory
+environment to create a hybrid identity architecture.
 
-The goal is to understand how identity controls are implemented, not only how they are described in theory.
+The environment currently includes:
 
-**Outcome**
+- Microsoft Entra ID tenant
+- Microsoft 365 E5
+- Microsoft Entra ID P2
+- On-premises Active Directory Domain Services
+- Microsoft Entra Connect
+- Password Hash Synchronization
+- Hybrid Microsoft Entra joined devices
+- Microsoft Intune
+- Microsoft Graph
+- Enterprise Applications and App Registrations
 
-This repository/ project shows how I approch identity security from both a technical and governance perspective, and how hands on configuration work can support risk reduction and control implementation.
+[ARCHITECTURE DIAGRAM]
 
-*This repository is continuously updated as new labs, configurations, and identity controls are implemented.*
+## What this project covers
+
+### Tenant & Identity Foundation
+- Tenant configuration
+- Emergency access accounts
+- User and group management
+- Dynamic groups
+- Role-assignable groups
+- Group-based licensing
+- Administrative Units
+
+### Authentication & Access
+- Authentication methods
+- Multi-Factor Authentication
+- Self-Service Password Reset
+- Windows Hello for Business
+- Temporary Access Pass
+- Conditional Access
+- Authentication strengths
+- Session controls
+
+### Hybrid Identity
+- Microsoft Entra Connect
+- Password Hash Synchronization
+- Password writeback
+- Hybrid Microsoft Entra Join
+- Primary Refresh Token (PRT)
+- Cloud Kerberos Trust
+- Automatic Intune enrollment
+
+### Applications & Modern Authentication
+- Enterprise Applications
+- App Registrations
+- OAuth 2.0
+- OpenID Connect
+- Delegated permissions
+- Application permissions
+- Admin and user consent
+- Microsoft Graph
+
+### Identity Governance
+- Privileged Identity Management
+- Administrative Units
+- Access Reviews
+- Entitlement Management
+- Catalogs and Access Packages
+- Lifecycle Workflows
+
+### External Identities
+- B2B collaboration
+- Guest users
+- External collaboration settings
+- Cross-tenant access settings
+
+### Device Identity & Management
+- Microsoft Entra registered devices
+- Microsoft Entra joined devices
+- Hybrid Microsoft Entra joined devices
+- Microsoft Intune enrollment
+
+## Project Documentation
+
+The repository contains individual implementation sections documenting the
+configuration, testing, validation, and security considerations for each area.
 
 **Learning and lab resources**
 - [Microsoft Learn SC300 Learning Path](https://learn.microsoft.com/en-us/training/courses/sc-300t00)
