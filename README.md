@@ -1,4 +1,4 @@
-# Microsoft Entra ID Enterprise Identity Lab
+# Microsoft Entra ID Hybrid Lab
 
 ## About this project
 
