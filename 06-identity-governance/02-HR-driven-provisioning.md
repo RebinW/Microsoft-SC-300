@@ -54,16 +54,15 @@ At this stage, I have a problem. My PowerShell connector cannot start requesting
 
 This is where the OAuth client registration comes in.
 
-I created a new OAuth client in OrangeHRM called:
-- IAM Lab Connector
+I created a new OAuth client in OrangeHRM called: *IAM Lab Connector*
   
 When the client is registered, OrangeHRM generates a unique Client ID. This Client ID identifies my connector when it communicates with the OrangeHRM authorization server.
 
 If you are familiar with Microsoft Entra app registrations, the idea is similar to the Application (client) ID. It identifies the application making the request. The Client ID itself is not a password or secret.
 
-I also configured the following redirect URI:
-- http://localhost:8080
+I also configured the following redirect URI: *http://localhost:8080*
 
+**Registering the API Client in OrangeHRM:**
 ![OrangeHRM1](screenshots/addoauth.png)
 ![OrangeHRM2](screenshots/clientidgenerate.png)
 ![OrangeHRM3](screenshots/clientidgenerated1.png)
@@ -71,6 +70,7 @@ I also configured the following redirect URI:
 The redirect URI is part of the OAuth authorization process. OrangeHRM will only redirect the authorization response to a URI that was registered for this client. During the initial authorization process, OrangeHRM will redirect the browser to this address with an authorization code. That code will later be exchanged for the tokens required to access the API.
 At this point, I have not retrieved any employee data yet. I have simply registered the application that will become my connector and received the Client ID required for the next stage of the OAuth flow.
 
+**Quick overview for clarity:**
 ![Diagram explaining integration in step 1](screenshots/clientidintegration.png)
 
 At this point, the OAuth client has been registered in OrangeHRM and we have received a unique Client ID. The Client ID identifies the connector we are going to build whenever it communicates with OrangeHRM.
