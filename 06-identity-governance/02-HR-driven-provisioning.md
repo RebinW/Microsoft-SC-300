@@ -380,4 +380,14 @@ The next phase will focus on getting this data into on-premises Active Directory
 Once the complete provisioning flow is working, I can start expanding the HR data with additional attributes and use those attributes for more advanced identity governance scenarios, including automated joiner, mover and leaver processes.
 
 ## Lessons Learned  
+This lab gave me a much better understanding of what actually happens behind an API-based integration. Before starting, I understood OAuth mostly from a theoretical perspective. Building the authorization flow myself made the relationship between the Client ID, PKCE, authorization code, access token and refresh token much clearer.
 
+One of the biggest lessons was that getting a successful API request is only a small part of building an integration. The first time I retrieved the employee records from OrangeHRM, the connection worked, but it still depended on manually obtaining and managing the tokens. Turning that into a persistent connector required handling token refresh, protecting the refresh token with DPAPI, logging executions and automating the script with Windows Task Scheduler.
+
+I also learned quite a bit from troubleshooting the automation. After a reboot, for example, the startup trigger successfully launched the connector, but the first API request failed because DNS was not yet available. The next scheduled 15-minute execution succeeded without any manual intervention.
+
+I attempted to configure Task Scheduler to retry the connector one minute after a failed execution, but I was not able to get this behavior working consistently. Rather than treating it as completed functionality, I decided to rely on the recurring 15-minute trigger for this phase of the lab and leave more advanced retry handling as a future improvement.
+
+Another important takeaway was that I do not need to know every PowerShell command by memory. What matters more is understanding what the script is supposed to do, being able to read the individual parts, troubleshoot them and understand how they fit into the overall identity provisioning process.
+
+At this point, I have a much clearer understanding of how an HR system, REST API, OAuth authorization and a custom connector work together as the first part of an HR-driven identity provisioning solution.
