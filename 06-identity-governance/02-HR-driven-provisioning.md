@@ -225,6 +225,10 @@ Each execution of the connector will:
 8. Retrieve the current employee records.
 9. Write the result of the execution to a log file.
 
+The complete script is available here:
+
+[`HR-Connector.ps11`](screenshots/HR-Connector.ps11)
+
 
 
 **5.3 - Test the Connector Manually**  
