@@ -347,6 +347,25 @@ I also executed the connector manually afterwards to display the employee record
 The final test confirms that both Task Scheduler triggers are working as intended. The connector starts automatically after a system reboot and continues running on its 15-minute schedule without requiring manual authentication or intervention.
 
 ## Results  
+Phase 1 of the HR-driven identity provisioning integration is now complete.
+
+At this stage, I have successfully built and automated the connection between OrangeHRM and the PowerShell HR connector. The complete process has been tested from end to end and is working as expected.
+
+The solution now successfully:
+- Identifies the connector using the registered OAuth Client ID.
+- Authenticates to OrangeHRM using OAuth 2.0.
+- Uses the stored refresh token to obtain new access and refresh tokens without repeating the interactive authorization flow.
+- Protects the refresh token locally using Windows DPAPI.
+- Uses the access token to authenticate to the OrangeHRM REST API.
+- Retrieves current employee records from OrangeHRM.
+- Automatically runs the connector every 15 minutes and after a system restart using Windows Task Scheduler.
+- Logs successful executions and errors for troubleshooting.
+
+This completes the first part of the integration. I now have an automated process for retrieving HR data from the source system.
+
+The next phase will focus on getting this data into on-premises Active Directory using Microsoft Entra API-driven provisioning and the on-premises provisioning agent. Since Entra Connect is already configured in my hybrid environment, users created in Active Directory will then synchronize to Microsoft Entra ID.
+
+Once the complete provisioning flow is working, I can start expanding the HR data with additional attributes and use those attributes for more advanced identity governance scenarios, including automated joiner, mover and leaver processes.
 
 ## Lessons Learned  
 
