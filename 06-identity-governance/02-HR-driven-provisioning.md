@@ -79,27 +79,27 @@ The next step is to start building the PowerShell connector and associate it wit
 
 #### Step 2: Generate the PKCE Code Verifier and Code Challenge
 Now that the OAuth client is registered, the next step is to prepare the PKCE authorization flow.
-PKCE stands for Proof Key for Code Exchange. It adds an extra layer of protection to the OAuth 2.0 Authorization Code flow by making sure that the application exchanging the authorization code is the same application that originally started the authorization request.
+PKCE stands for Proof Key for Code Exchange. It adds protection to the OAuth 2.0 Authorization Code flow by making sure that the application exchanging the authorization code is the same application that originally started the authorization request.
 
 For this, I first generate two related values:
-- Code Verifier: A random value that I keep locally and do not send during the initial authorization request.
+- Code Verifier: A random value that I keep locally and do not send during the authorization request.
 - Code Challenge: A SHA-256 hash is created from the code verifier and converted to Base64 URL format. This is the value that I send to the OrangeHRM authorization server.
 
-During the initial authorization request, I send the code challenge to OrangeHRM. After I have authenticated and authorized the application, OrangeHRM returns an authorization code.
+During the authorization request, I send the code challenge to OrangeHRM. After I have authenticated and authorized the application, OrangeHRM will return an authorization code.
 
 When I later exchange that authorization code for tokens, I send the original code verifier. OrangeHRM performs the same SHA-256 calculation and checks whether the result matches the code challenge from the original authorization request.
 
 This means that stealing the authorization code by itself would not be enough to exchange it for tokens. The original code verifier is also required.
 
-I used PowerShell to generate a random code verifier and then create the corresponding SHA-256 code challenge.  
+**I used PowerShell to generate a random code verifier and then create the corresponding SHA-256 code challenge.**  
 ![Generaring the code verifier and code challange](screenshots/pkce.png)
 
-The output gives me both values needed for the next part of the authorization flow. I keep the code verifier because I will need it again when exchanging the authorization code for tokens.
+The output gives me both values needed for the next part "requesting the authorization code" of the authorization flow. I keep the code verifier because I will need it again when exchanging the authorization code for tokens.
 
-To better understand why we're generating these code:
+**To better understand why we're generating these code:**
 ![PKCE](screenshots/pkce1.png)
 
-#### Step 3: 
+#### Step 3: Obtaining the authorization code
 Now that I have the Client ID, redirect URI, code verifier and code challenge, I have everything needed to start the authorization request.
 
 The purpose of this request is to send the required information to the OrangeHRM authorization endpoint and ask the user to authorize my registered client.
@@ -107,7 +107,7 @@ The purpose of this request is to send the required information to the OrangeHRM
 Instead of manually building a long authorization URL:
 - http://your-ohrm-url.com/web/index.php/oauth2/authorize?response_type=code&state=your_state&code_challenge_method=S256&code_challenge=your_challenge&client_id=your_client_id&redirect_uri=your_redirect_uri
 
-I used PowerShell to construct it from the values generated in the previous steps.  
+**I used PowerShell to construct it from the values generated in the previous steps for better clarity:**  
 ![Start authz request](screenshots/oauthzrequest1.png)
 
 There are a few important values being sent in this request:
@@ -141,10 +141,10 @@ For this request, I need several values collected during the previous steps:
 - Redirect URI, the same URI registered for the client
 - Grant type, set to authorization_code
   
-I created the request body in PowerShell:  
+**I created the request body in PowerShell:**  
 ![Obtain token](screenshots/tokenobtained1.png)
 
-I then send this information to the OrangeHRM token endpoint:
+**I then send this information to the OrangeHRM token endpoint:**
 ![Obtain token](screenshots/tokenobtained2.png)
 
 This is also where the PKCE process from Step 2 comes back into play.
@@ -155,12 +155,12 @@ The response contains the access token that I will use to authenticate requests 
 
 Before moving on, I wanted to verify that the access token actually worked. I used it as a Bearer token in the Authorization header and sent a GET request to the OrangeHRM employee API.
 
-To make the returned data easier to inspect, I converted the response to JSON:
+**To make the returned data easier to inspect, I converted the response to JSON:**
 ![retrive info](screenshots/testaccesstoken.png)
 
 The request successfully returned the employee records stored in OrangeHRM, confirming that the access token was valid and that the client was now able to authenticate to the OrangeHRM REST API.
 
-**The next problem is persistence. The access token has a limited lifetime, so I do not want to repeat the entire interactive authorization process every time it expires. In the next step, I will use the refresh token to obtain new tokens and start turning this manual process into an automated connector.**
+**The next problem is persistence. The access token has a limited lifetime, so I do not want to repeat the entire authorization process every time it expires. In the next step, I will use the refresh token to obtain new tokens and start turning this manual process into an automated connector/process.**
 
 #### Step 5: Build the PowerShell HR Connector
 So far, I have completed the OAuth authorization flow manually and confirmed that the access token allows me to retrieve employee records from OrangeHRM.
@@ -185,31 +185,31 @@ There is one important security problem we need to solve before building the com
 
 We do not want to save the refresh token as plain text in the PowerShell script or in a normal text file. The refresh token provides long-lived access to the authorization flow and therefore needs to be protected.
 
-For this reason, I created a dedicated folder for the connector and used Windows Data Protection API, DPAPI, to encrypt the refresh token before storing it locally.
+For this reason, I created a dedicated folder for the connector and used Windows Data Protection API, **DPAPI**, to encrypt the refresh token before storing it locally.
 
-**5.1 - Creating the Connector Folder and Secure the Refresh Token**  
+#### 5.1 - Creating the Connector Folder and Secure the Refresh Token  
 Before building the actual connector script, I created a dedicated folder to keep the connector files together, in Powershell: *New-Item -ItemType Directory -Path "C:\HR-Connector" -Force*
 
 The folder will eventually contain the PowerShell connector, the encrypted refresh token, and the connector log.
 
-At this point I already have a refresh token from the OAuth flow in the previous step. I need to keep this token between executions because the connector will use it to request fresh access tokens without requiring me to complete the interactive authorization process again.
+At this point I already have a refresh token from the OAuth flow in the previous step. I need to keep this token between executions because the connector will use it to request fresh access tokens without requiring me to complete the  authorization process again.
 
 I do not want to store the refresh token in plain text. Instead, I used Windows Data Protection API, DPAPI, to protect it before writing it to disk.
 
-First, I placed the refresh token obtained in Step 4 into a SecureString, in Powershell:
+**First, I placed the refresh token obtained in Step 4 into a SecureString, in Powershell:**
 ![pw1](screenshots/powershell1.png)
 
-I then encrypted the SecureString and stored the encrypted value in the connector folder:
+**I then encrypted the SecureString and stored the encrypted value in the connector folder:**
 ![pw2](screenshots/powershell2.png)
 
-The resulting file contains the encrypted representation of the refresh token rather than the original token in plain text.
+**The resulting file contains the encrypted representation of the refresh token rather than the original token in plain text.**
 ![encrypted](screenshots/refreshtokenencrypted.png)
 
 DPAPI ties the encrypted value to the Windows user account that protected it. This is important for the automation later because the scheduled task needs to run under the same Windows account in order to decrypt and use the stored token.
 
-At this point, the refresh token is stored persistently and protected locally. The next part is to build HR-Connector.ps1, which will read and decrypt this value, exchange it for fresh tokens, replace the stored refresh token, and retrieve employee records from OrangeHRM.
+At this point, the refresh token is stored and protected locally. The next part is to build HR-Connector.ps1, which will read and decrypt this value, exchange it for fresh tokens, replace the stored refresh token, and retrieve employee records from OrangeHRM.
 
-**5.2 - Build the PowerShell HR Connector**
+#### 5.2: Build the PowerShell HR Connector
 I created a PowerShell script named:
 - *C:\HR-Connector\HR-Connector.ps1*
 
@@ -226,14 +226,12 @@ Each execution of the connector will:
 8. Retrieve the current employee records.
 9. Write the result of the execution to a log file.
 
-The complete script is available here:
+**The complete script is available here:** [HR-Connector.ps11](./screenshots/HR-Connector.ps11.txt)
 
-[HR-Connector.ps11](./screenshots/HR-Connector.ps11.txt)
-
-**5.3 - Test the Connector Manually**  
+#### 5.3: Test the Connector Manually**  
 Before automating the connector, I wanted to make sure the complete script worked correctly when executed manually.
 
-I ran the connector directly from PowerShell:  
+**I ran the connector directly from PowerShell:**  
 ![run script](screenshots/manuallyrunscript.png)
 
 The connector successfully completed the full process:
@@ -247,12 +245,12 @@ The connector successfully completed the full process:
 
 The returned employee records confirmed that the connector was successfully authenticating to OrangeHRM and retrieving HR data without requiring me to repeat the interactive authorization flow.
 
-I also checked the connector log, the log confirmed that each part of the connector completed successfully:  
+**I also checked the connector log, the log confirmed that each part of the connector completed successfully:**  
 ![test connector](screenshots/testconnector.png)
 
 At this point, the connector works without manually generating a new authorization code whenever the access token expires. As long as the stored refresh token remains valid, the connector can use it to obtain fresh tokens and continue accessing the OrangeHRM API.
 
-The connector is still being started manually, though. The next step is to automate its execution using Windows Task Scheduler.
+The connector is still being started manually, though. The next step is to automate its execution using **Windows Task Scheduler**.
 
 #### Step 6: Automate the Connector with Windows Task Scheduler
 At this point, the connector works, but I still have to start it manually. The final step is therefore to automate the process using Windows Task Scheduler.
