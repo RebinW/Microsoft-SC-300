@@ -294,9 +294,7 @@ Together, the two triggers provide both recurring execution and startup recovery
 
 Under the **Actions** tab, I configured Task Scheduler to start PowerShell and execute the connector script.
 
-powershell.exe starts PowerShell, while the -File argument tells PowerShell which script to execute.
-
--NoProfile prevents user-specific PowerShell profiles from affecting the execution of the connector, while -ExecutionPolicy RemoteSigned allows the local script to execute under the configured execution policy.
+powershell.exe starts PowerShell, while the -Add argument tells PowerShell which script to execute.
 
 The Start in value sets the working directory for the process to the connector folder.
 ![Configuring Task Scheduler](screenshots/tasks4.png)
