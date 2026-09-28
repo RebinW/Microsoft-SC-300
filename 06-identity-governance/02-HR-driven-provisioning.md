@@ -228,7 +228,7 @@ Each execution of the connector will:
 
 **The complete script is available here:** [HR-Connector.ps11](./screenshots/HR-Connector.ps11.txt)
 
-#### 5.3: Test the Connector Manually**  
+#### 5.3: Test the Connector Manually  
 Before automating the connector, I wanted to make sure the complete script worked correctly when executed manually.
 
 **I ran the connector directly from PowerShell:**  
