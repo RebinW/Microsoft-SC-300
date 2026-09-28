@@ -1,7 +1,20 @@
 # HR-Driven Identity Provisioning Phase 1
 
 ## Overview
+The goal of this lab is to build an HR-driven identity provisioning solution for my hybrid environment, using OrangeHRM as the source for employee data.
 
+In a real organization, the HR system will often be the starting point for the identity lifecycle. When a new employee joins the organization, information such as their name, department, job title and start date already exists in HR. Instead of manually creating the same user again in Active Directory, I want to use this HR data to drive the provisioning process automatically.
+
+For this lab, the intended flow is:
+OrangeHRM → Custom PowerShell Connector → Microsoft Entra API-Driven Provisioning → On-Premises Provisioning Agent → Active Directory → Entra Connect → Microsoft Entra ID
+
+OrangeHRM does not have a prebuilt Microsoft Entra provisioning integration like some larger HR platforms, so I will build the first part of the integration myself. The PowerShell connector will authenticate to OrangeHRM, retrieve employee records through its REST API and later send the required data to Microsoft's API-driven provisioning service.
+
+This first phase focuses on getting the OrangeHRM side working. I will configure OAuth authentication, build the PowerShell connector, securely handle the refresh token and automate the connector using Windows Task Scheduler.
+
+By the end of this phase, I want a persistent process that retrieves current employee records from OrangeHRM automatically without requiring me to manually authenticate or start the connector each time.
+
+The next phase will take the retrieved HR data and use it to provision users into my on-premises Active Directory environment.
 
 ## Objectives
 - Configure OrangeHRM as an HR source
