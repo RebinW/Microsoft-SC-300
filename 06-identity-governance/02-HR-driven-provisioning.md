@@ -254,12 +254,67 @@ At this point, the connector works without manually generating a new authorizati
 The connector is still being started manually, though. The next step is to automate its execution using Windows Task Scheduler.
 
 #### Step 6: Automate the Connector with Windows Task Scheduler
+At this point, the connector works, but I still have to start it manually. The final step is therefore to automate the process using Windows Task Scheduler.
 
+The goal is to run `HR-Connector.ps1` automatically every 15 minutes and also run it when the Windows machine starts.
+
+#### 6.1 General Configuration
+Under the **General** tab, I created a new task called:
+
+`OrangeHRM HR Connector`
+
+I configured the task to run whether the user is logged on or not. This allows the connector to run in the background without requiring an active PowerShell session.
+
+I also enabled **Run with highest privileges**.
+
+The task runs under the same Windows user account that was used to encrypt the refresh token with DPAPI. This is important because the connector needs access to the same user context in order to decrypt the stored refresh token.
 ![Configuring Task Scheduler](screenshots/tasks1.png)
+
+#### 6.2 Configure the Triggers
+
+I configured two triggers.
+
+The first trigger runs the connector every 15 minutes:
+
+- Trigger: Daily
+- Repeat task every: 15 minutes
+- Duration: Indefinitely
+
+This provides the recurring execution needed for the connector to continuously retrieve updated HR data.
 ![Configuring Task Scheduler](screenshots/tasks2.png)
+
+I also added an **At startup** trigger.
+
+This makes sure the connector starts again after the Windows machine has been restarted instead of waiting for the next scheduled execution.
 ![Configuring Task Scheduler](screenshots/tasks3.png)
+Together, the two triggers provide both recurring execution and startup recovery.
+
+#### 6.3 Configure the PowerShell Action
+
+Under the **Actions** tab, I configured Task Scheduler to start PowerShell and execute the connector script.
+
+powershell.exe starts PowerShell, while the -File argument tells PowerShell which script to execute.
+
+-NoProfile prevents user-specific PowerShell profiles from affecting the execution of the connector, while -ExecutionPolicy RemoteSigned allows the local script to execute under the configured execution policy.
+
+The Start in value sets the working directory for the process to the connector folder.
 ![Configuring Task Scheduler](screenshots/tasks4.png)
+
+#### 6.4 Configure Failure Handling
+Finally, I configured the task settings.
+The task is configured to:
+- Run as soon as possible if a scheduled execution is missed.
+- Restart after 1 minute if the task fails.
+- Attempt a maximum of 3 restarts.
+- Stop an execution if it runs for longer than 1 hour.
+- Prevent a second instance from starting if the previous execution is still running.
 ![Configuring Task Scheduler](screenshots/tasks5.png)
+
+The retry configuration is especially useful for temporary failures such as network or DNS availability during system startup.
+
+For Task Scheduler to recognize a failed connector execution, the PowerShell script must also return a non-zero exit code when an error occurs. This allows Task Scheduler to distinguish a successful execution from a failed one and apply the configured retry behavior.
+
+With the scheduled task configured, the connector no longer needs to be started manually. Windows Task Scheduler launches the PowerShell connector, which retrieves fresh OAuth tokens and queries OrangeHRM for employee data automatically.
 
 ## Verification
 
