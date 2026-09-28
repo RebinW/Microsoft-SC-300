@@ -65,7 +65,7 @@ I also configured the following redirect URI:
 
 ![OrangeHRM1](screenshots/addoauth.png)
 ![OrangeHRM2](screenshots/clientidgenerate.png)
-![OrangeHRM3](screenshots/clientidgenerated.png)
+![OrangeHRM3](screenshots/clientidgenerated1.png)
 
 The redirect URI is part of the OAuth authorization process. OrangeHRM will only redirect the authorization response to a URI that was registered for this client. During the initial authorization process, OrangeHRM will redirect the browser to this address with an authorization code. That code will later be exchanged for the tokens required to access the API.
 At this point, I have not retrieved any employee data yet. I have simply registered the application that will become my connector and received the Client ID required for the next stage of the OAuth flow.
@@ -141,10 +141,10 @@ For this request, I need several values collected during the previous steps:
 - Grant type, set to authorization_code
   
 I created the request body in PowerShell:  
-![Obtain token](screenshots/tokenobtained1)
+![Obtain token](screenshots/tokenobtained1.png)
 
 I then send this information to the OrangeHRM token endpoint:
-![Obtain token](screenshots/tokenobtained2)
+![Obtain token](screenshots/tokenobtained2.png)
 
 This is also where the PKCE process from Step 2 comes back into play.
 
@@ -155,7 +155,7 @@ The response contains the access token that I will use to authenticate requests 
 Before moving on, I wanted to verify that the access token actually worked. I used it as a Bearer token in the Authorization header and sent a GET request to the OrangeHRM employee API.
 
 To make the returned data easier to inspect, I converted the response to JSON:
-![retrive info](screenshots/testaccesstoken)
+![retrive info](screenshots/testaccesstoken.png)
 
 The request successfully returned the employee records stored in OrangeHRM, confirming that the access token was valid and that the client was now able to authenticate to the OrangeHRM REST API.
 
