@@ -229,9 +229,25 @@ The complete script is available here:
 
 [HR-Connector.ps11](./screenshots/HR-Connector.ps11.txt)
 
-
-
 **5.3 - Test the Connector Manually**  
+Before automating the connector, I wanted to make sure the complete script worked correctly when executed manually.
+
+I ran the connector directly from PowerShell:
+![run script](screenshots/manuallyrunscript.png)
+
+The connector successfully completed the full process:
+1. Read the encrypted refresh token from local storage.
+2. Decrypted the refresh token using DPAPI.
+3. Used the refresh token to request new tokens from OrangeHRM.
+4. Received a new access token and refresh token.
+5. Encrypted and stored the new refresh token, replacing the previous one.
+6. Used the access token to authenticate to the OrangeHRM Employee API.
+7. Retrieved the current employee records.
+
+The returned employee records confirmed that the connector was successfully authenticating to OrangeHRM and retrieving HR data without requiring me to repeat the interactive authorization flow.
+
+I also checked the connector log:
+![test connector](screenshots/testconnector.png)
 
 #### Step 6: Automate the Connector with Windows Task Scheduler
 
