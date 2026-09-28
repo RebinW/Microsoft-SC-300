@@ -317,6 +317,34 @@ For Task Scheduler to recognize a failed connector execution, the PowerShell scr
 With the scheduled task configured, the connector no longer needs to be started manually. Windows Task Scheduler launches the PowerShell connector, which retrieves fresh OAuth tokens and queries OrangeHRM for employee data automatically.
 
 ## Verification
+Although I verified the individual components throughout the lab, I wanted to finish by testing the complete connector and confirming that the automation continued working after a system restart.
+
+Before performing the final test, I added a fourth employee to OrangeHRM. This gave me a simple way to confirm that the connector was retrieving the latest employee data from the HR system.
+
+The connector had previously completed a scheduled execution successfully at approximately `13:41`.
+
+I then restarted the Windows machine.
+
+After Windows started again, the **startup trigger** automatically launched the connector at `13:52:43`. The connector successfully decrypted the stored refresh token and attempted to contact OrangeHRM. The first request failed because DNS was not yet available and the OrangeHRM hostname could not be resolved.
+
+The important part was that no manual action was required.
+
+The normal **15-minute scheduled trigger** remained active after the restart. At `13:55:58`, approximately 15 minutes after the previous **scheduled** execution, Task Scheduler launched the connector again.
+
+This time the complete process succeeded:
+
+- The stored refresh token was decrypted.
+- New access and refresh tokens were requested from OrangeHRM.
+- The new refresh token was encrypted and stored.
+- The connector authenticated to the OrangeHRM API.
+- All 4 employee records were successfully retrieved.
+- The connector completed successfully.
+
+I also executed the connector manually afterwards to display the employee records and confirmed that the newly added employee was included in the response.
+
+![verify](screenshots/verification1.png)
+
+The final test confirms that both Task Scheduler triggers are working as intended. The connector starts automatically after a system reboot and continues running on its 15-minute schedule without requiring manual authentication or intervention.
 
 ## Results  
 
