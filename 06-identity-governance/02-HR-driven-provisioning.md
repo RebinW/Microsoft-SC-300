@@ -307,6 +307,7 @@ The task is configured to:
 - Attempt a maximum of 3 restarts.
 - Stop an execution if it runs for longer than 1 hour.
 - Prevent a second instance from starting if the previous execution is still running.
+
 ![Configuring Task Scheduler](screenshots/tasks5.png)
 
 The retry configuration is especially useful for temporary failures such as network or DNS availability during system startup.
