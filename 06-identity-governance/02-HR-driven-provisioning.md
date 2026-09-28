@@ -40,14 +40,15 @@ Before configuring anything, it is important to understand why I need to registe
 For this lab, later I am going to use Microsoft Entra API-driven provisioning rather than one of Microsoft's prebuilt HR provisioning integrations. This means I need to build the integration between my HR source and Microsoft's provisioning service myself.
 
 If I were using Workday, for example, Microsoft already provides applications such as *Workday to Active Directory User Provisioning*. In that scenario, much of the integration between Workday and the Microsoft provisioning service has already been built.  
+
 ![workday to AD DS](screenshots/workdaytoadds.png)
 
 OrangeHRM does not have that same prebuilt provisioning integration and does not exist as an Enterprise Application in Entra ID to be added. Therefore, I will build my own connector using PowerShell.
 
 The connector will have three main jobs:
-1. OrangeHRM → Retrieve employee data through the OrangeHRM REST API
-2. PowerShell connector → Process and map the HR attributes into the format required by Microsoft's API-driven provisioning service
-3. Microsoft Entra → Send the resulting data to the API-driven provisioning endpoint, where the Microsoft provisioning service can process it and provision the identity into Active Directory through the on-premises provisioning agent.
+1. Retrieve employee data through the OrangeHRM REST API
+2. Process and map the HR attributes into the format required by Microsoft's API-driven provisioning service
+3. Send the resulting data to the API-driven provisioning endpoint, where the Microsoft provisioning service can process it and provision the identity into Active Directory through the on-premises provisioning agent.
 
 At this stage, I have a problem. My PowerShell connector cannot start requesting employee information from OrangeHRM. OrangeHRM first needs to know which application is requesting access and whether that application has been authorized.
 
