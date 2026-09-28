@@ -1,0 +1,170 @@
+# ============================================================
+# OrangeHRM HR Connector
+# ============================================================
+
+$ErrorActionPreference = "Stop"
+
+# ------------------------------------------------------------
+# CONFIGURATION
+# ------------------------------------------------------------
+
+$clientId = "xxxx"
+
+$orangeHrmUrl = "xxxx"
+
+$tokenFile = "C:\HR-Connector\refresh-token.txt"
+
+$logFile = "C:\HR-Connector\HR-Connector.log"
+
+
+# ------------------------------------------------------------
+# LOGGING FUNCTION
+# ------------------------------------------------------------
+
+function Write-ConnectorLog {
+
+    param(
+        [string]$Message
+    )
+
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+
+    "$timestamp - $Message" |
+        Out-File -FilePath $logFile -Append
+}
+
+
+try {
+
+    Write-ConnectorLog "Connector started."
+
+
+    # --------------------------------------------------------
+    # 1. READ ENCRYPTED REFRESH TOKEN
+    # --------------------------------------------------------
+
+    Write-ConnectorLog "Reading stored refresh token."
+
+    $encryptedToken = (Get-Content $tokenFile -Raw).Trim()
+
+
+    # --------------------------------------------------------
+    # 2. DECRYPT REFRESH TOKEN USING WINDOWS DPAPI
+    # --------------------------------------------------------
+
+    $secureToken = ConvertTo-SecureString $encryptedToken
+
+    $credential = New-Object System.Management.Automation.PSCredential(
+        "OrangeHRM",
+        $secureToken
+    )
+
+    $refreshToken = $credential.GetNetworkCredential().Password
+
+    Write-ConnectorLog "Refresh token successfully decrypted."
+
+
+    # --------------------------------------------------------
+    # 3. EXCHANGE REFRESH TOKEN FOR NEW TOKENS
+    # --------------------------------------------------------
+
+    $refreshBody = @{
+        client_id     = $clientId
+        grant_type    = "refresh_token"
+        refresh_token = $refreshToken
+    }
+
+    Write-ConnectorLog "Requesting new tokens from OrangeHRM."
+
+    $tokenResponse = Invoke-RestMethod `
+        -Method Post `
+        -Uri "$orangeHrmUrl/oauth2/token" `
+        -ContentType "application/x-www-form-urlencoded" `
+        -Body $refreshBody
+
+
+    # --------------------------------------------------------
+    # 4. GET NEW TOKENS
+    # --------------------------------------------------------
+
+    $accessToken = $tokenResponse.access_token
+    $newRefreshToken = $tokenResponse.refresh_token
+
+    if ([string]::IsNullOrWhiteSpace($accessToken)) {
+        throw "OrangeHRM did not return an access token."
+    }
+
+    if ([string]::IsNullOrWhiteSpace($newRefreshToken)) {
+        throw "OrangeHRM did not return a new refresh token."
+    }
+
+    Write-ConnectorLog "New access token and refresh token received."
+
+
+    # --------------------------------------------------------
+    # 5. STORE NEW REFRESH TOKEN USING DPAPI
+    # --------------------------------------------------------
+
+    $newSecureToken = ConvertTo-SecureString `
+        $newRefreshToken `
+        -AsPlainText `
+        -Force
+
+    $newEncryptedToken = ConvertFrom-SecureString $newSecureToken
+
+    Set-Content `
+        -Path $tokenFile `
+        -Value $newEncryptedToken
+
+    Write-ConnectorLog "New refresh token encrypted and stored."
+
+
+    # --------------------------------------------------------
+    # 6. CREATE AUTHORIZATION HEADER
+    # --------------------------------------------------------
+
+    $headers = @{
+        Authorization = "Bearer $accessToken"
+    }
+
+
+    # --------------------------------------------------------
+    # 7. GET EMPLOYEES FROM ORANGEHRM
+    # --------------------------------------------------------
+
+    $employeeUri = "$orangeHrmUrl/api/v2/pim/employees"
+
+    Write-ConnectorLog "Requesting employees from OrangeHRM."
+
+    $employees = Invoke-RestMethod `
+        -Method Get `
+        -Uri $employeeUri `
+        -Headers $headers
+
+    $employeeCount = $employees.data.Count
+
+    Write-ConnectorLog "Successfully retrieved $employeeCount employee(s)."
+
+
+    # --------------------------------------------------------
+    # 8. DISPLAY EMPLOYEES
+    # --------------------------------------------------------
+
+    $employees.data |
+        Select-Object employeeId, firstName, middleName, lastName |
+        Format-Table -AutoSize
+
+
+    Write-ConnectorLog "Connector completed successfully."
+
+    exit 0
+
+}
+catch {
+
+    Write-ConnectorLog "ERROR: $($_.Exception.Message)"
+
+    Write-Error $_.Exception.Message
+
+    exit 1
+}
