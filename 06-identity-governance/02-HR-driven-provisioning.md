@@ -257,10 +257,12 @@ At this point, the connector works, but I still have to start it manually. The f
 
 The goal is to run `HR-Connector.ps1` automatically every 15 minutes and also run it when the Windows machine starts.
 
+To start configuring and automating the task, I then opened Task Scheduler on my PC and choose **Create task** to start the process.
+
 #### 6.1 General Configuration
 Under the **General** tab, I created a new task called:
 
-`OrangeHRM HR Connector`
+*OrangeHRM HR Connector*
 
 I configured the task to run whether the user is logged on or not. This allows the connector to run in the background without requiring an active PowerShell session.
 
