@@ -227,7 +227,7 @@ Each execution of the connector will:
 
 The complete script is available here:
 
-[`HR-Connector.ps11`](./screenshots/HR-Connector.ps11)
+[HR-Connector.ps11](./screenshots/HR-Connector.ps11)
 
 
 
