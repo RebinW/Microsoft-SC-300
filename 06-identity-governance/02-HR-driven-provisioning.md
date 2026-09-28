@@ -255,6 +255,12 @@ The connector is still being started manually, though. The next step is to autom
 
 #### Step 6: Automate the Connector with Windows Task Scheduler
 
+![Configuring Task Scheduler](screenshots/tasks1.png)
+![Configuring Task Scheduler](screenshots/tasks2.png)
+![Configuring Task Scheduler](screenshots/tasks3.png)
+![Configuring Task Scheduler](screenshots/tasks4.png)
+![Configuring Task Scheduler](screenshots/tasks5.png)
+
 ## Verification
 
 ## Results  
