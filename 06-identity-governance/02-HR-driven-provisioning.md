@@ -161,6 +161,53 @@ The request successfully returned the employee records stored in OrangeHRM, conf
 
 **The next problem is persistence. The access token has a limited lifetime, so I do not want to repeat the entire interactive authorization process every time it expires. In the next step, I will use the refresh token to obtain new tokens and start turning this manual process into an automated connector.**
 
+#### Step 5: Build the PowerShell HR Connector
+So far, I have completed the OAuth authorization flow manually and confirmed that the access token allows me to retrieve employee records from OrangeHRM.
+
+The next step is to turn this into an actual connector. I created a PowerShell script called HR-Connector.ps1 and saved it under: **C:\HR-Connector\HR-Connector.ps1**
+
+The goal is to move away from manually requesting authorization and tokens every time the connector runs. Instead, the script will use the refresh token obtained in the previous step to request a new access token and refresh token automatically.
+
+The connector will then use the new access token to retrieve the latest employee records from the OrangeHRM API.
+
+At this stage, the connector will perform the following process:
+1. Read stored refresh token
+2. Request new tokens from OrangeHRM
+3. Receive new access token + refresh token
+4. Store the new refresh token
+5. Use access token as Bearer token
+6. GET /api/v2/pim/employees
+7. Retrieve employee records
+8. Log the result
+
+There is one important security problem we need to solve before building the complete script.
+
+We do not want to save the refresh token as plain text in the PowerShell script or in a normal text file. The refresh token provides long-lived access to the authorization flow and therefore needs to be protected.
+
+For this reason, I created a dedicated folder for the connector and used Windows Data Protection API, DPAPI, to encrypt the refresh token before storing it locally.
+
+**Creating the Connector Folder and Secure the Refresh Token**
+Before building the actual connector script, I created a dedicated folder to keep the connector files together, in Powershell: *New-Item -ItemType Directory -Path "C:\HR-Connector" -Force*
+
+The folder will eventually contain the PowerShell connector, the encrypted refresh token, and the connector log.
+
+At this point I already have a refresh token from the OAuth flow in the previous step. I need to keep this token between executions because the connector will use it to request fresh access tokens without requiring me to complete the interactive authorization process again.
+
+I do not want to store the refresh token in plain text. Instead, I used Windows Data Protection API, DPAPI, to protect it before writing it to disk.
+
+First, I placed the refresh token obtained in Step 4 into a SecureString, in Powershell:
+![pw1](screenshots/powershell1.png)
+
+I then encrypted the SecureString and stored the encrypted value in the connector folder:
+![pw2](screenshots/powershell2.png)
+
+The resulting file contains the encrypted representation of the refresh token rather than the original token in plain text.
+![encrypted](screenshots/refreshtokenencrypted.png)
+
+DPAPI ties the encrypted value to the Windows user account that protected it. This is important for the automation later because the scheduled task needs to run under the same Windows account in order to decrypt and use the stored token.
+
+At this point, the refresh token is stored persistently and protected locally. The next part is to build HR-Connector.ps1, which will read and decrypt this value, exchange it for fresh tokens, replace the stored refresh token, and retrieve employee records from OrangeHRM.
+
 
 
 ## Verification
