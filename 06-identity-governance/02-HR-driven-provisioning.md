@@ -55,7 +55,7 @@ If I were using Workday, for example, Microsoft already provides applications su
 
 ![workday to AD DS](screenshots/workdaytoadds.png)
 
-OrangeHRM does not have that same prebuilt provisioning integration and does not exist as an Enterprise Application in Entra ID to be added. Therefore, I will build my own connector using PowerShell.
+OrangeHRM does not have the same prebuilt HR provisioning integration available in the Microsoft Entra application gallery, so I will build the source integration myself using PowerShell.
 
 The connector will have three main jobs:
 1. Retrieve employee data through the OrangeHRM REST API
@@ -108,7 +108,7 @@ This means that stealing the authorization code by itself would not be enough to
 
 The output gives me both values needed for the next part "requesting the authorization code" of the authorization flow. I keep the code verifier because I will need it again when exchanging the authorization code for tokens.
 
-**To better understand why we're generating these code:**
+**To better understand why these values are needed:**
 ![PKCE](screenshots/pkce1.png)
 
 #### Step 3: Obtaining the authorization code
@@ -306,7 +306,7 @@ Together, the two triggers provide both recurring execution and startup recovery
 
 Under the **Actions** tab, I configured Task Scheduler to start PowerShell and execute the connector script.
 
-powershell.exe starts PowerShell, while the -Add argument tells PowerShell which script to execute.
+The -File argument tells PowerShell which script to execute, while -NoProfile starts PowerShell without loading the user's profile and -ExecutionPolicy RemoteSigned specifies the execution policy for this process.
 
 The Start in value sets the working directory for the process to the connector folder.
 ![Configuring Task Scheduler](screenshots/tasks4.png)
