@@ -130,7 +130,39 @@ OrangeHRM has successfully authorized the request and returned an authorization 
 
 **NOTE: The authorization process should be completed in one session. If the authorization transaction or authorization code expires, I generate a new PKCE pair and start the authorization flow again**
 
-#### Step 4: 
+#### Step 4: Exchange the Authorization Code for Tokens
+At this point, OrangeHRM has authorized my client and returned an authorization code. The authorization code itself does not give me access to the employee API. I now need to exchange it for tokens at the OrangeHRM token endpoint.
+
+For this request, I need several values collected during the previous steps:
+- Client ID, identifies the OAuth client registered in Step 1
+- Authorization code, returned by OrangeHRM in Step 3
+- Code verifier, the original PKCE value generated in Step 2
+- Redirect URI, the same URI registered for the client
+- Grant type, set to authorization_code
+  
+I created the request body in PowerShell:  
+![Obtain token](screenshots/tokenobtained1)
+
+I then send this information to the OrangeHRM token endpoint:
+![Obtain token](screenshots/tokenobtained2)
+
+This is also where the PKCE process from Step 2 comes back into play.
+
+OrangeHRM received the code challenge during the original authorization request. I am now sending the original code verifier. OrangeHRM verifies that the code verifier corresponds to the previously supplied code challenge.
+
+The response contains the access token that I will use to authenticate requests to the OrangeHRM API. It also contains a refresh token, which becomes important later when I automate the connector.
+
+Before moving on, I wanted to verify that the access token actually worked. I used it as a Bearer token in the Authorization header and sent a GET request to the OrangeHRM employee API.
+
+To make the returned data easier to inspect, I converted the response to JSON:
+![retrive info](screenshots/testaccesstoken)
+
+The request successfully returned the employee records stored in OrangeHRM, confirming that the access token was valid and that the client was now able to authenticate to the OrangeHRM REST API.
+
+**The next problem is persistence. The access token has a limited lifetime, so I do not want to repeat the entire interactive authorization process every time it expires. In the next step, I will use the refresh token to obtain new tokens and start turning this manual process into an automated connector.**
+
+
+
 ## Verification
 
 ## Results  
