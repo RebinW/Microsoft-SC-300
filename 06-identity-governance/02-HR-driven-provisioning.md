@@ -186,7 +186,7 @@ We do not want to save the refresh token as plain text in the PowerShell script 
 
 For this reason, I created a dedicated folder for the connector and used Windows Data Protection API, DPAPI, to encrypt the refresh token before storing it locally.
 
-**Creating the Connector Folder and Secure the Refresh Token**
+**5.1 - Creating the Connector Folder and Secure the Refresh Token**  
 Before building the actual connector script, I created a dedicated folder to keep the connector files together, in Powershell: *New-Item -ItemType Directory -Path "C:\HR-Connector" -Force*
 
 The folder will eventually contain the PowerShell connector, the encrypted refresh token, and the connector log.
@@ -208,7 +208,28 @@ DPAPI ties the encrypted value to the Windows user account that protected it. Th
 
 At this point, the refresh token is stored persistently and protected locally. The next part is to build HR-Connector.ps1, which will read and decrypt this value, exchange it for fresh tokens, replace the stored refresh token, and retrieve employee records from OrangeHRM.
 
+**5.2 - Build the PowerShell HR Connector**
+I created a PowerShell script named:
+- *C:\HR-Connector\HR-Connector.ps1*
 
+The purpose of this script is to handle the OrangeHRM side of the integration without requiring me to manually repeat the OAuth authorization process each time it runs.
+
+Each execution of the connector will:
+1. Read the encrypted refresh token from disk.
+2. Decrypt it using Windows DPAPI.
+3. Send the refresh token to the OrangeHRM token endpoint.
+4. Receive a new access token and refresh token.
+5. Encrypt and replace the stored refresh token.
+6. Use the new access token as a Bearer token.
+7. Send a GET request to the OrangeHRM employee API.
+8. Retrieve the current employee records.
+9. Write the result of the execution to a log file.
+
+
+
+**5.3 - Test the Connector Manually**  
+
+#### Step 6: Automate the Connector with Windows Task Scheduler
 
 ## Verification
 
