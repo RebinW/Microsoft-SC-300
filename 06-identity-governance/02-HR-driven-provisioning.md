@@ -16,6 +16,8 @@ By the end of this phase, I want a persistent process that retrieves current emp
 
 The next phase will take the retrieved HR data and use it to provision users into my on-premises Active Directory environment.
 
+![HR API integration and automation](screenshots/phase1.png)
+
 ## Objectives
 - Configure OrangeHRM as an HR source
 - Register an OAuth client
@@ -26,9 +28,6 @@ The next phase will take the retrieved HR data and use it to provision users int
 - Automate the connector using Windows Task Scheduler
 - Log connector executions and failures
 - Prepare HR data for identity provisioning into Active Directory
-
-## Architecture
-![HR API integration and automation](screenshots/phase1.png)
 
 ## Environment
 - HR System: OrangeHRM
