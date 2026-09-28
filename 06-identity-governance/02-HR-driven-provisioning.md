@@ -232,7 +232,7 @@ The complete script is available here:
 **5.3 - Test the Connector Manually**  
 Before automating the connector, I wanted to make sure the complete script worked correctly when executed manually.
 
-I ran the connector directly from PowerShell:
+I ran the connector directly from PowerShell:  
 ![run script](screenshots/manuallyrunscript.png)
 
 The connector successfully completed the full process:
@@ -246,8 +246,12 @@ The connector successfully completed the full process:
 
 The returned employee records confirmed that the connector was successfully authenticating to OrangeHRM and retrieving HR data without requiring me to repeat the interactive authorization flow.
 
-I also checked the connector log:
+I also checked the connector log, the log confirmed that each part of the connector completed successfully:  
 ![test connector](screenshots/testconnector.png)
+
+At this point, the connector works without manually generating a new authorization code whenever the access token expires. As long as the stored refresh token remains valid, the connector can use it to obtain fresh tokens and continue accessing the OrangeHRM API.
+
+The connector is still being started manually, though. The next step is to automate its execution using Windows Task Scheduler.
 
 #### Step 6: Automate the Connector with Windows Task Scheduler
 
